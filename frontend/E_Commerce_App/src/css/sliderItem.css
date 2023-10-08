@@ -1,0 +1,14 @@
+.slider-heading{
+    font-size: 10px;
+  }
+  .btn{
+    background-color: #000814;
+    color: white;
+  }
+  .btn:hover{
+    background-color: white;
+    color: #003566;
+  }
+  .container1{
+    margin-left: 15vh;
+  }
