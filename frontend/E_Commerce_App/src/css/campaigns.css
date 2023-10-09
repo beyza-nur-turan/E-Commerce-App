@@ -1,0 +1,15 @@
+/*! campaign start  */
+.campaigns .campaigns-wrapper {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+  }
+  .btn{
+    background-color: #071d3e;
+    color: white;
+  }
+  .btn:hover{
+    background-color: white;
+    color: #1b5285;
+  }
