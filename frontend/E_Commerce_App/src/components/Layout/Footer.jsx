@@ -3,8 +3,6 @@ import "../../css/footer.css";
 import paymant from "../../assets/img/footer/cards.png"
 import appStore from "../../assets/img/footer/app-store.png"
 import googlePlay from "../../assets/img/footer/google-play.png"
-
-
 const Footer = () => {
   return (
     <React.Fragment>
