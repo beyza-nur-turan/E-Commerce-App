@@ -95,7 +95,7 @@
   margin-top: 2vh;
 }
 .form-btn:hover {
-  background-color: white;
+  background:linear-gradient(#DEE0DA,#8B8984);
   color: #001233;
 }
 
@@ -118,9 +118,10 @@
 .inputt {
   margin: 2vh;
   width: 40vh;
-  height: 5vh;
-  border-radius: 7px;
-  border: 10px solid black;
+  height: 5.3vh;
+  border-radius: 6px;
+  border: none;
+  background-color: #ebede8;
 }
 .antd-row {
   width: 125vh;

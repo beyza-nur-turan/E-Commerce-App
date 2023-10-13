@@ -2,9 +2,15 @@
 import Auth from "./components/Auth/Auth";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import BlogDetails from "./components/BlogDetails/BlogDetails";
+import Header from "./components/Layout/Header";
+import BlogDetailsPage from "./pages/BlogDetailsPage";
+import BlogPage from "./pages/BlogPage";
+import CardPage from "./pages/CardPage";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
+
 
 function App() {
 
@@ -14,7 +20,9 @@ function App() {
   {/* <ContactPage/> */}
   {/* <Auth/> */}
   {/* <Login/> */}
-  <Register/>
+  {/* <Register/> */}
+  {/* <CardPage/> */}
+  <BlogPage/>
   </>;
 }
 

@@ -1,8 +1,8 @@
 import React from "react";
 import "../../css/footer.css";
-import paymant from "../../assets/img/footer/cards.png"
-import appStore from "../../assets/img/footer/app-store.png"
-import googlePlay from "../../assets/img/footer/google-play.png"
+import paymant from "../../assets/img/footer/cards.png";
+import appStore from "../../assets/img/footer/app-store.png";
+import googlePlay from "../../assets/img/footer/google-play.png";
 const Footer = () => {
   return (
     <React.Fragment>
@@ -14,10 +14,12 @@ const Footer = () => {
                 <div className="footer-subscribe">
                   <div className="footer-subscribe-top">
                     <h3 className="subscribe-title">
-                      İndirimler ve yeni haberlerden haberdar olmak için e-mailinizi girin!
+                      İndirimler ve yeni haberlerden haberdar olmak için
+                      e-mailinizi girin!
                     </h3>
                     <p className="subscribe-desc">
-                      500 TL üzeri alışverişlerinizde 50 TL&apos;lik indirim kuponu bizden.
+                      500 TL üzeri alışverişlerinizde 50 TL&apos;lik indirim
+                      kuponu bizden.
                     </p>
                   </div>
                   <div className="footer-subscribe-bottom">
@@ -77,14 +79,14 @@ const Footer = () => {
                 <div className="footer-desc">
                   <p>
                     {" "}
-                    İhsan Doğramacı Blv. Üniversiteler Mah.
-No:31-1, ODTÜ TEKNOKENT 06800
-Çankaya/Ankara
+                    İhsan Doğramacı Blv. Üniversiteler Mah. No:31-1, ODTÜ
+                    TEKNOKENT 06800 Çankaya/Ankara
                   </p>
                 </div>
                 <div className="footer-contact">
                   <p>
-                    <a href="tel:555 555 55 55">(+90) 534 83 90</a> <br/> <br/>
+                    <a href="tel:555 555 55 55">(+90) 534 83 90</a> <br />{" "}
+                    <br />
                     <a href="mailto:info@example.com">info@gmail.com</a>
                   </p>
                 </div>
@@ -164,7 +166,7 @@ No:31-1, ODTÜ TEKNOKENT 06800
                   <li>
                     <a href="#">Ev ve Yaşam</a>
                   </li>
-                  
+
                   <li>
                     <a href="#">Ayakkabılar</a>
                   </li>
@@ -178,7 +180,7 @@ No:31-1, ODTÜ TEKNOKENT 06800
             <div className="footer-copyright">
               <div className="site-copyright">
                 <p>
-                Tüm Hakları Saklıdır © 2023. BNT tarafından desteklenmektedir.
+                  Tüm Hakları Saklıdır © 2023. BNT tarafından desteklenmektedir.
                 </p>
               </div>
               <a href="#">
