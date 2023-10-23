@@ -1,8 +1,9 @@
+import avatar from "../../assets/img/Avatars/avatar1.jpg"
 const ReviewItem = () => {
     return (
       <li className="comment-item">
         <div className="comment-avatar">
-          <img src="img/avatars/avatar1.jpg" alt="" />
+          <img src={avatar} alt="" />
         </div>
         <div className="comment-text">
           <ul className="comment-star">
