@@ -1,14 +1,10 @@
-import slider1 from "../../assets/img/slider/slider1.jpg"
-import slider2 from "../../assets/img/slider/slider2.jpg"
-import slider3 from "../../assets/img/slider/slider3.jpg"
+import PropTypes from 'prop-types';
 import "../../css/sliderItem.css"
-const SliderItem = () => {
+const SliderItem = ({imageSrc}) => {
     return (
       <div className="slider-item fade">
         <div className="slider-image">
-          <img src={slider1} className="img-fluid" alt="" />
-          <img src={slider2} className="img-fluid" alt="" />
-          <img src={slider3} className="img-fluid" alt="" />
+          <img src={imageSrc} className="img-fluid" alt="" />
         </div>
         <div className="container1">
           <p className="slider-title">2023 Sonbahar</p>
@@ -20,5 +16,8 @@ const SliderItem = () => {
       </div>
     );
   };
+  SliderItem.propTypes={
+    imageSrc: PropTypes.string.isRequired,
+  }
   
   export default SliderItem;

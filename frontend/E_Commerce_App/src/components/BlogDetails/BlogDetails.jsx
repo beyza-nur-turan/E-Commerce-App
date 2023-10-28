@@ -1,5 +1,6 @@
 import Reviews from "../../components/Reviews/Reviews";
 import "../../css/BlogDetails.css";
+import blogPicture from "../../assets/img/Blogs/blog1.jpg"
 
 const BlogDetails = () => {
   return (
@@ -8,7 +9,7 @@ const BlogDetails = () => {
         <article>
           <figure>
             <a href="#">
-              <img src="img/blogs/blog1.jpg" alt="" />
+              <img src={blogPicture} alt="" />
             </a>
           </figure>
           <div className="blog-wrapper">

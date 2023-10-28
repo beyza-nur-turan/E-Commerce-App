@@ -7,7 +7,7 @@ import Tabs from "../Tabs/Tabs";
 const ProductDetails = () => {
   return (
     <section className="single-product">
-      <div className="container">
+      <div className="container" style={{marginTop:"50vw",marginBottom:"57vw"}}>
         <div className="single-product-wrapper">
           <Breadcrumb />
           <div className="single-content">

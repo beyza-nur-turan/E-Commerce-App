@@ -1,10 +1,13 @@
 import "../../../css/gallery.css";
+import resim from "../../../assets/img/Products/Product2/1.png"
+import resim1 from "../../../assets/img/Products/Product2/2.png"
+import resim2 from "../../../assets/img/Products/Product2/3.png"
 
 const Gallery = () => {
   return (
     <div className="product-gallery">
       <div className="single-image-wrapper">
-        <img src="img/products/product2/1.png" id="single-image" alt="" />
+        <img src={resim} id="single-image" alt="" />
       </div>
       <div className="product-thumb">
         <div className="glide__track" data-glide-el="track">
@@ -16,7 +19,7 @@ const Gallery = () => {
 
             >
               <img
-                src="img/products/product3/1.png"
+                src={resim1}
                 alt=""
                 className="img-fluid active"
               />
@@ -26,11 +29,11 @@ const Gallery = () => {
               className="glide__slide"
 
             >
-              <img src="img/products/product3/2.png" alt="" className="img-fluid" />
+              <img src={resim2} alt="" className="img-fluid" />
             </li>
 
             <li className="glide__slide" >
-              <img src="img/products/product3/3.png" alt="" className="img-fluid" />
+              <img src={resim2} alt="" className="img-fluid" />
             </li>
           </ol>
         </div>
