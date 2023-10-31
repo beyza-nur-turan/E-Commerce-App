@@ -9,4 +9,7 @@
     margin-top: 30px;
     flex-wrap: wrap;
   }
- 
+ .categories .container{
+  display: flex;
+  flex-direction: column;
+ }

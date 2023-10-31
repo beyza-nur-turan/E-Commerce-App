@@ -1,0 +1,53 @@
+[
+    {
+        "id": 1,
+        "name": "Analogue Resin Strap",
+        "price": {
+            "oldPrice": 165.00,
+            "newPrice": 108.00
+        },
+        "discount": 22,
+        "img": {
+            "singleImage": "./assets/img/Products/Product1/1.png",
+            "thumbs": [
+                "./assets/img/Products/Product1/1.png",
+                "./assets/img/Products/Product1/2.png",
+                "./assets/img/Products/Product1/3.png"
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "Ridley High Waist",
+        "price": {
+            "oldPrice": 208.00,
+            "newPrice": 100
+        },
+        "discount": 33,
+        "img": {
+            "singleImage": "./assets/img/Products/Product2/1.png",
+            "thumbs": [
+                "./assets/img/Products/Product2/1.png",
+                "./assets/img/Products/Product2/2.png",
+                "./assets/img/Products/Product2/3.png"
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "name": "Blush Beanie",
+        "price": {
+            "oldPrice": 165.00,
+            "newPrice": 38.00
+        },
+        "discount": 90,
+        "img": {
+            "singleImage": "./assets/img/Products/Product3/1.png",
+            "thumbs": [
+                "./assets/img/Products/Product3/1.png",
+                "./assets/img/Products/Product3/2.png",
+                "./assets/img/Products/Product3/3.png"
+            ]
+        }
+    }
+]

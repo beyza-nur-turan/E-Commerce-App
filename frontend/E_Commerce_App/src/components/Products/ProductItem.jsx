@@ -3,7 +3,7 @@ import resim1 from "../../assets/img/Products/Product1/1.png"
 import resim2 from "../../assets/img/Products/Product1/2.png"
 const ProductItem = () => {
   return (
-    <li className="product-item glide__slide glide__slide --active">
+    <div className="product-item glide__slide glide__slide --active">
       <div className="product-image">
         <a href="#">
           <img src={resim1} alt="" className="img1" />
@@ -51,7 +51,7 @@ const ProductItem = () => {
           </a>
         </div>
       </div>
-    </li>
+    </div>
   );
 };
 
