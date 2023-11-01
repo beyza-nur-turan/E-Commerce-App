@@ -17,7 +17,7 @@ import ShopPage from "./pages/ShopPage";
 function App() {
 
   return <>
-  <HomePage/>
+  {/* <HomePage/> */}
   {/* <ShopPage/> */}
   {/* <ContactPage/> */}
   {/* <Auth/> */}
@@ -26,7 +26,7 @@ function App() {
   {/* <CardPage/> */}
   {/* <BlogPage/> */}
   {/* <Reviews/> */}
-  {/* <ProductDetailsPage/> */}
+  <ProductDetailsPage/>
   {/* <BlogDetailsPage /> */}
   </>;
 }

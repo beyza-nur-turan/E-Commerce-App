@@ -59,6 +59,7 @@ const Products = () => {
 
   return (
     <section className="products">
+      {console.log("data:", ProductsData[0].img.thumbs[0])}
       <div className="container">
         <div className="section-title">
           <h2>Featured Products</h2>

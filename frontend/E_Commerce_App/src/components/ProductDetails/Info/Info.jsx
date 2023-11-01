@@ -1,5 +1,9 @@
+import { useState } from "react";
 import "../../../css/info.css";
+// import PropTypes from "prop-types";
 const Info = () => {
+  const colors = ["blue-color", "red-color", "green-color", "purple-color"];
+  const [colorss, setColor] = useState(colors[0]);
   return (
     <div className="product-info">
       <h1 className="product-title">Ridley High Waist</h1>
@@ -38,26 +42,16 @@ const Info = () => {
               <span>Color</span>
             </div>
             <div className="colors-wrapper">
-              <div className="color-wrapper">
-                <label className="blue-color">
-                  <input type="radio" name="product-color" />
-                </label>
-              </div>
-              <div className="color-wrapper">
-                <label className="red-color">
-                  <input type="radio" name="product-color" />
-                </label>
-              </div>
-              <div className="color-wrapper active">
-                <label className="green-color">
-                  <input type="radio" name="product-color" />
-                </label>
-              </div>
-              <div className="color-wrapper">
-                <label className="purple-color">
-                  <input type="radio" name="product-color" />
-                </label>
-              </div>
+              {colors.map((color,index) => (
+                <div onClick={() => setColor(color)} className={`color-wrapper ${
+                  color === colorss ? "active" : ""
+                } `} key={index}>
+                  <label className={color}>
+                    <input type="radio" name="product-color" />
+                  </label>
+                </div>
+              ))}
+              
             </div>
           </div>
           <div className="values">

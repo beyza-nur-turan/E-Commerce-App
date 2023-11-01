@@ -54,5 +54,4 @@ const ProductItem = () => {
     </div>
   );
 };
-
 export default ProductItem;
