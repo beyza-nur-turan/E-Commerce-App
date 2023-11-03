@@ -1,18 +1,33 @@
+import { useState } from "react";
 import "../../css/productItem.css";
-import resim1 from "../../assets/img/Products/Product1/1.png"
-import resim2 from "../../assets/img/Products/Product1/2.png"
-const ProductItem = () => {
+import PropTypes from "prop-types";
+const ProductItem = (productItem) => {
+  const [cardItems,setCardItems]=useState([]);
+  const addToCard=(cardItem)=>{
+    setCardItems((prevCard)=>[...prevCard,cardItem])
+  }
+  {
+    console.log(cardItems);
+  }
   return (
     <div className="product-item glide__slide glide__slide --active">
       <div className="product-image">
         <a href="#">
-          <img src={resim1} alt="" className="img1" />
-          <img src={resim2} alt="" className="img2" />
+          <img
+            src={productItem.productItem.img.singleImage}
+            alt=""
+            className="img1"
+          />
+          <img
+            src={productItem.productItem.img.thumbs[2]}
+            alt=""
+            className="img2"
+          />
         </a>
       </div>
       <div className="product-info">
         <a href="$" className="product-title">
-         Kadın Ekoseli Blazer Ceket
+          {productItem.productItem.name}
         </a>
         <ul className="product-star">
           <li>
@@ -32,12 +47,12 @@ const ProductItem = () => {
           </li>
         </ul>
         <div className="product-prices">
-          <strong className="new-price">350 TL</strong>
-          <span className="old-price">1240 TL</span>
+          <strong className="new-price">{productItem.productItem.price.newPrice} TL</strong>
+          <span className="old-price">{productItem.productItem.price.oldPrice} TL</span>
         </div>
-        <span className="product-discount">-25%</span>
+        <span className="product-discount">{productItem.productItem.discount}%</span>
         <div className="product-links">
-          <button className="add-to-cart">
+          <button className="add-to-cart" >
             <i className="bi bi-basket-fill"></i>
           </button>
           <button>
@@ -46,7 +61,7 @@ const ProductItem = () => {
           <a href="#" className="product-link">
             <i className="bi bi-eye-fill"></i>
           </a>
-          <a href="#">
+          <a href="#" onClick={addToCard}>
             <i className="bi bi-share-fill"></i>
           </a>
         </div>
@@ -55,3 +70,6 @@ const ProductItem = () => {
   );
 };
 export default ProductItem;
+ProductItem.propTypes = {
+  productItem: PropTypes.object,
+};

@@ -3,7 +3,7 @@ import "../../../css/tabs.css";
 import { useState } from "react";
 
 const Tabs = () => {
-  const [activeTab,setActiveTab]=useState("desc");
+  const [activeTab,setActiveTab]=useState("info");
   const handleTabClick = (e,tab) =>{
     e.preventDefault()
     setActiveTab(tab)

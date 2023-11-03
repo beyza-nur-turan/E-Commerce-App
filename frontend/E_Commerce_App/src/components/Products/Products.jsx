@@ -33,6 +33,7 @@ const Products = () => {
   const [products] = useState(ProductsData);
 
   const sliderSettings = {
+   
     dots: false,
     infinite: true,
     slidesToShow: 3,
@@ -68,7 +69,7 @@ const Products = () => {
         <div className="product-wrapper product-carousel">
           <Slider {...sliderSettings}>
             {products.map((product) => (
-              <ProductItem product={product} key={product.id} />
+              <ProductItem productItem={product} key={product.id} />
             ))}
           </Slider>
         </div>
