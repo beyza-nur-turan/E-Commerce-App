@@ -1,13 +1,17 @@
-const CardItem = () => {
+import PropTypes from "prop-types";
+import { useCardContext } from "../../context/CardProvider";
+const CardItem = ({cardItem}) => {
+  const {removeFromCard}=useCardContext()
     return (
+      
       <tr className="card-item">
         <td></td>
         <td className="card-image">
-          <img src="img/products/product1/1.png" alt="" />
-          <i className="bi bi-x delete-card" data-id="1"></i>
-        </td>
-        <td>Analogue Resin Strap</td>
-        <td>$108.00</td>
+          <img src={cardItem.productItem.img.singleImage} alt="" />
+          <button className="bi bi-x delete-card" onClick={()=>removeFromCard(cardItem.productItem.id)} ></button>
+        </td>{console.log("card",cardItem.productItem.img.singleImage)}
+        <td>{cardItem.productItem.name}</td>
+        <td>${cardItem.productItem.price.newPrice}</td>
         <td className="product-quantity">1</td>
         <td className="product-subtotal">$108.00</td>
       </tr>
@@ -15,3 +19,6 @@ const CardItem = () => {
   };
   
   export default CardItem;
+  CardItem.propTypes = {
+    cardItem: PropTypes.object,
+  };

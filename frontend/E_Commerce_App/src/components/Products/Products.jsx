@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import ProductsData from "../../data.json";
+import { useCardContext } from "../../context/CardProvider";
 
 function NextBtn({ onClick }) {
   return (
@@ -28,9 +29,10 @@ function PrevBtn({ onClick }) {
 PrevBtn.propTypes = {
   onClick: PropTypes.func,
 };
-
 const Products = () => {
+  const {cardItems}=useCardContext()
   const [products] = useState(ProductsData);
+  console.log(cardItems);
 
   const sliderSettings = {
    
@@ -65,11 +67,12 @@ const Products = () => {
         <div className="section-title">
           <h2>Featured Products</h2>
           <p>Summer Collection New Morden Design</p>
+          {/* Data:{cardItems} */}
         </div>
         <div className="product-wrapper product-carousel">
           <Slider {...sliderSettings}>
             {products.map((product) => (
-              <ProductItem productItem={product} key={product.id} />
+              <ProductItem productItem={product}  key={product.id} />
             ))}
           </Slider>
         </div>

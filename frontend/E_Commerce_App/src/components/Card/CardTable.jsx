@@ -1,6 +1,7 @@
 import CardItem from "../Card/CardItem";
-
+import { useCardContext } from "../../context/CardProvider";
 const CardTable = () => {
+  const {cardItems}=useCardContext()
   return (
     <table className="shop-table">
       <thead>
@@ -13,9 +14,10 @@ const CardTable = () => {
           <th className="product-subtotal">Subtotal</th>
         </tr>
       </thead>
-      <tbody className="card-wrapper">
-        <CardItem />
-        <CardItem />
+      <tbody className="cart-wrapper">
+        {cardItems.map((item) => (
+          <CardItem cardItem={item} key={item.id} />
+        ))}
       </tbody>
     </table>
   );
