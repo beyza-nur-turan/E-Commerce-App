@@ -13,17 +13,19 @@ function CardProvider({ children }) {
   }, [cardItems]);
   console.log("cardıtem", cardItems);
   const addToCard = (cardItem) => {
-    setCardItems((prevCard) => [...prevCard, cardItem]);
+    setCardItems((prevCard) => [...prevCard, {
+      ...cardItem,quantity:cardItem.quantity ? cardItem.quantity : 1
+    }]);
   };
   const removeFromCard = (itemId) => {
     const filteredCardItems = cardItems.filter((cardItem) => {
-      return cardItem.id !== itemId;
+      return cardItem.productItem.id !== itemId;
     });
 
     setCardItems(filteredCardItems);
   };
 
-  const data = { cardItems, setCardItems, products, addToCard ,removeFromCard };
+  const data = { cardItems, setCardItems, products, addToCard, removeFromCard };
   return <CardContext.Provider value={data}>{children}</CardContext.Provider>;
 }
 export const useCardContext = () => useContext(CardContext);

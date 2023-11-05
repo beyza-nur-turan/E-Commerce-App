@@ -93,6 +93,8 @@ import { useCardContext } from "../../context/CardProvider";
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Link } from "react-router-dom";
 
   
 
@@ -108,8 +110,9 @@ const ExpandMore = styled((props) => {
 }));
 
   const ProductItem=(productItem)=> {
+    
   const [expanded, setExpanded] = React.useState(false);
-  const {cardItems,setCardItems,products,addToCard}=useCardContext()
+  const {cardItems,addToCard}=useCardContext()
   const value = 3.5;
  
 
@@ -176,6 +179,10 @@ const ExpandMore = styled((props) => {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
+        <Link to={`/product${productItem.productItem.id}`}>
+        <IconButton aria-label="share" >
+          <VisibilityIcon />
+        </IconButton></Link>
         
       </CardActions>
       

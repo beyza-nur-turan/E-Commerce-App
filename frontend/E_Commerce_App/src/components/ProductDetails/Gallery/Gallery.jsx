@@ -63,7 +63,7 @@ const Gallery = () => {
     <div className="product-gallery">
       {console.log("data:", ProductsData[0].img.thumbs[0])}
       <div className="single-image-wrapper">
-        <img src={activeImg} id="single-image" alt="" />
+        <img src={`/${activeImg.img}`} id="single-image" alt="" />
       </div>
       <div className="product-thumb">
         <div className="glide__track" data-glide-el="track">
@@ -76,7 +76,7 @@ const Gallery = () => {
                 className="glide__slide glide__slide--active"
               >
                 <img
-                  src={itemImg}
+                  src={`/${itemImg}`}
                   alt=""
                   className={`img-fluid ${
                     itemImg === activeImg ? "active" : ""

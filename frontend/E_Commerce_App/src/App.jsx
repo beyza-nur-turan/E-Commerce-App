@@ -12,23 +12,14 @@ import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ShopPage from "./pages/ShopPage";
+import RouteFix from "./routes/Route";
 
 
 function App() {
 
   return <>
-  <HomePage/>
-  {/* <ShopPage/> */}
-  {/* <ContactPage/> */}
-  {/* <Auth/> */}
-  {/* <Login/> */}
-  {/* <Register/> */}
-  {/* <CardPage/> */}
-  {/* <BlogPage/> */}
-  {/* <Reviews/> */}
-  {/* <ProductDetailsPage/> */}
-  {/* <BlogDetailsPage /> */}
-  </>;
+  <RouteFix/>
+  </>
 }
 
 export default App;

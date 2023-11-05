@@ -8,12 +8,12 @@ const CardItem = ({cardItem}) => {
         <td></td>
         <td className="card-image">
           <img src={cardItem.productItem.img.singleImage} alt="" />
-          <button className="bi bi-x delete-card" onClick={()=>removeFromCard(cardItem.productItem.id)} ></button>
+          <button style={{backgroundColor:"#EE403D"}} className="bi bi-x delete-card" onClick={()=>removeFromCard(cardItem.productItem.id)} ></button>
         </td>{console.log("card",cardItem.productItem.img.singleImage)}
         <td>{cardItem.productItem.name}</td>
-        <td>${cardItem.productItem.price.newPrice}</td>
-        <td className="product-quantity">1</td>
-        <td className="product-subtotal">$108.00</td>
+        <td>${cardItem.productItem.price.newPrice.toFixed(2)}</td>
+        <td className="product-quantity">{cardItem.quantity}</td>
+        <td className="product-subtotal">${(cardItem.productItem.price.newPrice*cardItem.quantity).toFixed(2)}</td>
       </tr>
     );
   };
