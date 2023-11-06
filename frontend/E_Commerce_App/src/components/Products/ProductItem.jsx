@@ -128,19 +128,7 @@ const ExpandMore = styled((props) => {
     <Card className="cardContainer" sx={{ maxWidth: 500 }}>
       
       <div className="product-item glide__slide glide__slide --active">
-       <div className="product-image">         <a href="#">
-          <img
-            src={productItem.productItem.img.singleImage}
-            alt=""
-            className="img1"
-          />
-          <img
-            src={productItem.productItem.img.thumbs[2]}
-            alt=""
-            className="img2"
-          />
-        </a>
-      </div>
+       
       </div>
       <h4>{productItem.productItem.name}</h4>
       <Box 
@@ -179,7 +167,7 @@ const ExpandMore = styled((props) => {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <Link to={`/product${productItem.productItem.id}`}>
+        <Link to={`/product/${productItem.productItem.id}`}>
         <IconButton aria-label="share" >
           <VisibilityIcon />
         </IconButton></Link>
