@@ -12,6 +12,7 @@ router.post("/", async (req, res) => {
     res.status(201).json(newCategory); //yeni bir şey oluşturuncaki başarı kodu :201 dir
   } catch (error) {
     console.log(error);
+    res.status(500).json({ error: "server hatası" });
   }
 });
 // Tüm kategorileri getirme

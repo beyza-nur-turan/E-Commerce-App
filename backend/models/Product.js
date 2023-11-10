@@ -17,7 +17,7 @@ const ProductSchema=mongoose.Schema(
         colors:[{type:String,required:true}],
         sizes:[{type:String,required:true}],
         price:{
-            new:{type:Number,required:true},
+            current:{type:Number,required:true},
             discount:{type:Number}
         },
         category:{
