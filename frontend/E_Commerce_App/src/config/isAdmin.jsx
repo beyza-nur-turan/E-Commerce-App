@@ -1,0 +1,1 @@
+ export const isAdmin = window.location.pathname.startsWith("/admin"); // localhost path i /admin ile başlıyorsa yani kullanıcı adminse
