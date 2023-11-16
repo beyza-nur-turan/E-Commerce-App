@@ -17,7 +17,7 @@ function RouteFix() {
       <Route path="/blog" element={<BlogPage  />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/card" element={<CardPage />} />
-      <Route path="/auth" element={<AuthPage />} />
+      <Route path="/auth" element={<AuthPage  />} />
       <Route path="/product/:id" element={<ProductDetailsPage />} />
       <Route path="/blog/:id" element={<BlogDetailsPage />} />
     </Routes>
