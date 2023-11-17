@@ -180,5 +180,5 @@ const ExpandMore = styled((props) => {
 export default ProductItem;
 ProductItem.propTypes = {
   productItem: PropTypes.object,
-  setCardItems: PropTypes.func.isRequired,
+  //setCardItems: PropTypes.func.isRequired,
 };

@@ -8,11 +8,13 @@ import CardPage from '../pages/CardPage'
 import ProductDetailsPage from '../pages/ProductDetailsPage'
 import BlogDetailsPage from '../pages/BlogDetailsPage'
 import AuthPage from '../pages/AuthPage'
+import Login from '../components/Auth/Login'
 
 function RouteFix() {
   return (
     <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
       <Route path="/shop" element={<ShopPage />} />
       <Route path="/blog" element={<BlogPage  />} />
       <Route path="/contact" element={<ContactPage />} />

@@ -1,0 +1,18 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+function HandleNavigate(target) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(`/${target}`);
+  }, [navigate, target]);
+
+  return (
+    <div>
+      
+    </div>
+  );
+}
+
+export default HandleNavigate;
