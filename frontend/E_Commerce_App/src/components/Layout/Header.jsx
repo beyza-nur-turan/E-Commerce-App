@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 const Header = ({ setIsSearchShow }) => {
   const {cardItems}=useCardContext()
   const {pathname}=useLocation()
+  const user=localStorage.getItem("user");
   return (
     <header>
       <div className="global-notification">
@@ -194,20 +195,31 @@ const Header = ({ setIsSearchShow }) => {
                 <Link to={"/auth"} className="header-account">
                   <i className="bi bi-person"></i>
                 </Link>
+                {user &&
                 <button
-                  className="search-button"
-                  onClick={() => setIsSearchShow(true)}
-                >
-                  <i className="bi bi-search"></i>
-                </button>
+                className="search-button"
+                style={{display:"flex",flexDirection:"row"}}
+                onClick={()=>{
+                  if(window.confirm("Çıkış yapmak istediğinize emin misiniz?")){
+                    localStorage.removeItem("user")
+                    window.location.href=("/")
+                  }
+                }}
+              >
+                <i className="bi bi-box-arrow-right"></i>
+                <i className="bi bi-search"></i>
+              </button>}
                 <a href="#">
                   <i className="bi bi-heart"></i>
                 </a>
-                <div className="header-cart">
+                <div className="header-cart" >
                   <Link to={"/card"} className="header-cart-link">
                     <i className="bi bi-bag"></i>
                     <span className="header-cart-count">{cardItems.length}</span>
+                    
                   </Link>
+                  
+                  
                 </div>
               </div>
             </div>

@@ -5,6 +5,7 @@ const logger =require("morgan"); //morgan uygulamanın çalışma durumunu perfo
 //özellikle canlı çalışan uygulamalarda geliştiriciye önemli geri dönüşler sağlar.
 const app = express();
 const mainRoute = require("./routes/index.js");
+const cors =require("cors") 
 const port = 5000;
 
 dotenv.config();
@@ -20,6 +21,7 @@ const connect = async () => {
 //!middlewares
 app.use(logger("dev"))//development modunda morgan kullanımı
 app.use(express.json())//gelen tüm datalar json'a çevriliyor
+app.use(cors())
 //!middlewares finish
 
 app.use("/api", mainRoute);

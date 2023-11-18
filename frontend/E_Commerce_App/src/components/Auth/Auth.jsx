@@ -1,5 +1,5 @@
-import Login from "../../components/Auth/Login";
-import Register from "../../components/Auth/Register";
+import Login from "./Login";
+import Register from "./Register";
 import "../../css/auth.css";
 
 const Auth = () => {
@@ -7,8 +7,8 @@ const Auth = () => {
     <section className="account-page">
       <div className="container">
         <div className="account-wrapper">
-          {/* <Login /> */}
-          <Register />
+          <Login />
+          {/* <Register /> */}
         </div>
       </div>
     </section>
