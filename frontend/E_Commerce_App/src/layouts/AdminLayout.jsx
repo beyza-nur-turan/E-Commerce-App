@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from "react";
 import {
   UserOutlined,
   LaptopOutlined,
@@ -8,14 +8,19 @@ import {
   ShoppingCartOutlined,
   AppstoreOutlined,
   MenuUnfoldOutlined,
-  MenuFoldOutlined
+  MenuFoldOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from 'antd';
+import { Layout, Menu, Button, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
+const getUserRole = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user ? user.role : null;
+};
 
 function AdminLayout() {
   const navigate = useNavigate();
+  const userRole = getUserRole();
   const menuItems = [
     {
       key: "1",
@@ -123,54 +128,58 @@ function AdminLayout() {
       },
     },
   ];
+
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  return (
-    <div className="admin-layout" >
-      <Layout style={{minHeight:"100vh"}}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={['1']}
-          items={menuItems}
-        />
-      </Sider>
-      <Layout>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          Content
-        </Content>
-      </Layout>
-    </Layout>
-      
-    </div>
-  )
+  if (userRole === "admin") {
+    return (
+      <div className="admin-layout">
+        <Layout style={{ minHeight: "100vh" }}>
+          <Sider trigger={null} collapsible collapsed={collapsed}>
+            <div className="demo-logo-vertical" />
+            <Menu
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={["1"]}
+              items={menuItems}
+            />
+          </Sider>
+          <Layout>
+            <Header
+              style={{
+                padding: 0,
+                background: colorBgContainer,
+              }}
+            >
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: "16px",
+                  width: 64,
+                  height: 64,
+                }}
+              />
+            </Header>
+            <Content
+              style={{
+                margin: "24px 16px",
+                padding: 24,
+                minHeight: 280,
+                background: colorBgContainer,
+              }}
+            >
+              Content
+            </Content>
+          </Layout>
+        </Layout>
+      </div>
+    );
+  }  else {
+    return (window.location.href = "/");
+  }
 }
-export default AdminLayout
+export default AdminLayout;
