@@ -3,7 +3,7 @@ import "../../css/header.css";
 import PropTypes from 'prop-types';
 import { Link, useLocation } from "react-router-dom";
 
-const Header = ({ setIsSearchShow }) => {
+const Header = () => {
   const {cardItems}=useCardContext()
   const {pathname}=useLocation()
   const user=localStorage.getItem("user");

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   UserOutlined,
   LaptopOutlined,
@@ -18,7 +19,7 @@ const getUserRole = () => {
   return user ? user.role : null;
 };
 
-function AdminLayout() {
+function AdminLayout({children}) {
   const navigate = useNavigate();
   const userRole = getUserRole();
   const menuItems = [
@@ -108,7 +109,7 @@ function AdminLayout() {
       label: "Kullanıcı Listesi",
       path: "/admin/users",
       onClick: () => {
-        navigate(`/admin/users`);
+        navigate("/admin/users");
       },
     },
     {
@@ -172,7 +173,7 @@ function AdminLayout() {
                 background: colorBgContainer,
               }}
             >
-              Content
+              {children}
             </Content>
           </Layout>
         </Layout>
@@ -183,3 +184,6 @@ function AdminLayout() {
   }
 }
 export default AdminLayout;
+AdminLayout.propTypes={
+children:PropTypes.node
+}
