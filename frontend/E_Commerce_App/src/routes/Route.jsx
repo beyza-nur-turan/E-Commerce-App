@@ -8,7 +8,9 @@ import ProductDetailsPage from "../pages/ProductDetailsPage";
 import BlogDetailsPage from "../pages/BlogDetailsPage";
 import AuthPage from "../pages/AuthPage";
 import Login from "../components/Auth/Login";
-import AdminUserPage from "../pages/admin/AdminUserPage";
+import UserPage from "../pages/Admin/UserPage";
+import CategoryPage from "../pages/Admin/Categories/CategoryPage";
+import UpdateCategoryModal from "../modals/UpdateCategoryModal";
 
 function RouteFix() {
   return (
@@ -23,7 +25,9 @@ function RouteFix() {
       <Route path="/product/:id" element={<ProductDetailsPage />} />
       <Route path="/blog/:id" element={<BlogDetailsPage />} />
       <Route path="/admin/*">
-        <Route path="users" element={<AdminUserPage />} />
+        <Route path="users" element={<UserPage />} />
+        <Route path="categories" element={<CategoryPage />} />
+        <Route path="categories/update/:categoryId" element={<UpdateCategoryModal />} />
       </Route>
     </Routes>
   );
