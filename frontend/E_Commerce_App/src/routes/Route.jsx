@@ -11,6 +11,9 @@ import Login from "../components/Auth/Login";
 import UserPage from "../pages/Admin/UserPage";
 import CategoryPage from "../pages/Admin/Categories/CategoryPage";
 import UpdateCategoryModal from "../modals/UpdateCategoryModal";
+import CreateCategoryPage from "../pages/Admin/Categories/CreateCategoryPage";
+import ProductPage from "../pages/Admin/Products/ProductPage";
+import CreateProductPage from "../pages/Admin/Products/CreateProductPage";
 
 function RouteFix() {
   return (
@@ -28,6 +31,9 @@ function RouteFix() {
         <Route path="users" element={<UserPage />} />
         <Route path="categories" element={<CategoryPage />} />
         <Route path="categories/update/:categoryId" element={<UpdateCategoryModal />} />
+        <Route path="categories/create" element={<CreateCategoryPage  />} />
+        <Route path="products" element={<ProductPage  />} />
+        <Route path="products/create" element={<CreateProductPage  />} />
       </Route>
     </Routes>
   );

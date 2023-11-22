@@ -10,8 +10,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
-  height: 290,
+  width: 500,
+  height: 500,
   bgcolor: "background.paper",  
   boxShadow: 30,
   p: 2,
@@ -19,12 +19,12 @@ const style = {
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-export default function UpdateCategoryModal({ isOpen, handleClose, data }) {
+export default function UpdateProductModal({ isOpen, handleClose, data }) {
   const [dataSource, setDataSource] = useState([]);
 
-  const fetchCategory = async () => {
+  const fetchProduct = async () => {
     try {
-      const response = await fetch(`${apiUrl}/categories`);
+      const response = await fetch(`${apiUrl}/products`);
       console.log("response:", response);
       if (response.ok) {
         const data = await response.json();
@@ -37,23 +37,23 @@ export default function UpdateCategoryModal({ isOpen, handleClose, data }) {
     }
   };
 
-  const updateCategory = async (categoryId, updatedCategoryData) => {
+  const updateProduct = async (productId, updatedProductData) => {
     try {
-      console.log("ID ile kategori güncelleniyor:", categoryId);
-      console.log("Güncellenmiş veri:", updatedCategoryData);
+      console.log("ID ile kategori güncelleniyor:", productId);
+      console.log("Güncellenmiş veri:", updatedProductData);
 
-      const response = await fetch(`${apiUrl}/categories/${categoryId}`, {
+      const response = await fetch(`${apiUrl}/products/${productId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedCategoryData),
+        body: JSON.stringify(updatedProductData),
       });
 
       if (response.ok) {
-        console.log("Kategori başarıyla güncellendi.");
-        message.success("Kategori başarıyla güncellendi.");
-        fetchCategory();
+        console.log("Ürün başarıyla güncellendi.");
+        message.success("Ürün başarıyla güncellendi.");
+        fetchProduct();
       } else {
         const errorData = await response.json();
         console.error("Sunucu hatası:", errorData);
@@ -84,22 +84,25 @@ export default function UpdateCategoryModal({ isOpen, handleClose, data }) {
               color:"blueviolet"
             }}
           >
-            Kategori Güncelle
+            Ürünü Güncelle
           </h2>
           <Formik
             initialValues={{
-              name: data?.name,
-              img: data?.img,
+                id: data?._id,
+                name: data?.name,
+                img: data?.img,
+                sizes:data?.sizes,
+                price:data?.price.current
             }}
             onSubmit={(values) => {
-              updateCategory(data?.id, values);
+              updateProduct(data?.id, values);
               handleClose();
             }}
           >
             {({ values, handleChange }) => (
               <Form className="formStyle">
                 <div>
-                  <label htmlFor="name">Kategori adı giriniz: </label>
+                  <label htmlFor="name">Ürün adı giriniz: </label>
                   <input
                     type="text"
                     id="name"
@@ -109,12 +112,32 @@ export default function UpdateCategoryModal({ isOpen, handleClose, data }) {
                   />
                 </div>
                 <div>
-                  <label htmlFor="img">Resim adresi giriniz: </label>
+                  <label htmlFor="img">Ürün resimleri(Link) </label>
                   <input
                     type="text"
                     id="img"
                     name="img"
                     value={values.img}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="name">Ürün bedenlerini giriniz: </label>
+                  <input
+                    type="text"
+                    id="sizes"
+                    name="sizes"
+                    value={values.sizes}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="name">Ürünün ücretini giriniz: </label>
+                  <input
+                    type="text"
+                    id="price"
+                    name="price"
+                    value={values.price}
                     onChange={handleChange}
                   />
                 </div>

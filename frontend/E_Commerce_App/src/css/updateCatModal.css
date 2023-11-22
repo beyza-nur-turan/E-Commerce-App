@@ -1,0 +1,30 @@
+.formStyle{
+    display:flex;
+    flex-direction:column;
+    gap:5vh;
+    align-items:center;
+}
+.formStyle div input{
+    border: 2px solid #343a40 ;
+    width: 30vh;
+    height: 5.5vh;
+}
+.formStyle div input:hover{
+    border: 2px solid #9d0208 ;
+    width: 30vh;
+    height: 5.5vh;
+}
+.formStyle label{
+    color:rgb(161, 20, 46);
+    margin-right: 2vh;
+    font-size: 14px;
+}
+.formStyle .buttonStyle{
+    background-color: red;
+}
+.formStyle Button{
+    background-color: blueviolet;
+    width: 15vh;
+    height: 6vh;
+}
+

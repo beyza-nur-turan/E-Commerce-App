@@ -6,10 +6,11 @@ import { Button, message } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import UpdateCategoryModal from "../../../modals/UpdateCategoryModal";
+import UpdateProductModal from "../../../modals/UpdateProductModal";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-export default function CategoryPage() {
+export default function ProductPage() {
   const [dataSource, setDataSource] = useState([]);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState();
@@ -23,29 +24,30 @@ export default function CategoryPage() {
   const handleClose = () => setOpen(false); //modal ı kapatmak için
   console.log("datasource", dataSource);
   useEffect(() => {
-    fetchCategories();
+    fetchProducts();
   }, []);
 
-  const deleteCategory = async (categoryId) => {
+  const deleteProducts = async (productId) => {
     try {
-      const response = await fetch(`${apiUrl}/categories/${categoryId}`, {
+      const response = await fetch(`${apiUrl}/products/${productId}`, {
         method: "DELETE",
       });
+      console.log("dönen response",response)
 
       if (response.ok) {
-        message.success("Kategori başarıyla silindi.");
-        fetchCategories();
+        console.log("Ürün başarıyla silindi.");
+        fetchProducts();
       } else {
-        message.error("Silme işlemi başarısız.");
+        console.log("Ürün silme işlemi başarısız.");
       }
     } catch (error) {
       console.log("Silme hatası:", error);
     }
   };
 
-  const fetchCategories = async () => {
+  const fetchProducts = async () => {
     try {
-      const response = await fetch(`${apiUrl}/categories`);
+      const response = await fetch(`${apiUrl}/products`);
       console.log("response:", response);
 
       if (response.ok) {
@@ -62,14 +64,14 @@ export default function CategoryPage() {
     //{ field: "id", headerName: "ID", flex: 1 },
     {
       field: "name",
-      headerName: "Kategori adı",
+      headerName: "Ürün adı",
       flex: 1,
       editable: true,
     },
 
     {
       field: "img",
-      headerName: "Resim",
+      headerName: "Görseli",
       editable: true,
       flex: 1,
       renderCell: (params) => (
@@ -84,6 +86,18 @@ export default function CategoryPage() {
         />
       ),
     },
+    {
+        field: "sizes",
+        headerName: "Bedenler",
+        flex: 1,
+        editable: true,
+      },
+      {
+        field: "price",
+        headerName: "Ücret (TL)",
+        flex: 1,
+        editable: true,
+      },
     {
       field: "actions",
       headerName: "Aksiyonlar",
@@ -110,7 +124,7 @@ export default function CategoryPage() {
                 confirmButtonText: "Evet",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  deleteCategory(params.row.email);
+                    deleteProducts(params.row.id);
                   Swal.fire({
                     title: "Silindi!",
                     text: "İşem başarılı!",
@@ -142,6 +156,8 @@ export default function CategoryPage() {
     id: item._id,
     name: item.name,
     img: item.img,
+    sizes:item.sizes,
+    price:item.price.current
   }));
 
   return (
@@ -162,7 +178,7 @@ export default function CategoryPage() {
           disableRowSelectionOnClick
         />
       </Box>
-      <UpdateCategoryModal
+      <UpdateProductModal
         data={selected}
         handleClose={handleClose}
         isOpen={open}
