@@ -14,6 +14,8 @@ import UpdateCategoryModal from "../modals/UpdateCategoryModal";
 import CreateCategoryPage from "../pages/Admin/Categories/CreateCategoryPage";
 import ProductPage from "../pages/Admin/Products/ProductPage";
 import CreateProductPage from "../pages/Admin/Products/CreateProductPage";
+import CouponPage from "../pages/Admin/Coupons/CouponPage";
+import CreateCouponPage from "../pages/Admin/Coupons/CreateCouponPage";
 
 function RouteFix() {
   return (
@@ -34,6 +36,8 @@ function RouteFix() {
         <Route path="categories/create" element={<CreateCategoryPage  />} />
         <Route path="products" element={<ProductPage  />} />
         <Route path="products/create" element={<CreateProductPage  />} />
+        <Route path="coupons" element={<CouponPage  />} />
+        <Route path="coupons/create" element={<CreateCouponPage  />} />
       </Route>
     </Routes>
   );
