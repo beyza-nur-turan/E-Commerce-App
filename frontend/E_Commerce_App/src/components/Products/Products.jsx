@@ -1,10 +1,11 @@
 import ProductItem from "../Products/ProductItem";
 import "../../css/products.css";
 import Slider from "react-slick";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ProductsData from "../../data.json";
 import { useCardContext } from "../../context/CardProvider";
+import { AlertService } from "../../services/AlertService";
 
 function NextBtn({ onClick }) {
   return (
@@ -31,8 +32,29 @@ PrevBtn.propTypes = {
 };
 const Products = () => {
   const {cardItems}=useCardContext()
-  const [products] = useState(ProductsData);
   console.log(cardItems);
+
+  const [products, setProducts] = useState([]);
+
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/products`);
+
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+        } else {
+          AlertService.showError()
+        }
+      } catch (error) {
+        console.log("Veri hatası:", error);
+      }
+    };
+    fetchProducts();
+  }, [apiUrl]);
 
   const sliderSettings = {
    
@@ -72,7 +94,7 @@ const Products = () => {
         <div className="product-wrapper product-carousel">
           <Slider {...sliderSettings}>
             {products.map((product) => (
-              <ProductItem productItem={product}  key={product.id} />
+              <ProductItem productItem={product}  key={product._id} />
             ))}
           </Slider>
         </div>

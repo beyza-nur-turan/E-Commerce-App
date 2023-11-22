@@ -5,11 +5,11 @@ const CategoryItem = () => {
     <li className="category-item">
       <a href="#">
         <img
-          src={category}
+          src={category.img}
           alt=""
           className="category-image"
         />
-        <span className="category-title">Akıllı Saat</span>
+        <span className="category-title">{category.name}</span>
       </a>
     </li>
   );

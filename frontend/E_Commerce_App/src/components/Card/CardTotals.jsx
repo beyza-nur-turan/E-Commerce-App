@@ -7,7 +7,7 @@ const CardTotals = () => {
   const[fastCargoChecked,setFastCargoChecked]=useState(false)
   
   const cardItemsTotal=cardItems.map((item)=>{
-    const itemTotal=item.productItem.price.newPrice*item.quantity;
+    const itemTotal=item.productItem.price*item.quantity;
     return itemTotal 
   })
   const subTotals=cardItemsTotal.reduce((previousValue,currentValue)=>{

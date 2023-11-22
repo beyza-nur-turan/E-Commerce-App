@@ -33,10 +33,10 @@ export default function CategoryPage() {
       });
 
       if (response.ok) {
-        message.success("Kategori başarıyla silindi.");
+        console.log("işlem başarılı")
         fetchCategories();
       } else {
-        message.error("Silme işlemi başarısız.");
+        console.log("silme işlemi başarısız")
       }
     } catch (error) {
       console.log("Silme hatası:", error);
@@ -110,7 +110,7 @@ export default function CategoryPage() {
                 confirmButtonText: "Evet",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  deleteCategory(params.row.email);
+                  deleteCategory(params.row.id);
                   Swal.fire({
                     title: "Silindi!",
                     text: "İşem başarılı!",
