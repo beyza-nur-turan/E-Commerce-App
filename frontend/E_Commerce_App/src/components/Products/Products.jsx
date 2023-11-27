@@ -35,7 +35,6 @@ const Products = () => {
   console.log(cardItems);
 
   const [products, setProducts] = useState([]);
-
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
@@ -95,8 +94,10 @@ const Products = () => {
           <Slider {...sliderSettings}>
             {products.map((product) => (
               <ProductItem productItem={product}  key={product._id} />
+              
             ))}
           </Slider>
+         
         </div>
       </div>
     </section>

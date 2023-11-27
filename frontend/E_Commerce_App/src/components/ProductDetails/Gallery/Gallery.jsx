@@ -2,8 +2,9 @@ import "../../../css/gallery.css";
 import { useState } from "react";
 import ProductsData from "../../../data.json";
 
-const Gallery = () => {
-  const [activeImg, setActiveImg] = useState(ProductsData[0].img.thumbs[0]);
+const Gallery = ({singleProduct}) => {
+  console.log(singleProduct.img[0])
+  const [activeImg, setActiveImg] = useState(singleProduct.img[0]);
 
   return (
     <div className="product-gallery">
@@ -13,7 +14,7 @@ const Gallery = () => {
       <div className="product-thumb">
         <div className="glide__track" data-glide-el="track">
           <ol className="gallery-thumbs glide__slides">
-            {ProductsData[0].img.thumbs.map((itemImg, index) => (
+            {singleProduct.img.map((itemImg, index) => (
               <li
                 onClick={() => setActiveImg(itemImg)}
                 key={index}

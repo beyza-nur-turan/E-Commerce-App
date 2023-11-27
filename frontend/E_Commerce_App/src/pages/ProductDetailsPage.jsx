@@ -1,20 +1,17 @@
-
 import { useEffect, useState } from "react";
 import ProductDetails from "../components/ProductDetails/BreadCrumb/ProductDetails";
-import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom";
 
 const ProductDetailsPage = () => {
-  const params=useParams();
-  console.log("params:",params)
   const [singleProduct, setSingleProduct] = useState(null);
   const { id: productId } = useParams();
+  console.log(productId)
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchSingleProduct = async () => {
       try {
         const response = await fetch(`${apiUrl}/products/${productId}`);
-
         if (!response.ok) {
           throw new Error("Verileri getirme hatası");
         }
@@ -28,10 +25,8 @@ const ProductDetailsPage = () => {
     fetchSingleProduct();
   }, [apiUrl, productId]);
 
-  console.log(singleProduct);
-
   return singleProduct ? (
-    <ProductDetails singleProduct={singleProduct} />
+    <ProductDetails singleProduct={singleProduct} setSingleProduct={setSingleProduct} />
   ) : (
     <p>Ürün Yükleniyor</p>
   );

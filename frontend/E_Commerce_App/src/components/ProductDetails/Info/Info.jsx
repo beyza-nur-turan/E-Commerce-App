@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useCardContext } from "../../../context/CardProvider";
 import "../../../css/info.css";
-// import PropTypes from "prop-types";
-const Info = () => {
-  const colors = ["blue-color", "red-color", "green-color", "purple-color"];
-  const [colorss, setColor] = useState(colors[0]);
+import PropTypes from "prop-types";
+const Info = ({singleProduct}) => {
+  const {addToCard}=useCardContext()
   return (
     <div className="product-info">
-      <h1 className="product-title">Ridley High Waist</h1>
+      {console.log("singleproduct",singleProduct)}
+      <h1 className="product-title">{singleProduct.name}</h1>
       <div className="product-review">
         <ul className="product-star">
           <li>
@@ -28,12 +28,11 @@ const Info = () => {
         <span>2 reviews</span>
       </div>
       <div className="product-price">
-        <s className="old-price">$165</s>
-        <strong className="new-price">$100</strong>
+        <s className="old-price">{`$${`${singleProduct.price.current} `}`}</s>
+        <strong className="new-price">{`$${`${singleProduct.price.discount}`}`}</strong>
       </div>
       <p className="product-description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        {singleProduct.description}
       </p>
       <form className="variations-form">
         <div className="variations">
@@ -42,11 +41,13 @@ const Info = () => {
               <span>Color</span>
             </div>
             <div className="colors-wrapper">
-              {colors.map((color,index) => (
-                <div onClick={() => setColor(color)} className={`color-wrapper ${
-                  color === colorss ? "active" : ""
-                } `} key={index}>
-                  <label className={color}>
+            {singleProduct.colors.map((color, index) => (
+                <div className="color-wrapper" key={index}>
+                  <label
+                    style={{
+                      backgroundColor: `#${color}`,
+                    }}
+                  >
                     <input type="radio" name="product-color" />
                   </label>
                 </div>
@@ -59,11 +60,11 @@ const Info = () => {
               <span>Size</span>
             </div>
             <div className="values-list">
-              <span className="active">XS</span>
-              <span>S</span>
-              <span>M</span>
-              <span>L</span>
-              <span>XL</span>
+              
+               {singleProduct.sizes.map((size, index) => (
+                <span  key={index}>{size.toUpperCase()}</span>
+              ))}
+              
             </div>
           </div>
           <div className="cart-button">
@@ -72,6 +73,7 @@ const Info = () => {
               className="btn btn-lg btn-primary"
               id="add-to-cart"
               type="button"
+              onClick={()=> addToCard(singleProduct)}
             >
               Add to cart
             </button>
@@ -112,3 +114,7 @@ const Info = () => {
 };
 
 export default Info;
+Info.propTypes = {
+  singleProduct: PropTypes.object,
+  
+};
