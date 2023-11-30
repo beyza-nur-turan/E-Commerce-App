@@ -1,66 +1,119 @@
 import { useState } from "react";
+// import { loadStripe } from "@stripe/stripe-js";
 import { useCardContext } from "../../context/CardProvider";
-import Checkbox from '@mui/material/Checkbox';
+import { Spin, message } from "antd";
 
 const CardTotals = () => {
-  const {cardItems}=useCardContext();
-  const[fastCargoChecked,setFastCargoChecked]=useState(false)
-  
-  const cardItemsTotal=cardItems.map((item)=>{
-    const itemTotal=item.productItem.price*item.quantity;
-    return itemTotal 
-  })
-  const subTotals=cardItemsTotal.reduce((previousValue,currentValue)=>{
-    return previousValue+currentValue;
-  },0)//reduce ile toplama yapıldı ve başlangıç değeri 0 verildi
-  const cargoFee=15
-  const cardTotals=fastCargoChecked ? (cargoFee+subTotals).toFixed(2) : subTotals.toFixed(2)
-  console.log("total:",cardTotals)
-  
-  console.log("subtotal:",subTotals)
-  console.log("cardTotal",cardItemsTotal)
-  console.log("fastcargo:",fastCargoChecked)
-    return (
-      <div className="card-totals">
-        <h2>Cart totals</h2>
-        <table>
-          <tbody>
-            <tr className="card-subtotal">
-              <th>Subtotal</th>
-              <td>
-                <span id="subtotal">${subTotals.toFixed(2)}</span>
-              </td>
-            </tr>
-            <tr>
-              <th>Shipping</th>
-              <td>
-                <ul>
-                  <li>
-                    <label>
-                      Fast Cargo: $15.00
-                      
-                      <Checkbox  checked={fastCargoChecked} onChange={()=>setFastCargoChecked(!fastCargoChecked)}  id="fast-cargo"  />
-                    </label>
-                  </li>
-                  <li>
-                    <a href="#">Change Address</a>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <th>Total</th>
-              <td>
-                <strong id="card-total">${cardTotals}</strong>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="checkout">
-          <button className="btn btn-lg">Proceed to checkout</button>
-        </div>
-      </div>
-    );
+  const [fastCargoChecked, setFastCargoChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { cardItems } = useCardContext();
+  // const stripePublicKey = import.meta.env.VITE_API_STRIPE_PUBLIC_KEY;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+
+  const cardItemTotals = cardItems.map((item) => {
+    const itemTotal = item.price * item.quantity;
+
+    return itemTotal;
+  });
+
+  const subTotals = cardItemTotals.reduce((previousValue, currentValue) => {
+    return previousValue + currentValue;
+  }, 0);
+
+  const cargoFee = 15;
+
+  const cardTotals = fastCargoChecked
+    ? (subTotals + cargoFee).toFixed(2)
+    : subTotals.toFixed(2);
+
+  const handlePayment = async () => {
+    setLoading(true);
+    if (!user) {
+      return message.info("Ödeme yapabilmek için giriş yapmalısınız!");
+    }
+
+    const body = {
+      products: cardItems,
+      user: user,
+      cargoFee: fastCargoChecked ? cargoFee : 0,
+    };
+
+    try {
+      const res = await fetch(`${apiUrl}/payment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        return message.error("Ödeme işlemi başarısız oldu.");
+      }
+
+      // Yorum satırına aldık, çünkü Stripe olmadan kullanmıyoruz.
+      // const session = await res.json();
+
+      // Stripe olmadan, sadece başarılı bir ödeme durumunu loglayabiliriz.
+      console.log("Ödeme başarıyla gerçekleşti!");
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
-  
-  export default CardTotals;
+
+  return (
+    <div className="card-totals">
+      <h2>Card totals</h2>
+      <table>
+        <tbody>
+          <tr className="card-subtotal">
+            <th>Subtotal</th>
+            <td>
+              <span id="subtotal">${subTotals.toFixed(2)}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Shipping</th>
+            <td>
+              <ul>
+                <li>
+                  <label>
+                    Fast Cargo: $15.00
+                    <input
+                      type="checkbox"
+                      id="fast-cargo"
+                      checked={fastCargoChecked}
+                      onChange={() => setFastCargoChecked(!fastCargoChecked)}
+                    />
+                  </label>
+                </li>
+                <li>
+                  <a href="#">Change Address</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Total</th>
+            <td>
+              <strong id="card-total">${cardTotals}</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div className="checkout">
+        <Spin spinning={loading}>
+          <button className="btn btn-lg" onClick={handlePayment}>
+            Proceed to checkout
+          </button>
+        </Spin>
+      </div>
+    </div>
+  );
+};
+
+export default CardTotals;

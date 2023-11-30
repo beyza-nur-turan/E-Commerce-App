@@ -1,5 +1,7 @@
 import avatar from "../../assets/img/Avatars/avatar1.jpg"
-const ReviewItem = () => {
+import PropTypes from "prop-types";
+const ReviewItem = ({item}) => {
+  const { avatar } = item; 
     return (
       <li className="comment-item">
         <div className="comment-avatar">
@@ -24,14 +26,14 @@ const ReviewItem = () => {
             </li>
           </ul>
           <div className="comment-meta">
-            <strong>admin</strong>
+            <strong>{item.user}</strong>
             <span>-</span>
             <time>April 23, 2022</time>
           </div>
           <div className="comment-description">
             <p>
-              Sed perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium.
+              {console.log(item)}
+              {item.text}
             </p>
           </div>
         </div>
@@ -40,3 +42,6 @@ const ReviewItem = () => {
   };
   
   export default ReviewItem;
+  ReviewItem.propTypes = {
+    item: PropTypes.object.isRequired, // Assuming item is an object with review details
+  };
