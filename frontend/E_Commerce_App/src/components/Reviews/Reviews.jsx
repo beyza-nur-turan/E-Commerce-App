@@ -3,7 +3,7 @@ import ReviewItem from "./ReviewItem";
 import PropTypes from "prop-types";
 import "../../css/Reviews.css";
 
-const Reviews = ({ active, singleProduct }) => {
+const Reviews = ({ active, singleProduct ,setSingleProduct}) => {
   return (
     <div className={`tab-panel-reviews ${active}`}>
       {singleProduct.reviews.length > 0 ? (
@@ -12,7 +12,7 @@ const Reviews = ({ active, singleProduct }) => {
           <div className="comments">
             <ol className="comment-list">
               {singleProduct.reviews.map((item, index) => (
-                <ReviewItem key={index} item={item} />
+                <ReviewItem key={index}  reviewItem={item} />
               ))}
             </ol>
           </div>
@@ -23,7 +23,7 @@ const Reviews = ({ active, singleProduct }) => {
 
       <div className="review-form-wrapper">
         <h2>Add a review</h2>
-        <ReviewForm />
+        <ReviewForm setSingleProduct={setSingleProduct} singleProduct={singleProduct} />
       </div>
     </div>
   );

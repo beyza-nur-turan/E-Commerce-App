@@ -3,7 +3,7 @@ import "../../../css/tabs.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const Tabs = ({singleProduct}) => {
+const Tabs = ({singleProduct,setSingleProduct}) => {
   const [activeTab,setActiveTab]=useState("info");
   const handleTabClick = (e,tab) =>{
     e.preventDefault()
@@ -83,6 +83,7 @@ const Tabs = ({singleProduct}) => {
           </table>
         </div>
         <Reviews
+        setSingleProduct={setSingleProduct}
         singleProduct={singleProduct}
           active={activeTab === "reviews" ? "content active" : "content"}
         />
@@ -94,4 +95,5 @@ const Tabs = ({singleProduct}) => {
 export default Tabs;
 Tabs.propTypes = {
   singleProduct: PropTypes.object,
+  setSingleProduct: PropTypes.func,
 };

@@ -1,7 +1,12 @@
 import avatar from "../../assets/img/Avatars/avatar1.jpg"
 import PropTypes from "prop-types";
-const ReviewItem = ({item}) => {
-  const { avatar } = item; 
+const ReviewItem = ({reviewItem}) => {
+  const { text, createdAt } = reviewItem;
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = new Date(createdAt).toLocaleDateString(
+    "tr-TR",
+    options
+  ); 
     return (
       <li className="comment-item">
         <div className="comment-avatar">
@@ -26,14 +31,13 @@ const ReviewItem = ({item}) => {
             </li>
           </ul>
           <div className="comment-meta">
-            <strong>{item.user}</strong>
+            <strong>admin</strong>
             <span>-</span>
-            <time>April 23, 2022</time>
+            <time>{formattedDate}</time>
           </div>
           <div className="comment-description">
             <p>
-              {console.log(item)}
-              {item.text}
+              {text}
             </p>
           </div>
         </div>
@@ -43,5 +47,5 @@ const ReviewItem = ({item}) => {
   
   export default ReviewItem;
   ReviewItem.propTypes = {
-    item: PropTypes.object.isRequired, // Assuming item is an object with review details
+    reviewItem:PropTypes.object
   };
