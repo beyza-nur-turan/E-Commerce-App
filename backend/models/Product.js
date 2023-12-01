@@ -5,7 +5,8 @@ const ReviewSchema=mongoose.Schema(
         text:{type:String,required:true},
         rating:{type:Number,required:true},
         user:{type:mongoose.Schema.Types.ObjectId, ref:"User",required:true}//user modeli ile ilişkilendirme kurup user id yi alıyor
-    }
+    },
+    {timestamps:true}
 )
 
 const ProductSchema=mongoose.Schema(
