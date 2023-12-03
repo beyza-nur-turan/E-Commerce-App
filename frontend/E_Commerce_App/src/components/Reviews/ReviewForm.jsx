@@ -17,7 +17,7 @@ export const ReviewForm = ({ singleProduct,setSingleProduct }) => {
     const formData = {
       reviews: [
         ...singleProduct.reviews,
-        { text: review, rating: parseInt(rating), user: user.id },
+        { text: review, rating: parseInt(rating), user: user.id ||user._id},
       ],
     };
     console.log(formData);
