@@ -80,6 +80,18 @@ router.post("/", async (req, res) => {
       res.status(500).json({error:"server error"})
     }
   })
+  //ürünleri isme göre arama
+  router.get("/search/:productName",async(req,res)=>{
+    try {
+      const productName=req.params.productName;
+      const products=await Product.find({
+        name:{$regex:productName,$options:"i"},
+      });
+      res.status(200).json(products); 
+    } catch (error) {
+      console.log(error)
+    }
+  })
 
 
 module.exports = router;
