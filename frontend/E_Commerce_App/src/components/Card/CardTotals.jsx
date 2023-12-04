@@ -7,17 +7,24 @@ const CardTotals = () => {
   const [fastCargoChecked, setFastCargoChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const { cardItems } = useCardContext();
+  
   // const stripePublicKey = import.meta.env.VITE_API_STRIPE_PUBLIC_KEY;
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-
-  const cardItemTotals = cardItems.map((item) => {
-    const itemTotal = item.price * item.quantity;
-
-    return itemTotal;
-  });
+    const cardItemTotals = cardItems.map((item) => {
+      if (item.productItem && item.productItem.price && item.productItem.price.newPrice) {
+        const currentPrice = item.productItem.price.newPrice;
+        const itemTotal = currentPrice * item.quantity;
+    
+        return itemTotal;
+      }
+    
+      // Tanımlı değilse veya fiyat bilgisi eksikse, varsayılan olarak 0 döner
+      return 0;
+    });
+    
 
   const subTotals = cardItemTotals.reduce((previousValue, currentValue) => {
     return previousValue + currentValue;

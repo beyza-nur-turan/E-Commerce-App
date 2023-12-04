@@ -19,7 +19,7 @@ function CardProvider({ children }) {
   };
   const removeFromCard = (itemId) => {
     const filteredCardItems = cardItems.filter((cardItem) => {
-      return cardItem.productItem.id !== itemId;
+      return cardItem.productItem._id !== itemId;
     });
 
     setCardItems(filteredCardItems);

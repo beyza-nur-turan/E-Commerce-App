@@ -1,12 +1,14 @@
+import { useContext } from "react";
+import Proptypes from "prop-types";
+import { Link, useLocation } from "react-router-dom";
 import { useCardContext } from "../../context/CardProvider";
 import "../../css/header.css";
-import PropTypes from 'prop-types';
-import { Link, useLocation } from "react-router-dom";
 
-const Header = () => {
-  const {cardItems}=useCardContext()
-  const {pathname}=useLocation()
-  const user=localStorage.getItem("user");
+const Header = ({ setIsSearchShow }) => {
+  const { cardItems } =useCardContext()
+  const user = localStorage.getItem("user");
+  const { pathname } = useLocation();
+
   return (
     <header>
       <div className="global-notification">
@@ -33,7 +35,10 @@ const Header = () => {
               <nav className="navigation">
                 <ul className="menu-list">
                   <li className="menu-list-item">
-                    <Link to={"/"} className={`menu-link ${pathname==="/" && "active" } `}>
+                    <Link
+                      to={"/"}
+                      className={`menu-link ${pathname === "/" && "active"}`}
+                    >
                       Home
                       <i className="bi bi-chevron-down"></i>
                     </Link>
@@ -70,7 +75,12 @@ const Header = () => {
                     </div>
                   </li>
                   <li className="menu-list-item megamenu-wrapper">
-                    <Link to={"/shop"} className={`menu-link ${pathname==="/shop" && "active" } `}>
+                    <Link
+                      to={"/shop"}
+                      className={`menu-link ${
+                        pathname === "/shop" && "active"
+                      }`}
+                    >
                       Shop
                       <i className="bi bi-chevron-down"></i>
                     </Link>
@@ -158,7 +168,7 @@ const Header = () => {
                         </div>
                         <div className="megamenu-single">
                           <a href="#">
-                            <img src="img/mega-menu.jpg" alt="" />
+                            <img src="/img/mega-menu.jpg" alt="" />
                           </a>
                           <h3 className="megamenu-single-title">
                             JOIN THE LAYERING GANG
@@ -177,12 +187,22 @@ const Header = () => {
                     </div>
                   </li>
                   <li className="menu-list-item">
-                    <Link to={"/blog"} className={`menu-link ${pathname==="/blog" && "active" } `}>
+                    <Link
+                      to={"/blog"}
+                      className={`menu-link ${
+                        pathname === "/blog" && "active"
+                      }`}
+                    >
                       Blog
                     </Link>
                   </li>
                   <li className="menu-list-item">
-                    <Link to={"/contact"} className={`menu-link ${pathname==="/contact" && "active" } `}>
+                    <Link
+                      to={"/contact"}
+                      className={`menu-link ${
+                        pathname === "/contact" && "active"
+                      }`}
+                    >
                       Contact
                     </Link>
                   </li>
@@ -195,32 +215,42 @@ const Header = () => {
                 <Link to={"/auth"} className="header-account">
                   <i className="bi bi-person"></i>
                 </Link>
-                {user &&
                 <button
-                className="search-button"
-                style={{display:"flex",flexDirection:"row"}}
-                onClick={()=>{
-                  if(window.confirm("Çıkış yapmak istediğinize emin misiniz?")){
-                    localStorage.removeItem("user")
-                    window.location.href=("/")
-                  }
-                }}
-              >
-                <i className="bi bi-box-arrow-right"></i>
-                <i className="bi bi-search"></i>
-              </button>}
-                <a href="#">
+                  className="search-button"
+                  onClick={() => setIsSearchShow(true)}
+                >
+                  <i className="bi bi-search"></i>
+                </button>
+                {/* <a href="#">
                   <i className="bi bi-heart"></i>
-                </a>
-                <div className="header-cart" >
+                </a> */}
+                <div className="header-cart">
                   <Link to={"/card"} className="header-cart-link">
                     <i className="bi bi-bag"></i>
-                    <span className="header-cart-count">{cardItems.length}</span>
-                    
+                    <span className="header-cart-count">
+                      {cardItems.length}
+                    </span>
                   </Link>
-                  
-                  
                 </div>
+                {user && (
+                  <button
+                    className="search-button"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Çıkış yapmak istediğinize emin misiniz?"
+                        )
+                      ) {
+                        {
+                          localStorage.removeItem("user");
+                          window.location.href = "/";
+                        }
+                      }
+                    }}
+                  >
+                    <i className="bi bi-box-arrow-right"></i>
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -229,8 +259,9 @@ const Header = () => {
     </header>
   );
 };
-Header.propTypes = {
-  setIsSearchShow: PropTypes.func.isRequired,
-};
 
-export default Header; 
+export default Header;
+
+Header.propTypes = {
+  setIsSearchShow: Proptypes.func,
+};
