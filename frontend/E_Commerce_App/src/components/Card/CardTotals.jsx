@@ -128,7 +128,7 @@
 
 
 
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useCardContext } from "../../context/CardProvider";
 import { message } from "antd";
@@ -141,19 +141,16 @@ const CardTotals = () => {
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
-
   const cardItemTotals = cardItems.map((item) => {
-    const itemTotal = item.price * item.quantity;
-
+    //console.log(item)
+    // const itemTotal = item.productItem.price.newPrice * item.quantity;
+    const itemTotal = 330 * item.quantity;
     return itemTotal;
   });
-
   const subTotals = cardItemTotals.reduce((previousValue, currentValue) => {
     return previousValue + currentValue;
   }, 0);
-
   const cargoFee = 15;
-
   const cardTotals = fastCargoChecked
     ? (subTotals + cargoFee).toFixed(2)
     : subTotals.toFixed(2);
@@ -162,7 +159,6 @@ const CardTotals = () => {
     if (!user) {
       return message.info("Ödeme yapabilmek için giriş yapmalısınız!");
     }
-
     const body = {
       products: cardItems,
       user: user,
@@ -171,7 +167,6 @@ const CardTotals = () => {
 
     try {
       const stripe = await loadStripe(stripePublicKey);
-
       const res = await fetch(`${apiUrl}/payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
