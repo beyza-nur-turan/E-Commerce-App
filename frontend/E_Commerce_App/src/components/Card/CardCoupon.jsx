@@ -1,32 +1,34 @@
 import { message } from "antd";
-import { useState } from "react";
+import {  useState } from "react";
 import { useCardContext } from "../../context/CardProvider";
 
 const CardCoupon = () => {
-  const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const [couponCode, setCouponCode] = useState("");
-  const { setCardItems, cardItems } = useCardContext();
-  //console.log(cardItems)
+  const { cardItems, setCardItems } = useCardContext();
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-  const applyButton = async () => {
+  const applyCoupon = async () => {
+    if (couponCode.trim().length === 0) {
+      return message.warning("Boş değer girilimez.");
+    }
     try {
       const res = await fetch(`${apiUrl}/coupons/code/${couponCode}`);
-      if (!res.ok) {
-        return message.warning("Girdiğiniz kod hatalı");
-      }
-      const data = await res.json();
 
+      if (!res.ok) {
+        return message.warning("Girdiğiniz kupon kodu yanlış!");
+      }
+
+      const data = await res.json();
       const discountPercent = data.discountPercent;
 
-      // Kart öğelerini güncellerken her bir öğenin 'updatePrice' özelliğini ekleyin.
       const updatedCardItems = cardItems.map((item) => {
-        const updatePrice =
-          item.productItem.price.newPrice * (1 - discountPercent / 100);
-        return { ...item, updatePrice };
+        const updatePrice = item.price * (1 - discountPercent / 100);
+        return { ...item, price: updatePrice };
       });
 
-      // Güncellenmiş kart öğelerini kart context'ine kaydedin.
       setCardItems(updatedCardItems);
+
+      message.success(`${couponCode} kupon kodu başarıyla uygulandı.`);
     } catch (error) {
       console.log(error);
     }
@@ -42,12 +44,12 @@ const CardCoupon = () => {
           onChange={(e) => setCouponCode(e.target.value)}
           value={couponCode}
         />
-        <button className="btn" type="button" onClick={applyButton}>
+        <button className="btn" type="button" onClick={applyCoupon}>
           Apply Coupon
         </button>
       </div>
       <div className="update-card">
-        <button className="btn">Update Cart</button>
+        <button className="btn">Update Card</button>
       </div>
     </div>
   );

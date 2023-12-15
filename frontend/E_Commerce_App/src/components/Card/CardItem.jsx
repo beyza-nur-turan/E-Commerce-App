@@ -16,7 +16,7 @@ const CardItem = ({ cardItem }) => {
       ></i>
     </td>
     <td>{cardItem.name}</td>
-    {console.log("cardıtemm:",cardItem.productItem.price.newPrice)}
+    {console.log("cardıtemm:",cardItem)}
     <td>${formattedPrice}</td>
     <td className="product-quantity">{cardItem.quantity}</td>
     <td className="product-subtotal">
