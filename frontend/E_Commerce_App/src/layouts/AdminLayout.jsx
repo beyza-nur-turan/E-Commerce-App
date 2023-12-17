@@ -27,6 +27,7 @@ function AdminLayout({children}) {
       key: "1",
       icon: <DashboardOutlined />,
       label: "Dashboard",
+      path:"/admin",
       onClick: () => {
         navigate(`/admin`);
       },
@@ -116,6 +117,7 @@ function AdminLayout({children}) {
       key: "12",
       icon: <ShoppingCartOutlined />,
       label: "Siparişler",
+      path:"/admin/orders",
       onClick: () => {
         navigate(`/admin/orders`);
       },
@@ -129,6 +131,37 @@ function AdminLayout({children}) {
       },
     },
   ];
+  const getActiveKey = () => {
+    for (const item of menuItems) {
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === window.location.pathname) {
+            return child.key;
+          }
+        }
+      } else {
+        if (item.path === window.location.pathname) {
+          return item.key;
+        }
+      }
+    }
+  };
+  const getPageTitle = () => {
+    for (const item of menuItems) {
+      if (item.children) {
+        for (const child of item.children) {
+          if (child.path === window.location.pathname) {
+            return child.label;
+          }
+        }
+      } else {
+        if (item.path === window.location.pathname) {
+          return item.label;
+        }
+      }
+    }
+  };
+
 
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -145,6 +178,7 @@ function AdminLayout({children}) {
               mode="inline"
               defaultSelectedKeys={["1"]}
               items={menuItems}
+              selectedKeys={[getActiveKey()]}
             />
           </Sider>
           <Layout>
@@ -154,6 +188,8 @@ function AdminLayout({children}) {
                 background: colorBgContainer,
               }}
             >
+              <h2>{getPageTitle()}</h2>
+              
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
