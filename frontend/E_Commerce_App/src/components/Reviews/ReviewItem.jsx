@@ -1,4 +1,3 @@
-import avatar from "../../assets/img/Avatars/avatar1.jpg"
 import PropTypes from "prop-types";
 const ReviewItem = ({reviewItem}) => {
   const { review,user } = reviewItem;

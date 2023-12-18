@@ -18,21 +18,21 @@
   }
   
   .campaigns-wrapper:nth-child(1) .campaign-item:nth-child(1) {
-    background-image: url(../assets/img/Campaigns/banner1.png);
+    background-image: url(../../public/img/Campaigns/banner1.png);
   }
   
   .campaigns-wrapper:nth-child(1) .campaign-item:nth-child(2) {
-    background-image: url(../assets/img/Campaigns/banner2.png);
+    background-image: url(../../public/img/Campaigns/banner2.png);
   }
   
   .campaigns-wrapper:nth-child(2) .campaign-item:nth-child(1) {
-    background-image: url(../assets/img/Campaigns/banner3.png);
+    background-image: url(../../public/img/Campaigns/banner3.png);
     flex: 3;
     margin-left: 2.4vw;
   }
   
   .campaigns-wrapper:nth-child(2) .campaign-item:nth-child(2) {
-    background-image: url(../assets/img/Campaigns/banner4.png);
+    background-image: url(../../public/img/Campaigns/banner4.png);
     flex: 3;
   }
   

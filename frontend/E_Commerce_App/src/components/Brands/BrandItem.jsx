@@ -1,4 +1,4 @@
-import brandPhoto from "../../assets/img/Brands/brand.png"
+import brandPhoto from "../../../public/img/Brands/brand.png"
 const BrandItem = () => {
     return (
       <li className="brand-item">

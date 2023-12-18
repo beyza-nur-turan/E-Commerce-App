@@ -1,4 +1,4 @@
-import CampaignItem from "../Campaigns/CampaignItem";
+import CampaignItem from "./CampaignItem";
 import "../../css/campaigns.css"
 
 const Campaigns = () => {

@@ -3,7 +3,6 @@ import "../../css/products.css";
 import Slider from "react-slick";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ProductsData from "../../data.json";
 import { useCardContext } from "../../context/CardProvider";
 import { AlertService } from "../../services/AlertService";
 
@@ -31,7 +30,7 @@ PrevBtn.propTypes = {
   onClick: PropTypes.func,
 };
 const Products = () => {
-  const {cardItems}=useCardContext()
+  const { cardItems } = useCardContext();
   console.log(cardItems);
 
   const [products, setProducts] = useState([]);
@@ -46,7 +45,7 @@ const Products = () => {
           const data = await response.json();
           setProducts(data);
         } else {
-          AlertService.showError()
+          AlertService.showError();
         }
       } catch (error) {
         console.log("Veri hatası:", error);
@@ -56,7 +55,6 @@ const Products = () => {
   }, [apiUrl]);
 
   const sliderSettings = {
-   
     dots: false,
     infinite: true,
     slidesToShow: 3,
@@ -83,7 +81,6 @@ const Products = () => {
 
   return (
     <section className="products">
-      {console.log("data:", ProductsData[0].img.thumbs[0])}
       <div className="container">
         <div className="section-title">
           <h2>Featured Products</h2>
@@ -93,11 +90,9 @@ const Products = () => {
         <div className="product-wrapper product-carousel">
           <Slider {...sliderSettings}>
             {products.map((product) => (
-              <ProductItem productItem={product}  key={product._id} />
-              
+              <ProductItem productItem={product} key={product._id} />
             ))}
           </Slider>
-         
         </div>
       </div>
     </section>

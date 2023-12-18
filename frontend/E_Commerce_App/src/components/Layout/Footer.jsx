@@ -1,8 +1,8 @@
 import React from "react";
 import "../../css/footer.css";
-import paymant from "../../assets/img/footer/cards.png";
-import appStore from "../../assets/img/footer/app-store.png";
-import googlePlay from "../../assets/img/footer/google-play.png";
+import paymant from "../../../public/img/footer/cards.png";
+import appStore from "../../../public/img/footer/app-store.png";
+import googlePlay from "../../../public/img/footer/google-play.png";
 const Footer = () => {
   return (
     <React.Fragment>

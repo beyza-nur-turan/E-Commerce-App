@@ -1,7 +1,7 @@
 
 import Categories from "../components/Categories/Categories"
 import Products from "../components/Products/Products"
-import CampaignSingle from "../components/Campaigns/CampaignSingle"
+import CampaignSingle from "../components/CampaignSingle/CampaignSingle"
 import Policy from "../components/Layout/Policy"
 function ShopPage() {
   return (

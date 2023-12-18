@@ -1,5 +1,5 @@
 import "../../css/BlogItem.css"
-import blogphoto from "../../assets/img/Blogs/blog1.jpg"
+import blogphoto from "../../../public/img/Blogs/blog1.jpg"
 const BlogItem = () => {
   return (
     <li className="blog-item">

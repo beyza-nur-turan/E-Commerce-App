@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import Proptypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import { useCardContext } from "../../context/CardProvider";
 import "../../css/header.css";
+import logo from "../../../public/img/Logo/e-logo1.png"
 
 const Header = ({ setIsSearchShow }) => {
   const { cardItems } =useCardContext()
@@ -26,9 +26,9 @@ const Header = ({ setIsSearchShow }) => {
             <div className="header-mobile">
               <i className="bi bi-list" id="btn-menu"></i>
             </div>
-            <div className="header-left">
+            <div  className="header-left">
               <Link to={"/"} className="logo">
-                LOGO
+                <img style={{width:"12vh",height:"12vh",marginLeft:"20vh"}} src={logo}/>
               </Link>
             </div>
             <div className="header-center" id="sidebar">

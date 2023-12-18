@@ -46,7 +46,7 @@ const Login = () => {
 
   return (
     <div className="account-column">
-      <h2>Login</h2>
+      <h2>Giriş Ekranı</h2>
       <form onSubmit={handleLogin}>
         <div>
           <label>

@@ -10,20 +10,7 @@ const Register = () => {
   });
   const navigate = useNavigate();
    const apiUrl = import.meta.env.VITE_API_REGISTER_URL;
-  // const handleInputSubmit = (e) => {
-  //   try {
-  //     const { name, value } = e.target;
-  //     setFormData({ ...formData, [name]: value });
-  //   } catch (error) {
-  //     console.error("Input değeri ayarlanırken hata oluştu:", error);
-  //   }
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Form gönderildi:", formData);
-  // };
-
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });

@@ -1,6 +1,7 @@
 import "../../css/categoryItem.css"
-import category from "../../assets/img/categories/categories.png"
-const CategoryItem = () => {
+import PropTypes from "prop-types";
+const CategoryItem = ({category}) => {
+  console.log(category)
   return (
     <li className="category-item">
       <a href="#">
@@ -16,3 +17,6 @@ const CategoryItem = () => {
 };
 
 export default CategoryItem;
+CategoryItem.propTypes = {
+  category: PropTypes.object,
+};

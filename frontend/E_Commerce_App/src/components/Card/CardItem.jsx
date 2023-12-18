@@ -3,24 +3,24 @@ import { useCardContext } from "../../context/CardProvider";
 const CardItem = ({ cardItem }) => {
   
   const { removeFromCard } = useCardContext();
-  const currentPrice = (cardItem.productItem && cardItem.productItem.price && cardItem.productItem.price.newPrice) || 0;
+  const currentPrice = (cardItem && cardItem.price && cardItem.price) || 0;
   const formattedPrice = currentPrice.toFixed(2);
   return (
-    <tr className="card-item">
+    <tr className="cart-item">
     <td></td>
-    <td className="card-image">
+    <td className="cart-image">
       <img src={cardItem.img} alt="" />
       <i
-        className="bi bi-x delete-card"
+        className="bi bi-x delete-cart"
         onClick={() => removeFromCard(cardItem._id)}
       ></i>
     </td>
     <td>{cardItem.name}</td>
-    {console.log("cardıtemm:",cardItem)}
+    {console.log("cardıtemm:",cardItem.price)}
     <td>${formattedPrice}</td>
     <td className="product-quantity">{cardItem.quantity}</td>
     <td className="product-subtotal">
-      ${(currentPrice * cardItem.quantity)}
+      ${(currentPrice * cardItem.quantity).toFixed(2)}
     </td>
   </tr>
 );

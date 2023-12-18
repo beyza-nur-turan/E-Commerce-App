@@ -48,7 +48,7 @@ const CardCoupon = () => {
           Apply Coupon
         </button>
       </div>
-      <div className="update-card">
+      <div className="update-cart">
         <button className="btn">Update Card</button>
       </div>
     </div>

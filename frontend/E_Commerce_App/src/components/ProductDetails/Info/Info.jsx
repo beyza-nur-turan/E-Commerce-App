@@ -1,11 +1,22 @@
+import { useRef } from "react";
 import { useCardContext } from "../../../context/CardProvider";
 import "../../../css/info.css";
 import PropTypes from "prop-types";
-const Info = ({singleProduct}) => {
-  const {addToCard}=useCardContext()
+const Info = ({ singleProduct }) => {
+  const quantityRef = useRef();
+  const { addToCard, cardItems } = useCardContext();
+  const originalPrice = singleProduct.price.current;
+  const discountPercentage = singleProduct.price.discount;
+  // İndirimli fiyatı hesaplama
+  const discountedPrice =
+    originalPrice - (originalPrice * discountPercentage) / 100;
+
+  const filteredCard = cardItems.find(
+    (cartItem) => cartItem._id === singleProduct._id
+  );
   return (
     <div className="product-info">
-      {console.log("singleproduct",singleProduct)}
+      {console.log("singleproduct", singleProduct)}
       <h1 className="product-title">{singleProduct.name}</h1>
       <div className="product-review">
         <ul className="product-star">
@@ -28,12 +39,13 @@ const Info = ({singleProduct}) => {
         <span>2 reviews</span>
       </div>
       <div className="product-price">
-        <s className="old-price">{`$${`${singleProduct.price.current} `}`}</s>
-        <strong className="new-price">{`$${`${singleProduct.price.discount}`}`}</strong>
+        <s className="old-price">${originalPrice.toFixed(2)}</s>
+        <strong className="new-price">${discountedPrice.toFixed(2)}</strong>
       </div>
-      <p className="product-description">
-        {singleProduct.description}
-      </p>
+      <div
+        className="product-description"
+        dangerouslySetInnerHTML={{ __html: singleProduct.description }}
+      ></div>
       <form className="variations-form">
         <div className="variations">
           <div className="colors">
@@ -41,7 +53,7 @@ const Info = ({singleProduct}) => {
               <span>Color</span>
             </div>
             <div className="colors-wrapper">
-            {singleProduct.colors.map((color, index) => (
+              {singleProduct.colors.map((color, index) => (
                 <div className="color-wrapper" key={index}>
                   <label
                     style={{
@@ -52,7 +64,6 @@ const Info = ({singleProduct}) => {
                   </label>
                 </div>
               ))}
-              
             </div>
           </div>
           <div className="values">
@@ -60,11 +71,9 @@ const Info = ({singleProduct}) => {
               <span>Size</span>
             </div>
             <div className="values-list">
-              
-               {singleProduct.sizes.map((size, index) => (
-                <span  key={index}>{size.toUpperCase()}</span>
+              {singleProduct.sizes.map((size, index) => (
+                <span key={index}>{size.toUpperCase()}</span>
               ))}
-              
             </div>
           </div>
           <div className="cart-button">
@@ -73,7 +82,12 @@ const Info = ({singleProduct}) => {
               className="btn btn-lg btn-primary"
               id="add-to-cart"
               type="button"
-              onClick={()=> addToCard(singleProduct)}
+              disabled={filteredCard}
+              onClick={() => addToCard({
+                ...singleProduct,
+                price: discountedPrice,
+                quantity: parseInt(quantityRef.current.value),
+              })}
             >
               Add to cart
             </button>
@@ -116,5 +130,4 @@ const Info = ({singleProduct}) => {
 export default Info;
 Info.propTypes = {
   singleProduct: PropTypes.object,
-  
 };

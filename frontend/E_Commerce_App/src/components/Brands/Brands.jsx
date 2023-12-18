@@ -1,4 +1,4 @@
-import BrandItem from "../Brands/BrandItem";
+import BrandItem from "./BrandItem";
 import "../../css/Brands.css";
 
 const Brands = () => {
