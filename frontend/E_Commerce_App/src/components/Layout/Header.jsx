@@ -2,10 +2,12 @@ import Proptypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import { useCardContext } from "../../context/CardProvider";
 import "../../css/header.css";
-import logo from "../../../public/img/Logo/e-logo1.png"
+import { useLogoContext } from "../../context/LogoProvider";
 
 const Header = ({ setIsSearchShow }) => {
-  const { cardItems } =useCardContext()
+  const { logoData } = useLogoContext();
+  console.log(logoData);
+  const { cardItems } = useCardContext();
   const user = localStorage.getItem("user");
   const { pathname } = useLocation();
 
@@ -26,9 +28,22 @@ const Header = ({ setIsSearchShow }) => {
             <div className="header-mobile">
               <i className="bi bi-list" id="btn-menu"></i>
             </div>
-            <div  className="header-left">
+            <div className="header-left">
               <Link to={"/"} className="logo">
-                <img style={{width:"12vh",height:"12vh",marginLeft:"20vh"}} src={logo}/>
+                <img style={{width:"12vh",height:"12vh",marginLeft:"20vh"}} src={logoData}/>
+                {/* <div>
+                  {logoData && (
+                    <img
+                      style={{
+                        width: "12vh",
+                        height: "12vh",
+                        marginLeft: "20vh",
+                      }}
+                      src={`data:image/png;base64,${logoData.img[0]}`} // Logo verilerini base64 formatında görüntüleme
+                      alt="Logo"
+                    />
+                  )}
+                </div> */}
               </Link>
             </div>
             <div className="header-center" id="sidebar">

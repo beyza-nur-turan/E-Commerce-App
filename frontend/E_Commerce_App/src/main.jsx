@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import CardProvider from "./context/CardProvider";
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import LogoProvider from "./context/LogoProvider";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -15,8 +16,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
     <ScrollToTop/>
     <CardProvider>
+      <LogoProvider>
       <Layout>
       <App />
     </Layout>
+      </LogoProvider>
     </CardProvider></BrowserRouter>
 );
