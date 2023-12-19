@@ -30,7 +30,7 @@ function RouteFix() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/card" element={<CardPage />} />
       <Route path="/auth" element={<AuthPage />} />
-      <Route path="/products/:id" element={<ProductDetailsPage />} />
+      <Route path="/product/:id" element={<ProductDetailsPage />} />
       <Route path="/blog/:id" element={<BlogDetailsPage />} />
       <Route path="/success" element={<Success />} />
       <Route path="/admin/*">

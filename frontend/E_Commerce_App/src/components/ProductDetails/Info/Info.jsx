@@ -77,7 +77,7 @@ const Info = ({ singleProduct }) => {
             </div>
           </div>
           <div className="cart-button">
-            <input type="number" defaultValue="1" min="1" id="quantity" />
+            <input type="number" defaultValue="1" min="1" id="quantity" ref={quantityRef} />
             <button
               className="btn btn-lg btn-primary"
               id="add-to-cart"

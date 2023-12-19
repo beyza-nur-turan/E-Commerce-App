@@ -1,0 +1,17 @@
+.accountContainer {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  .loginImgContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .loginInputContent {
+    display: flex;
+    flex: 1;
+  }
+  
