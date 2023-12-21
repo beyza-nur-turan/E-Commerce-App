@@ -28,7 +28,6 @@
   .campaigns-wrapper:nth-child(2) .campaign-item:nth-child(1) {
     background-image: url(../../public/img/Campaigns/banner3.png);
     flex: 3;
-    margin-left: 2.4vw;
   }
   
   .campaigns-wrapper:nth-child(2) .campaign-item:nth-child(2) {

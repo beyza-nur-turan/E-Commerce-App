@@ -1,4 +1,5 @@
 import { Row, Col, Card, Statistic } from "antd";
+import { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -10,6 +11,21 @@ import {
 } from "recharts";
 
 const DashboardPage = () => {
+  const [paymentData, setPaymentData] = useState(null);
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  useEffect(() => {
+    const fetchPaymentData = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/payment`); 
+        const data = await response.json();
+        setPaymentData(data);
+      } catch (error) {
+        console.error('Error fetching payment:', error);
+      }
+    }; 
+    fetchPaymentData();
+  }, []);
+  console.log(paymentData)
   const productSalesData = [
     { name: "Ocak", satilanUrunSayisi: 10 },
     { name: "Şubat", satilanUrunSayisi: 15 },

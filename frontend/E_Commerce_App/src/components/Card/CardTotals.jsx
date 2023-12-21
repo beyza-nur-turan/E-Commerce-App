@@ -34,6 +34,7 @@ const CardTotals = () => {
       user: user,
       cargoFee: fastCargoChecked ? cargoFee : 0,
     };
+    console.log(body)
 
     try {
       const stripe = await loadStripe(stripePublicKey);
@@ -42,12 +43,14 @@ const CardTotals = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
+      console.log(res)
 
       if (!res.ok) {
         return message.error("Ödeme işlemi başarısız oldu.");
       }
 
       const session = await res.json();
+      console.log("Stripe Session:", session);
 
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
