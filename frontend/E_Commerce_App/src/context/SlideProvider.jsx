@@ -5,6 +5,7 @@ function SlideProvider({children}){
   const location=useLocation()
     const [slideData, setSlideData] = useState(null);
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
+    console.log(slideData)
 
     useEffect(() => {
       const fetchSlideData = async () => {
@@ -16,11 +17,8 @@ function SlideProvider({children}){
           console.error('Error fetching slides:', error);
         }
       }; 
-    
       fetchSlideData();
     }, [location.pathname]);
-
-
     const data = { slideData};
   return <SlideContext.Provider value={data}>{children}</SlideContext.Provider>;
 }

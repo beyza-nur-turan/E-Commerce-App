@@ -38,7 +38,6 @@ export default function CreateSlidePage  ()  {
           name="title"
           rules={[
             {
-              required: true,
               message: "Lütfen slider başlığını girin!",
             },
           ]}
@@ -50,7 +49,6 @@ export default function CreateSlidePage  ()  {
           name="btnName"
           rules={[
             {
-              required: true,
               message: "Lütfen slide'a eklenecek butonun adını girin!",
             },
           ]}
@@ -62,7 +60,6 @@ export default function CreateSlidePage  ()  {
           name="heading"
           rules={[
             {
-              required: true,
               message: "Lütfen slide'ın alt başlık adını girin!",
             },
           ]}
@@ -80,9 +77,7 @@ export default function CreateSlidePage  ()  {
             },
           ]}
         >
-          <Input.TextArea
-            placeholder="Her bir görsel linkini yeni bir satıra yazın."
-            autoSize={{ minRows: 4 }}
+          <Input
           />
         </Form.Item>
 

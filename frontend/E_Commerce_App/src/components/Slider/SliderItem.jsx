@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import "../../css/sliderItem.css"
-const SliderItem = ({imageSrc}) => {
+import { useSlideContext } from '../../context/SlideProvider';
+const SliderItem = ({imageSrc,currentSlide}) => {
+  const { slideData } = useSlideContext();
     return (
       <div className="slider-item fade">
         <div className="slider-image">
           <img src={imageSrc} className="img-fluid" alt="" />
         </div>
         <div className="container1">
-          <p className="slider-title">2023 Sonbahar</p>
-          <h2 className="slider-heading">%60 &apos; a varan indirimler</h2>
+          <p className="slider-title">{slideData[currentSlide].title}</p>
+          <h2 className="slider-heading">{slideData[currentSlide].heading}</h2>
           <a href="#" className="btn">
-            Şimdi Keşfet
+           {slideData[currentSlide].btnName}
           </a>
         </div>
       </div>
@@ -18,5 +20,6 @@ const SliderItem = ({imageSrc}) => {
   }; 
   SliderItem.propTypes={
     imageSrc: PropTypes.string.isRequired,
+    currentSlide:PropTypes.number.isRequired
   }
   export default SliderItem;

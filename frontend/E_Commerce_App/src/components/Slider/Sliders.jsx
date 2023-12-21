@@ -1,31 +1,33 @@
 import SliderItem from "../Slider/SliderItem";
 import "../../css/sliders.css";
-import slider1 from "../../assets/img/slider/slider1.jpg";
-import slider2 from "../../assets/img/slider/slider2.jpg";
-import slider3 from "../../assets/img/slider/slider3.jpg";
 import { useState } from "react";
 import { useSlideContext } from "../../context/SlideProvider";
 const Sliders = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  //const { slideData } = useSlideContext();
-  // console.log("slidee", slideData);
-  // if (!slideData) {
-  //   return <div>Loading...</div>;
-  // }
+  
+  const { slideData } = useSlideContext();
+  const imgArray = slideData ? slideData.map((slide) => slide.img) : [];
+  
+
+  console.log("slidee", slideData);
+  if (!slideData) {
+    return <div>Loading...</div>;
+  }
 
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % 3);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % imgArray.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide - 1 + 3) % 3);
+    setCurrentSlide((prevSlide) => (prevSlide - 1 + 3) % imgArray.length);
   };
   return (
     <section className="slider">
       <div className="slider-elements">
-        {currentSlide === 0 && <SliderItem imageSrc={slider1} />}
-        {currentSlide === 1 && <SliderItem imageSrc={slider2} />}
-        {currentSlide === 2 && <SliderItem imageSrc={slider3} />}
+        {imgArray.map((imgSrce, index) => (
+          currentSlide===index &&
+          <SliderItem key={index} imageSrc={imgSrce} currentSlide={currentSlide} />
+        ))}
         <div className="slider-buttons">
           <button onClick={prevSlide}>
             <i className="bi bi-chevron-left"></i>
@@ -35,24 +37,15 @@ const Sliders = () => {
           </button>
         </div>
         <div className="slider-dots">
-          <button
-            className={`slider-dot ${currentSlide === 0 ? "active" : ""}`}
-            onClick={() => setCurrentSlide(0)}
-          >
-            <span></span>
-          </button>
-          <button
-            className={`slider-dot ${currentSlide === 1 ? "active" : ""}`}
-            onClick={() => setCurrentSlide(1)}
-          >
-            <span></span>
-          </button>
-          <button
-            className={`slider-dot ${currentSlide === 2 ? "active" : ""}`}
-            onClick={() => setCurrentSlide(2)}
-          >
-            <span></span>
-          </button>
+          {imgArray.map((_, index) => (
+            <button
+              key={index}
+              className={`slider-dot ${index === currentSlide ? "active" : ""}`}
+              onClick={() => setCurrentSlide(index)}
+            >
+              <span></span>
+            </button>
+          ))}
         </div>
       </div>
     </section>

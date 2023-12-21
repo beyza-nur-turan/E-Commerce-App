@@ -9,6 +9,7 @@ import CardProvider from "./context/CardProvider";
 import { BrowserRouter } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import LogoProvider from "./context/LogoProvider";
+import SlideProvider from "./context/SlideProvider";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -17,9 +18,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ScrollToTop/>
     <CardProvider>
       <LogoProvider>
+      <SlideProvider>
       <Layout>
       <App />
     </Layout>
+      </SlideProvider>
       </LogoProvider>
     </CardProvider></BrowserRouter>
 );
