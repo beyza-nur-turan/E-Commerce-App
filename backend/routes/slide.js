@@ -91,7 +91,7 @@ router.put("/:slideId", async (req, res) => {
 router.delete("/:slideId", async (req, res) => {
   try {
     const slideId = req.params.slideId;
-    const deletedSlide = await Category.findByIdAndDelete(slideId);
+    const deletedSlide = await Slide.findByIdAndDelete(slideId);
     if (!deletedSlide) {
       return res.status(404).json({ error: "Slide bulunamadı!" });
     }
