@@ -4,8 +4,14 @@ import slider1 from "../../assets/img/slider/slider1.jpg";
 import slider2 from "../../assets/img/slider/slider2.jpg";
 import slider3 from "../../assets/img/slider/slider3.jpg";
 import { useState } from "react";
+import { useSlideContext } from "../../context/SlideProvider";
 const Sliders = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  //const { slideData } = useSlideContext();
+  // console.log("slidee", slideData);
+  // if (!slideData) {
+  //   return <div>Loading...</div>;
+  // }
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % 3);

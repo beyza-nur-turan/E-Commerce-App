@@ -9,7 +9,7 @@ import UpdateCategoryModal from "../../../modals/UpdateCategoryModal";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-export default function CategoryPage() {
+export default function SlidePage() {
   const [dataSource, setDataSource] = useState([]);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState();
@@ -23,18 +23,18 @@ export default function CategoryPage() {
   const handleClose = () => setOpen(false); //modal ı kapatmak için
   console.log("datasource", dataSource);
   useEffect(() => {
-    fetchCategories();
+    fetchSlides();
   }, []);
 
-  const deleteCategory = async (categoryId) => {
+  const deleteSlide = async (slideId) => {
     try {
-      const response = await fetch(`${apiUrl}/categories/${categoryId}`, {
+      const response = await fetch(`${apiUrl}/slides/${slideId}`, {
         method: "DELETE",
       });
 
       if (response.ok) {
         console.log("işlem başarılı")
-        fetchCategories();
+        fetchSlides();
       } else {
         console.log("silme işlemi başarısız")
       }
@@ -43,9 +43,9 @@ export default function CategoryPage() {
     }
   };
 
-  const fetchCategories = async () => {
+  const fetchSlides = async () => {
     try {
-      const response = await fetch(`${apiUrl}/categories`);
+      const response = await fetch(`${apiUrl}/slides`);
       console.log("response:", response);
 
       if (response.ok) {
@@ -61,11 +61,23 @@ export default function CategoryPage() {
   const columns = [
     //{ field: "id", headerName: "ID", flex: 1 },
     {
-      field: "name",
-      headerName: "Kategori adı",
+      field: "title",
+      headerName: "Başlık",
       flex: 1,
       editable: true,
     },
+    {
+        field: "btnName",
+        headerName: "Buton adı",
+        flex: 1,
+        editable: true,
+      },
+      {
+        field: "heading",
+        headerName: "Alt Başlık",
+        flex: 1,
+        editable: true,
+      },
 
     {
       field: "img",
@@ -75,7 +87,7 @@ export default function CategoryPage() {
       renderCell: (params) => (
         <img
           src={params.row.img}
-          alt="Avatar"
+          alt="Slide"
           style={{
             width: "40px",
             height: "40px",
@@ -102,7 +114,7 @@ export default function CategoryPage() {
             onClick={() => {
               Swal.fire({
                 title: "Emin misiniz?",
-                text: "Kategoriyi silmek istediğinize emin misiniz!",
+                text: "Slide'ı silmek istediğinize emin misiniz!",
                 icon: "Uyarı",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -110,7 +122,7 @@ export default function CategoryPage() {
                 confirmButtonText: "Evet",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  deleteCategory(params.row.id);
+                  deleteSlide(params.row.id);
                   Swal.fire({
                     title: "Silindi!",
                     text: "İşem başarılı!",
@@ -137,10 +149,12 @@ export default function CategoryPage() {
       ),
     },
   ];
-
+console.log(dataSource)
   const rows = dataSource.map((item) => ({
     id: item._id,
-    name: item.name,
+    title:item.title,
+    btnName: item.btnName,
+    heading:item.heading,
     img: item.img,
   }));
 

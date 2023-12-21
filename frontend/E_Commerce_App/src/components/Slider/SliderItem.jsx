@@ -15,7 +15,7 @@ const SliderItem = ({imageSrc}) => {
         </div>
       </div>
     );
-  };
+  }; 
   SliderItem.propTypes={
     imageSrc: PropTypes.string.isRequired,
   }

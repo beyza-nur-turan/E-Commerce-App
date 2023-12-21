@@ -6,7 +6,6 @@ import { useLogoContext } from "../../context/LogoProvider";
 
 const Header = ({ setIsSearchShow }) => {
   const { logoData } = useLogoContext();
-  console.log(logoData);
   const { cardItems } = useCardContext();
   const user = localStorage.getItem("user");
   const { pathname } = useLocation();
@@ -30,20 +29,11 @@ const Header = ({ setIsSearchShow }) => {
             </div>
             <div className="header-left">
               <Link to={"/"} className="logo">
-                <img style={{width:"12vh",height:"12vh",marginLeft:"20vh"}} src={logoData}/>
-                {/* <div>
-                  {logoData && (
-                    <img
-                      style={{
-                        width: "12vh",
-                        height: "12vh",
-                        marginLeft: "20vh",
-                      }}
-                      src={`data:image/png;base64,${logoData.img[0]}`} // Logo verilerini base64 formatında görüntüleme
-                      alt="Logo"
-                    />
-                  )}
-                </div> */}
+                <img
+                  style={{ width: "12vh", height: "12vh", marginLeft: "20vh" }}
+                  src={logoData && logoData.length > 0 && logoData[0].img}
+                  alt="Logo"
+                />
               </Link>
             </div>
             <div className="header-center" id="sidebar">

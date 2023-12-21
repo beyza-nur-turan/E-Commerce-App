@@ -6,10 +6,11 @@ import { Button } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import UpdateCategoryModal from "../../../modals/UpdateCategoryModal";
+import UpdateLogoModal from "../../../modals/UpdateLogoModal";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-export default function CategoryPage() {
+export default function LogoPage() {
   const [dataSource, setDataSource] = useState([]);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState();
@@ -23,18 +24,19 @@ export default function CategoryPage() {
   const handleClose = () => setOpen(false); //modal ı kapatmak için
   console.log("datasource", dataSource);
   useEffect(() => {
-    fetchCategories();
+    fetchLogo();
   }, []);
 
-  const deleteCategory = async (categoryId) => {
+  const deleteLogo = async (logoId) => {
     try {
-      const response = await fetch(`${apiUrl}/categories/${categoryId}`, {
+      const response = await fetch(`${apiUrl}/logo/${logoId}`, {
         method: "DELETE",
       });
+      console.log(response)
 
       if (response.ok) {
         console.log("işlem başarılı")
-        fetchCategories();
+        fetchLogo();
       } else {
         console.log("silme işlemi başarısız")
       }
@@ -43,9 +45,9 @@ export default function CategoryPage() {
     }
   };
 
-  const fetchCategories = async () => {
+  const fetchLogo = async () => {
     try {
-      const response = await fetch(`${apiUrl}/categories`);
+      const response = await fetch(`${apiUrl}/logo`);
       console.log("response:", response);
 
       if (response.ok) {
@@ -60,12 +62,7 @@ export default function CategoryPage() {
   };
   const columns = [
     //{ field: "id", headerName: "ID", flex: 1 },
-    {
-      field: "name",
-      headerName: "Kategori adı",
-      flex: 1,
-      editable: true,
-    },
+    
 
     {
       field: "img",
@@ -75,7 +72,7 @@ export default function CategoryPage() {
       renderCell: (params) => (
         <img
           src={params.row.img}
-          alt="Avatar"
+          alt="logo"
           style={{
             width: "40px",
             height: "40px",
@@ -102,7 +99,7 @@ export default function CategoryPage() {
             onClick={() => {
               Swal.fire({
                 title: "Emin misiniz?",
-                text: "Kategoriyi silmek istediğinize emin misiniz!",
+                text: "Logoyu silmek istediğinize emin misiniz!",
                 icon: "Uyarı",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -110,7 +107,7 @@ export default function CategoryPage() {
                 confirmButtonText: "Evet",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  deleteCategory(params.row.id);
+                  deleteLogo(params.row.id);
                   Swal.fire({
                     title: "Silindi!",
                     text: "İşem başarılı!",
@@ -140,7 +137,6 @@ export default function CategoryPage() {
 
   const rows = dataSource.map((item) => ({
     id: item._id,
-    name: item.name,
     img: item.img,
   }));
 
@@ -162,7 +158,7 @@ export default function CategoryPage() {
           disableRowSelectionOnClick
         />
       </Box>
-      <UpdateCategoryModal
+      <UpdateLogoModal
         data={selected}
         handleClose={handleClose}
         isOpen={open}

@@ -10,6 +10,7 @@ import {
   AppstoreOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  LogoutOutlined 
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -124,6 +125,54 @@ function AdminLayout({children}) {
     },
     {
       key: "13",
+      icon: <LogoutOutlined />,
+      label: "Logolar",
+      path: "/admin/logo",
+      children: [
+        {
+          key: "14",
+          label: "Logo Listesi",
+          path: "/admin/logo",
+          onClick: () => {
+            navigate(`/admin/logo`);
+          },
+        },
+        {
+          key: "15",
+          label: "Yeni Logo Oluştur",
+          path: "/admin/logo/create",
+          onClick: () => {
+            navigate("/admin/logo/create");
+          },
+        },
+      ],
+    },
+    {
+      key: "16",
+      icon: <LogoutOutlined />,
+      label: "Sliderler",
+      path: "/admin/slides",
+      children: [
+        {
+          key: "17",
+          label: "Slider Listesi",
+          path: "/admin/slides",
+          onClick: () => {
+            navigate(`/admin/slides`);
+          },
+        },
+        {
+          key: "18",
+          label: "Yeni Slide Oluştur",
+          path: "/admin/slides/create",
+          onClick: () => {
+            navigate("/admin/slides/create");
+          },
+        },
+      ],
+    },
+    {
+      key: "19",
       icon: <RollbackOutlined />,
       label: "Ana Sayfaya Git",
       onClick: () => {

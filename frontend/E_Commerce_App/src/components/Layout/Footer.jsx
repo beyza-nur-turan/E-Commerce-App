@@ -3,7 +3,10 @@ import "../../css/footer.css";
 import paymant from "../../../public/img/footer/cards.png";
 import appStore from "../../../public/img/footer/app-store.png";
 import googlePlay from "../../../public/img/footer/google-play.png";
+import { Link } from "react-router-dom";
+import { useLogoContext } from "../../context/LogoProvider";
 const Footer = () => {
+  const { logoData } = useLogoContext();
   return (
     <React.Fragment>
       <footer className="footer">
@@ -72,9 +75,13 @@ const Footer = () => {
             <div className="footer-widgets">
               <div className="brand-info">
                 <div className="footer-logo">
-                  <a href="index.html" className="logo">
-                    LOGO
-                  </a>
+                <Link to={"/"} className="logo">
+                <img
+                  style={{ width: "12vh", height: "12vh", marginLeft: "20vh" }}
+                  src={logoData && logoData.length > 0 && logoData[0].img}
+                  alt="Logo"
+                />
+              </Link>
                 </div>
                 <div className="footer-desc">
                   <p>

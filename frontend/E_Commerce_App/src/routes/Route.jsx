@@ -19,6 +19,10 @@ import CreateCouponPage from "../pages/Admin/Coupons/CreateCouponPage";
 import Success from "../pages/Success";
 import OrderPage from "../pages/Admin/OrderPage";
 import DashboardPage from "../pages/DashboardPage";
+import LogoPage from "../pages/Admin/Logo/Logo";
+import CreateLogoPage from "../pages/Admin/Logo/CreateLogo";
+import SlidePage from "../pages/Admin/Sliders/Slider";
+import CreateSlidePage from "../pages/Admin/Sliders/CreateSlider";
 
 function RouteFix() {
   return (
@@ -35,6 +39,10 @@ function RouteFix() {
       <Route path="/success" element={<Success />} />
       <Route path="/admin/*">
         <Route index element={<DashboardPage />} />
+        <Route path="logo" element={<LogoPage/>}/>
+        <Route path="logo/create" element={<CreateLogoPage />} />
+        <Route path="slides" element={<SlidePage/>}/>
+        <Route path="slides/create" element={<CreateSlidePage/>}/>
 
         <Route path="categories" element={<CategoryPage />} />
         <Route
