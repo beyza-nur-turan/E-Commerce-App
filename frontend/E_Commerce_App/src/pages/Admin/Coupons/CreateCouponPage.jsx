@@ -1,4 +1,4 @@
-import { Button, Form, Input, Spin, message } from "antd";
+import { Button, Form, Input, Spin } from "antd";
 import { useState } from "react";
 import { AlertService } from "../../../services/AlertService";
 
@@ -66,5 +66,5 @@ export default function CreateCouponPage  ()  {
       </Form>
     </Spin>
   );
-};
+}
 

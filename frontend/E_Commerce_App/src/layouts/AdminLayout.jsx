@@ -173,6 +173,30 @@ function AdminLayout({children}) {
     },
     {
       key: "19",
+      icon: <LogoutOutlined />,
+      label: "Bloglar",
+      path: "/admin/blogs",
+      children: [
+        {
+          key: "20",
+          label: "Blog Listesi",
+          path: "/admin/blogs",
+          onClick: () => {
+            navigate(`/admin/blogs`);
+          },
+        },
+        {
+          key: "21",
+          label: "Yeni Blog Oluştur",
+          path: "/admin/blogs/create",
+          onClick: () => {
+            navigate("/admin/blogs/create");
+          },
+        },
+      ],
+    },
+    {
+      key: "22",
       icon: <RollbackOutlined />,
       label: "Ana Sayfaya Git",
       onClick: () => {

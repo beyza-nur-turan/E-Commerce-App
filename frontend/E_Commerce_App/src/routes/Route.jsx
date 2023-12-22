@@ -23,6 +23,8 @@ import LogoPage from "../pages/Admin/Logo/Logo";
 import CreateLogoPage from "../pages/Admin/Logo/CreateLogo";
 import SlidePage from "../pages/Admin/Sliders/Slider";
 import CreateSlidePage from "../pages/Admin/Sliders/CreateSlider";
+import AdminBlogPage from "../pages/Admin/Blogs/BlogPage"
+import CreateBlogPage from "../pages/Admin/Blogs/CreateBlogPage";
 
 function RouteFix() {
   return (
@@ -39,6 +41,8 @@ function RouteFix() {
       <Route path="/success" element={<Success />} />
       <Route path="/admin/*">
         <Route index element={<DashboardPage />} />
+        <Route path="blogs" element={<AdminBlogPage/>}/>
+        <Route path="blogs/create" element={<CreateBlogPage />} />
         <Route path="logo" element={<LogoPage/>}/>
         <Route path="logo/create" element={<CreateLogoPage />} />
         <Route path="slides" element={<SlidePage/>}/>

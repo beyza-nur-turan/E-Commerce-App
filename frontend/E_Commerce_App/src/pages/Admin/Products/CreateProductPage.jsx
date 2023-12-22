@@ -196,5 +196,5 @@ export default function CreateProductPage ()  {
       </Form>
     </Spin>
   );
-};
+}
 
