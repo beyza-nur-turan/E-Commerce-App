@@ -10,6 +10,7 @@ const userRoute = require("./users.js");
 const paymentRoute=require("./payment.js")
 const logoRoute=require("./logo.js")
 const slideRoute=require("./slide.js")
+const blogRoute=require("./blogs.js")
 
 // Her rotayı ilgili yol altında kullanıyoruz
 router.use("/categories", categoryRoute);
@@ -20,5 +21,6 @@ router.use("/users", userRoute);
 router.use("/payment",paymentRoute);
 router.use("/logo",logoRoute);
 router.use("/slides",slideRoute);
+router.use("/blogs",blogRoute);
 
 module.exports = router;
