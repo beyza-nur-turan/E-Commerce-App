@@ -32,7 +32,7 @@ const BlogDetails = () => {
         <article>
           <figure>
             <a href="#">
-              <img src={imgArray} alt="" />
+              <img src={imgArray[currentSlide]} alt="" />
             </a>
           </figure>
           <div className="blog-wrapper">

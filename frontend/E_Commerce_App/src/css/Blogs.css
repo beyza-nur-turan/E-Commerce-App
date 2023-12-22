@@ -1,26 +1,67 @@
-/*! blogs start  */
-/*.blogs {
-    margin-bottom: 30px;
-  }
-  
-  .blogs .blog-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
-  }
-  .blogs .container{
-    display: flex;
-    flex-direction: column;
-  }*/
 
-  /*! blogs start  */
 .blogs {
   margin-bottom: 30px;
+}
+.containerBlog{
+  max-width: 98.5vw;
+  max-height: 40vw;
 }
 
 .blogs .blog-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
+  padding-left: 10vh;
+  padding-right: 10vh;
 }
 /*! blogs end  */
+
+
+
+
+.blog-slider-container {
+  position: relative;
+}
+
+.blog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.blog-list li {
+  /* Gerekli stillendirmeleri burada yapabilirsiniz */
+  flex: 0 0 100%; /* Blog öğelerinin yatayda genişliği */
+}
+
+.slider-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slider-control {
+  /* Düğme stilini burada belirleyebilirsiniz */
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 1px solid #001233;
+  
+  transition: 0.2s ease all;
+}
+.slider-control:hover{
+  background-color: #001233;
+    opacity: 1;
+    color: #fff;
+}
+
+.slider-page-info {
+  /* Sayfa bilgisi stilini burada belirleyebilirsiniz */
+  color: #333;
+  font-size: 16px;
+}

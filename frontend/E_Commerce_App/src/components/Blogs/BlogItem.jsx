@@ -2,14 +2,15 @@
 import "../../css/BlogItem.css";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
+import BlogDetails from "../BlogDetails/BlogDetails";
 
-const BlogItem = ({ blog, currentSlide, index }) => {
+const BlogItem = ({ blog}) => {
   const { img, title, _id } = blog;
 
   return (
     <li className="blog-item">
       <a href="#" className="blog-image">
-        {currentSlide === index && <img src={img} alt="" />}
+        { <img  src={img} alt="" />}
       </a>
       <div className="blog-info">
         <div className="blog-info-top">
@@ -25,6 +26,7 @@ const BlogItem = ({ blog, currentSlide, index }) => {
     </li>
   );
 };
+
 
 BlogItem.propTypes = {
   blog: PropTypes.shape({

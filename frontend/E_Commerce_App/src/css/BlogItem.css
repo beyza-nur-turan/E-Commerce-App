@@ -3,7 +3,8 @@
   }
   
   .blog-list .blog-image img {
-    width: 100%;
+    width:27vw ;
+    height: 17vw;
   }
   
   .blog-item .blog-info {
@@ -24,7 +25,14 @@
     font-size: 20px;
     margin-bottom: 20px;
     font-weight: 500;
-  }
+  display:-webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+  
   
   .blog-item .blog-info-bottom a {
     font-size: 14px;
