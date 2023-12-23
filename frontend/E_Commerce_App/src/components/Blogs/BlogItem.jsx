@@ -2,11 +2,18 @@
 import "../../css/BlogItem.css";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import BlogDetails from "../BlogDetails/BlogDetails";
 
 const BlogItem = ({ blog}) => {
-  const { img, title, _id } = blog;
+  const { img, title, _id, createdAt,reviews } = blog;
+  //console.log("blog",blog)
 
+  const formatDate = (isoDateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(isoDateString).toLocaleDateString('tr-TR', options);
+  };
+  
+  const formattedDate = formatDate(blog.createdAt); 
+  
   return (
     <li className="blog-item">
       <a href="#" className="blog-image">
@@ -14,7 +21,7 @@ const BlogItem = ({ blog}) => {
       </a>
       <div className="blog-info">
         <div className="blog-info-top">
-          <span>9 Ekim 2023 </span>-<span>10 yorum</span>
+          <span>{formattedDate} </span>-<span>{`  ${blog.reviews.length} yorum`}</span>
         </div>
         <div className="blog-info-center">
           <a href="#">{title}</a>
@@ -33,9 +40,12 @@ BlogItem.propTypes = {
     _id: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    createdAt:PropTypes.func.isRequired,
+    reviews:PropTypes.func.isRequired
   }).isRequired,
-  currentSlide: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
+ // currentSlide: PropTypes.number.isRequired,
+  //index: PropTypes.number.isRequired,
+  
 };
 
 export default BlogItem;

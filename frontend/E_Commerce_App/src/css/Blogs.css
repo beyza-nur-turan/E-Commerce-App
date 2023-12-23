@@ -65,3 +65,14 @@
   color: #333;
   font-size: 16px;
 }
+
+/* @media (max-width: 768px) {
+  .blogs .blog-list {
+    height: calc(100vh - 155px);
+    width: calc(100vh - 155px);
+  }
+
+  .slider-buttons {
+    display: none !important;
+  }
+} */
