@@ -46,7 +46,7 @@ router.post("/", async (req, res) => {
     try {
       const blogId=req.params.blogId;
       const updates=req.body;
-      const existingBlog=await Product.findById(blogId)
+      const existingBlog=await Blog.findById(blogId)
       if(!existingBlog){
         return res.status(404).json({error:"blog bulunamadı!"})
       }
