@@ -2,14 +2,14 @@ import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import { AlertService } from "../../../services/AlertService";
 import { useEffect, useState } from "react";
-import { Button, message } from "antd";
+import { Button } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
-import UpdateCouponModal from "../../../modals/updateCouponModal";
+import UpdateCategoryModal from "../../../modals/UpdateCategoryModal";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-export default function CouponPage() {
+export default function ContactPage() {
   const [dataSource, setDataSource] = useState([]);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState();
@@ -23,29 +23,29 @@ export default function CouponPage() {
   const handleClose = () => setOpen(false); //modal ı kapatmak için
   console.log("datasource", dataSource);
   useEffect(() => {
-    fetchCoupons();
+    fetchContact();
   }, []);
 
-  const deleteCoupons = async (couponId) => {
-    try {
-      const response = await fetch(`${apiUrl}/coupons/${couponId}`, {
-        method: "DELETE",
-      });
+//   const deleteCategory = async (categoryId) => {
+//     try {
+//       const response = await fetch(`${apiUrl}/categories/${categoryId}`, {
+//         method: "DELETE",
+//       });
 
-      if (response.ok) {
-        message.success("Kupon başarıyla silindi.");
-        fetchCoupons();
-      } else {
-        message.error("Silme işlemi başarısız.");
-      }
-    } catch (error) {
-      console.log("Silme hatası:", error);
-    }
-  };
+//       if (response.ok) {
+//         console.log("işlem başarılı")
+//         fetchCategories();
+//       } else {
+//         console.log("silme işlemi başarısız")
+//       }
+//     } catch (error) {
+//       console.log("Silme hatası:", error);
+//     }
+//   };
 
-  const fetchCoupons = async () => {
+  const fetchContact = async () => {
     try {
-      const response = await fetch(`${apiUrl}/coupons`);
+      const response = await fetch(`${apiUrl}/contact`);
       console.log("response:", response);
 
       if (response.ok) {
@@ -61,18 +61,29 @@ export default function CouponPage() {
   const columns = [
     //{ field: "id", headerName: "ID", flex: 1 },
     {
-      field: "code",
-      headerName: "Kupon Kodu",
+      field: "name",
+      headerName: "Kategori adı",
       flex: 1,
       editable: true,
     },
-    {
-        field: "discountPercent",
-        headerName: "İndirim Oranı",
-        flex: 1,
-        editable: true,
-      },
 
+    {
+      field: "img",
+      headerName: "Resim",
+      editable: true,
+      flex: 1,
+      renderCell: (params) => (
+        <img
+          src={params.row.img}
+          alt="Avatar"
+          style={{
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+          }}
+        />
+      ),
+    },
     {
       field: "actions",
       headerName: "Aksiyonlar",
@@ -99,7 +110,7 @@ export default function CouponPage() {
                 confirmButtonText: "Evet",
               }).then((result) => {
                 if (result.isConfirmed) {
-                    deleteCoupons(params.row.id);
+                  deleteCategory(params.row.id);
                   Swal.fire({
                     title: "Silindi!",
                     text: "İşem başarılı!",
@@ -129,8 +140,8 @@ export default function CouponPage() {
 
   const rows = dataSource.map((item) => ({
     id: item._id,
-    code: item.code,
-    discountPercent: item.discountPercent,
+    name: item.name,
+    img: item.img,
   }));
 
   return (
@@ -151,7 +162,7 @@ export default function CouponPage() {
           disableRowSelectionOnClick
         />
       </Box>
-      <UpdateCouponModal
+      <UpdateCategoryModal
         data={selected}
         handleClose={handleClose}
         isOpen={open}

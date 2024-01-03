@@ -1,6 +1,44 @@
-import "../../css/contact.css"
+import { useState } from "react";
+import "../../css/contact.css";
 
 const Contact = () => {
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+
+  const [formData, setFormData] = useState({
+    userName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${apiUrl}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("İletişim bilgileri başarıyla gönderildi.");
+        // İletişim bilgileri başarıyla gönderildiğinde başka bir işlem yapabilirsiniz.
+      } else {
+        console.error("İletişim bilgileri gönderilirken bir hata oluştu.");
+      }
+    } catch (error) {
+      console.error("API ile iletişim hatası:", error.message);
+    }
+  };
   return (
     <section className="contact">
       <div className="contact-top">
@@ -31,27 +69,27 @@ const Contact = () => {
             </p>
           </div>
           <div className="contact-elements">
-            <form className="contact-form">
+            <form onSubmit={handleSubmit} className="contact-form">
               <div className="">
                 <label>
                   Your Name
                   <span>*</span>
                 </label>
-                <input type="text" required />
+                <input name="userName" value={formData.userName} onChange={handleChange} type="text" required />
               </div>
               <div className="">
                 <label>
                   Your email
                   <span>*</span>
                 </label>
-                <input type="text" required />
+                <input name="email" value={formData.email} onChange={handleChange} type="text" required />
               </div>
               <div className="">
                 <label>
                   Subject
                   <span>*</span>
                 </label>
-                <input type="text" required />
+                <input name="subject" value={formData.subject} onChange={handleChange} type="text" required />
               </div>
               <div className="">
                 <label>
@@ -60,14 +98,14 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="author"
-                  name="author"
+                  name="message"
                   type="text"
-                  defaultValue=""
+                  value={formData.message}
                   size="30"
                   required=""
                 ></textarea>
               </div>
-              <button className="btn btn-sm form-button">Send Message</button>
+              <button type="submit" className="btn btn-sm form-button">Send Message</button>
             </form>
             <div className="contact-info">
               <div className="contact-info-item">
