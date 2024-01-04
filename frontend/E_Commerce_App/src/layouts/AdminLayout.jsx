@@ -197,6 +197,39 @@ function AdminLayout({children}) {
     },
     {
       key: "22",
+      icon: <LogoutOutlined />,
+      label: "İletişim",
+      path: "/admin/officeInfo",
+      children: [
+        {
+          key: "23",
+          label: "Şube Listesi",
+          path: "/admin/officeInfo",
+          onClick: () => {
+            navigate(`/admin/officeInfo`);
+          },
+        },
+        {
+          key: "24",
+          label: "Yeni Şube Bilgisi Ekle",
+          path: "/admin/officeInfo/create",
+          onClick: () => {
+            navigate("/admin/officeInfo/create");
+          },
+        },
+        {
+          key: "25",
+          label: "İletişim Mesaj Listesi",
+          path: "/admin/contact",
+          onClick: () => {
+            navigate(`/admin/contact`);
+          },
+        },
+        
+      ],
+    },
+    {
+      key: "26",
       icon: <RollbackOutlined />,
       label: "Ana Sayfaya Git",
       onClick: () => {

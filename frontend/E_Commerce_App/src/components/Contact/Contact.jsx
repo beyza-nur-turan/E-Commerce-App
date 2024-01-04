@@ -1,8 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../css/contact.css";
+import { AlertService } from "../../services/AlertService";
 
 const Contact = () => {
+  const [dataSource, setDataSource] = useState([0]);
+  useEffect(() => {
+    fetchOfficeInfo();
+  }, []);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const fetchOfficeInfo = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/officeInfo`);
+      console.log("response:", response);
+
+      if (response.ok) {
+        const data1 = await response.json();
+        setDataSource(data1);
+      } else {
+        AlertService.showError();
+      }
+    } catch (error) {
+      console.log("Giriş hatası:", error);
+    }
+  };
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -19,6 +39,7 @@ const Contact = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
 
     try {
       const response = await fetch(`${apiUrl}/contact`, {
@@ -29,6 +50,7 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
+      console.log(response.status);
       if (response.ok) {
         console.log("İletişim bilgileri başarıyla gönderildi.");
         // İletişim bilgileri başarıyla gönderildiğinde başka bir işlem yapabilirsiniz.
@@ -39,18 +61,17 @@ const Contact = () => {
       console.error("API ile iletişim hatası:", error.message);
     }
   };
+  console.log(dataSource);
   return (
     <section className="contact">
       <div className="contact-top">
         <div className="contact-map">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.9633698339308!2d28.929441087738052!3d41.04793012296828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab1d021adf417%3A0xba3a3fdfdbb5f5d!2sEy%C3%BCp%20Sultan%20Camii!5e0!3m2!1str!2str!4v1665091191675!5m2!1str!2str"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3060.9120135437784!2d32.773348375598935!3d39.898602187012095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d3471e04b8e267%3A0xa7f72c21bd33c403!2sODTU%20TEKNOKENT%20Y%C3%B6netim%20A.S.!5e0!3m2!1str!2str!4v1704380197232!5m2!1str!2str"
             width="100%"
             height="500"
-            style={{
-              border: "0",
-            }}
-            allowFullScreen=""
+            style={{ border: "0" }}
+            allowfullscreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
@@ -59,73 +80,92 @@ const Contact = () => {
       <div className="contact-bottom">
         <div className="container">
           <div className="contact-titles">
-            <h4>Contact with us</h4>
-            <h2>Get In Touch</h2>
-            <p>
-              In hac habitasse platea dictumst. Pellentesque viverra sem nec
-              orci lacinia, in bibendum urna mollis. Quisque nunc lacus, varius
-              vel leo a, pretium lobortis metus. Vivamus consectetur consequat
-              justo.
-            </p>
+            <h2>İletişime Geç</h2>
+            <p>Sorun, istek ve şikayetlerinizi bize bildirebilirsiniz.</p>
           </div>
           <div className="contact-elements">
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form className="contact-form">
               <div className="">
                 <label>
-                  Your Name
+                  İsminiz
                   <span>*</span>
                 </label>
-                <input name="userName" value={formData.userName} onChange={handleChange} type="text" required />
+                <input
+                  name="userName"
+                  value={formData.userName}
+                  onChange={handleChange}
+                  type="text"
+                  required
+                />
               </div>
               <div className="">
                 <label>
-                  Your email
+                  Mail Adresiniz
                   <span>*</span>
                 </label>
-                <input name="email" value={formData.email} onChange={handleChange} type="text" required />
+                <input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  type="text"
+                  required
+                />
               </div>
               <div className="">
                 <label>
-                  Subject
+                  Açıklama
                   <span>*</span>
                 </label>
-                <input name="subject" value={formData.subject} onChange={handleChange} type="text" required />
+                <input
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  type="text"
+                  required
+                />
               </div>
               <div className="">
                 <label>
-                  Your message
+                  Mesajınız
                   <span>*</span>
                 </label>
                 <textarea
                   id="author"
                   name="message"
                   type="text"
-                  value={formData.message}
+                  defaultValue={formData.message}
                   size="30"
                   required=""
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-sm form-button">Send Message</button>
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="btn btn-sm form-button"
+              >
+                Mesaj Gönder
+              </button>
             </form>
             <div className="contact-info">
               <div className="contact-info-item">
                 <div className="contact-info-texts">
-                  <strong> Clotya Store</strong>
+                  <strong> {dataSource[0].officeName}</strong>
                   <p className="contact-street">
-                    Clotya Store Germany — 785 15h Street, Office 478/B Green
-                    Mall Berlin, De 81566
+                    {dataSource[0].officeAddress}
                   </p>
-                  <a href="tel:Phone: +1 1234 567 88">Phone: +1 1234 567 88</a>
+                  <a href="tel:Phone: +1 1234 567 88">{`Telefon: ${dataSource[0].officePhone}`}</a>
                   <a href="mailto:Email: contact@example.com">
-                    Email: contact@example.com
+                    {`E-mail : ${dataSource[0].officeMail}`}
                   </a>
                 </div>
               </div>
               <div className="contact-info-item">
                 <div className="contact-info-texts">
-                  <strong> Opening Hours</strong>
-                  <p className="contact-date">Monday - Friday : 9am - 5pm</p>
-                  <p>Weekend Closed</p>
+                  <strong> Çalışma Saatleri</strong>
+                  <p className="contact-date">
+                    {dataSource[0].officeOpenWeekday}
+                  </p>
+                  <p>{`Haftasonu : ${dataSource[0].officeOpenWeekend}`}</p>
                 </div>
               </div>
             </div>

@@ -12,6 +12,8 @@ const logoRoute=require("./logo.js")
 const slideRoute=require("./slide.js")
 const blogRoute=require("./blogs.js")
 const contactRoute=require("./contact.js")
+const officeInfoRoute=require("./officeInfo.js")
+const brandRoute=require("./brands.js")
 
 // Her rotayı ilgili yol altında kullanıyoruz
 router.use("/categories", categoryRoute);
@@ -24,5 +26,7 @@ router.use("/logo",logoRoute);
 router.use("/slides",slideRoute);
 router.use("/blogs",blogRoute);
 router.use("/contact",contactRoute);
+router.use("/officeInfo",officeInfoRoute);
+router.use("/brands",brandRoute);
 
 module.exports = router;

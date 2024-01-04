@@ -9,7 +9,7 @@ import UpdateCategoryModal from "../../../modals/UpdateCategoryModal";
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-export default function ContactPage() {
+export default function OfficeInfoPage() {
   const [dataSource, setDataSource] = useState([]);
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState();
@@ -25,27 +25,13 @@ export default function ContactPage() {
   useEffect(() => {
     fetchContact();
   }, []);
+  const deleteOfficeInfo=()=>{}
 
-  const deleteContact = async (email) => {
-    try {
-      const response = await fetch(`${apiUrl}/contact/${email}`, {
-        method: "DELETE",
-      });
 
-      if (response.ok) {
-        console.log("işlem başarılı")
-        fetchContact();
-      } else {
-        console.log("silme işlemi başarısız")
-      }
-    } catch (error) {
-      console.log("Silme hatası:", error);
-    }
-  };
 
   const fetchContact = async () => {
     try {
-      const response = await fetch(`${apiUrl}/contact`);
+      const response = await fetch(`${apiUrl}/officeInfo`);
       console.log("response:", response);
 
       if (response.ok) {
@@ -61,30 +47,41 @@ export default function ContactPage() {
   const columns = [
     //{ field: "id", headerName: "ID", flex: 1 },
     {
-      field: "userName",
-      headerName: "Kullanıcının adı",
+      field: "officeName",
+      headerName: "Şube Adı",
       flex: 1,
       editable: true,
     },
     {
-      field: "email",
-      headerName: "Kullanıcının maili",
-      flex: 1,
-      editable: true,
-    },
-    {
-      field: "subject",
-      headerName: "Mesaj açıklaması",
-      flex: 1,
-      editable: true,
-    },
-    {
-      field: "message",
-      headerName: "Mesaj",
-      flex: 1,
-      editable: true,
-    },
-
+        field: "officePhone",
+        headerName: "Şube Telefonu",
+        flex: 1,
+        editable: true,
+      },
+      {
+        field: "officeMail",
+        headerName: "Şube E-mail",
+        flex: 1,
+        editable: true,
+      },
+      {
+        field: "officeOpenWeekday",
+        headerName: "Şube Hafta içi Çalışma Saatleri",
+        flex: 1,
+        editable: true,
+      },
+      {
+        field: "officeOpenWeekend",
+        headerName: "Şube Hafta Sonu Çalışma Saatleri",
+        flex: 1,
+        editable: true,
+      },
+      {
+        field: "officeAddress",
+        headerName: "Şube Adresi",
+        flex: 1,
+        editable: true,
+      },
     
     {
       field: "actions",
@@ -112,7 +109,7 @@ export default function ContactPage() {
                 confirmButtonText: "Evet",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  deleteContact(params.row.id);
+                  deleteOfficeInfo(params.row.id);
                   Swal.fire({
                     title: "Silindi!",
                     text: "İşem başarılı!",
@@ -142,10 +139,14 @@ export default function ContactPage() {
 
   const rows = dataSource.map((item) => ({
     id: item._id,
-    userName: item.userName,
-    email:item.email,
-    subject:item.subject,
-    message:item.message
+    officeName:item.officeName,
+    officePhone:item.officePhone,
+    officeMail:item.officeMail,
+    officeOpenWeekday:item.officeOpenWeekday,
+    officeOpenWeekend:item.officeOpenWeekend,
+    officeAddress:item.officeAddress
+
+    
   }));
 
   return (

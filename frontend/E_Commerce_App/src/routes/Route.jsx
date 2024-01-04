@@ -8,7 +8,6 @@ import ProductDetailsPage from "../pages/ProductDetailsPage";
 import BlogDetailsPage from "../pages/BlogDetailsPage";
 import AuthPage from "../pages/AuthPage";
 import Login from "../components/Auth/Login";
-import UserPage from "../pages/Admin/UserPage";
 import CategoryPage from "../pages/Admin/Categories/CategoryPage";
 import UpdateCategoryModal from "../modals/UpdateCategoryModal";
 import CreateCategoryPage from "../pages/Admin/Categories/CreateCategoryPage";
@@ -25,6 +24,8 @@ import SlidePage from "../pages/Admin/Sliders/Slider";
 import CreateSlidePage from "../pages/Admin/Sliders/CreateSlider";
 import AdminBlogPage from "../pages/Admin/Blogs/BlogPage"
 import CreateBlogPage from "../pages/Admin/Blogs/CreateBlogPage";
+import OfficeInfoPage from "../pages/Admin/Contact/OfficeInfo";
+import ContactPage1 from "../pages/Admin/Contact/ContactPage"
 
 function RouteFix() {
   return (
@@ -41,6 +42,8 @@ function RouteFix() {
       <Route path="/success" element={<Success />} />
       <Route path="/admin/*">
         <Route index element={<DashboardPage />} />
+        <Route path="contact" element={<ContactPage1/>}/>
+        <Route path="officeInfo" element={<OfficeInfoPage/>}/>
         <Route path="blogs" element={<AdminBlogPage/>}/>
         <Route path="blogs/create" element={<CreateBlogPage />} />
         <Route path="logo" element={<LogoPage/>}/>

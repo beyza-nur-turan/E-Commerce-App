@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   router.post("/", async (req, res) => {
     try {
       const { userName, email,subject,message } = req.body;
-      const newContact = new Contact({ userName, email,subject,message });
+      const newContact = new Contact({ userName,email,subject,message });
       await newContact.save();
   
       res.status(201).json(newContact);
