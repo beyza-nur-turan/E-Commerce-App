@@ -46,5 +46,17 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Server error." });
   }
 });
+router.get("/", async (req, res) => {
+  try {
+    // Ödeme geçmişini Stripe'dan alır
+    const payments = await stripe.paymentIntents.list({ limit: 10 });
+
+    // Ödeme geçmişini istemciye gönderir
+    res.status(200).json(payments.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error." });
+  }
+});
 
 module.exports = router;
