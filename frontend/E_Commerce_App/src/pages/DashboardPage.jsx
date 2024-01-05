@@ -12,7 +12,25 @@ import {
 
 const DashboardPage = () => {
   const [paymentData, setPaymentData] = useState(null);
+  const [stripeTotalAmount, setStripeStripeTotalAmount] = useState(null);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const paymentResponse = await fetch(`${apiUrl}/payment`);
+  //       const paymentData = await paymentResponse.json();
+  //       setPaymentData(paymentData);
+
+  //       const stripeResponse = await fetch(`${apiUrl}/stripe`);
+  //       const stripeData = await stripeResponse.json();
+  //       setStripeData(stripeData);
+  //     } catch (error) {
+  //       console.error('Veri çekme hatası:', error.message);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
   useEffect(() => {
     const fetchPaymentData = async () => {
       try {
@@ -23,8 +41,20 @@ const DashboardPage = () => {
         console.error('Error fetching payment:', error);
       }
     }; 
+    const fetchStripeData = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/stripe/totalRevenue`); 
+        const data = await response.json();
+        setStripeStripeTotalAmount(data);
+        console.log("gelem stripe data",data)
+      } catch (error) {
+        console.error('Error fetching payment:', error);
+      }
+    }; 
+    fetchStripeData();
     fetchPaymentData();
   }, []);
+  console.log(stripeTotalAmount)
   console.log(paymentData)
   const productSalesData = [
     { name: "Ocak", satilanUrunSayisi: 10 },
@@ -59,7 +89,7 @@ const DashboardPage = () => {
         </Col>
         <Col span={8}>
           <Card>
-            <Statistic title="Toplam Gelir" value={3000} prefix="$" />
+            <Statistic title="Toplam Gelir" value={stripeTotalAmount.totalRevenue} prefix="$" />
           </Card>
         </Col>
       </Row>
