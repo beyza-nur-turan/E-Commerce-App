@@ -14,6 +14,7 @@ const blogRoute=require("./blogs.js")
 const contactRoute=require("./contact.js")
 const officeInfoRoute=require("./officeInfo.js")
 const brandRoute=require("./brands.js")
+const stripeRoute=require("./stripe.js")
 
 // Her rotayı ilgili yol altında kullanıyoruz
 router.use("/categories", categoryRoute);
@@ -28,5 +29,6 @@ router.use("/blogs",blogRoute);
 router.use("/contact",contactRoute);
 router.use("/officeInfo",officeInfoRoute);
 router.use("/brands",brandRoute);
+router.use("/stripe",stripeRoute);
 
 module.exports = router;
