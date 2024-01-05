@@ -4,16 +4,16 @@ const CampaignItem = () => {
   return (
     <div className="campaign-item">
       <h3 className="campaign-title">
-        Fashion Month <br />
-        Ready in Capital <br />
-        Shop
+        Moda Haftası <br />
+        Alışveriş Zamanı! <br />
+        
       </h3>
       <p className="campaign-desc">
-        Lorem ipsum dolor sit amet consectetur adipiscing elit dolor
+        Tarzınızı yenilemenin zamanı belkide çoktan gelmiştir.
       </p>
-      <a href="#" className="btn ">
-        View All
-        <i className="bi bi-arrow-right"></i>
+      <a  href="#" className="btn ">
+        Tümünü Gör  
+        <i style={{marginLeft:"0.5em"}} className="bi bi-arrow-right"></i>
       </a>
     </div>
   );

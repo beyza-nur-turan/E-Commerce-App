@@ -15,9 +15,8 @@ const Header = ({ setIsSearchShow }) => {
       <div className="global-notification">
         <div className="container">
           <p>
-            SUMMER SALE FOR ALL SWIM SUITS AND FREE EXPRESS INTERNATIONAL
-            DELIVERY - OFF 50%!
-            <a href="shop.html"> SHOP NOW</a>
+            Tüm atkılarda %50 indirim ve  ücretsiz teslimat fırsatını kaçırma
+            <a style={{fontSize:"12px"}} href="shop.html"> ALIŞVERİŞE BAŞLA</a>
           </p>
         </div>
       </div>
@@ -44,7 +43,7 @@ const Header = ({ setIsSearchShow }) => {
                       to={"/"}
                       className={`menu-link ${pathname === "/" && "active"}`}
                     >
-                      Home
+                      Ana Sayfa
                       <i className="bi bi-chevron-down"></i>
                     </Link>
                     <div className="menu-dropdown-wrapper">
@@ -86,7 +85,7 @@ const Header = ({ setIsSearchShow }) => {
                         pathname === "/shop" && "active"
                       }`}
                     >
-                      Shop
+                      ALIŞVERİŞ
                       <i className="bi bi-chevron-down"></i>
                     </Link>
                     <div className="menu-dropdown-wrapper">
@@ -208,7 +207,7 @@ const Header = ({ setIsSearchShow }) => {
                         pathname === "/contact" && "active"
                       }`}
                     >
-                      Contact
+                      İLETİŞİM
                     </Link>
                   </li>
                 </ul>

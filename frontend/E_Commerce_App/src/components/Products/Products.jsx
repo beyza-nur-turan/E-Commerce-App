@@ -83,8 +83,8 @@ const Products = () => {
     <section className="products">
       <div className="container">
         <div className="section-title">
-          <h2>Featured Products</h2>
-          <p>Summer Collection New Morden Design</p>
+          <h2>KIŞ KOLEKSİYONU</h2>
+          <p>Kış koleksiyonundan özel parçalar</p>
           {/* Data:{cardItems} */}
         </div>
         <div className="product-wrapper product-carousel">
