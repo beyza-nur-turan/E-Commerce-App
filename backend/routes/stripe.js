@@ -5,11 +5,51 @@ dotenv.config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
+const createCustomerAndAddCard = async (name, cardNumber, expMonth, expYear, cvc) => {
+  try {
+    // Müşteri oluştur
+    const customer = await stripe.customers.create({
+      name: name,
+    });
+
+    // Müşteriye ait kredi kartını ekle
+    const card = await stripe.paymentMethods.create({
+      type: 'card',
+      card: {
+        number: cardNumber,
+        exp_month: expMonth,
+        exp_year: expYear,
+        cvc: cvc,
+      },
+    });
+
+    await stripe.paymentMethods.attach(card.id, { customer: customer.id });
+
+    // İşlemleri kontrol etmek için
+    console.log('Customer ID:', customer.id);
+    console.log('Card ID:', card.id);
+  } catch (error) {
+    console.error('Hata:', error);
+  }
+};
+router.get("/createStripe", async (req, res) => {
+  try {
+    const stripeUser = await createCustomerAndAddCard();
+    res.status(200).json({ stripeUser });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error.", details: error.message });
+  }
+});
+
+
+
 
 async function calculateTotalRevenue() {
   try {
     // Stripe'dan tüm ödemeleri alır
     const payments = await stripe.paymentIntents.list({ limit: 100 }); // Limiti ihtiyaca göre ayarlayabilirsiniz
+    console.log(`payment değeri: ${payments}`)
 
     // Ödemelerin toplam tutarını hesaplar
     const totalRevenue = payments.data.reduce((total, payment) => {
@@ -33,17 +73,18 @@ router.get("/totalRevenue", async (req, res) => {
     res.status(500).json({ error: "Server error.", details: error.message });
   }
 });
-
 async function calculateTotalCustomers() {
   try {
     // Stripe'dan tüm müşterileri alır
-    const customers = await stripe.customers.list({ limit: 100}); // Limiti ihtiyaca göre ayarlayabilirsiniz
+    const customers = await stripe.customers.list({ limit: 100 });
+    console.log("Customers from Stripe:", customers);
 
     const totalCustomers = customers.data.length;
+    console.log("Total Customers:", totalCustomers);
 
     return totalCustomers;
   } catch (error) {
-    console.error(error);
+    console.error("Error in calculateTotalCustomers:", error);
     return 0;
   }
 }
@@ -61,14 +102,16 @@ async function calculateTotalProductsSold() {
   try {
     // Stripe'dan tüm ödemeleri alır
     const payments = await stripe.paymentIntents.list({ limit: 100 });
-    console.log(payments)
+    console.log(payments.succeded.length);
     // Ödemelerdeki ürün sayısını toplar
     const totalProductsSold = payments.data.reduce((total, payment) => {
-      
       if (payment.products && Array.isArray(payment.products)) {
-        const productsSold = payment.products.reduce((totalProducts, product) => {
-          return totalProducts + (product.quantity || 0);
-        }, 0);
+        const productsSold = payment.products.reduce(
+          (totalProducts, product) => {
+            return totalProducts + (product.quantity || 0);
+          },
+          0
+        );
         return total + productsSold;
       }
       return total;
@@ -80,7 +123,6 @@ async function calculateTotalProductsSold() {
     return 0;
   }
 }
-
 
 router.get("/totalProductsSold", async (req, res) => {
   try {
