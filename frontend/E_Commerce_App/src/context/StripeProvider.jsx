@@ -5,7 +5,6 @@ const initialState = {
   totalProducts: null,
   totalCustomers: null,
 };
-
 const StripeContext = createContext();
 
 const reducer = (state, action) => {
@@ -34,7 +33,7 @@ export const StripeProvider = ({ children }) => {
 export const useStripeContext = () => {
   const context = useContext(StripeContext);
   if (!context) {
-    throw new Error("useAppContext must be used within an AppProvider");
+    throw new Error("useStripecontext bir StripeProvider içinde kullanılmalıdır");
   }
   return context;
 };

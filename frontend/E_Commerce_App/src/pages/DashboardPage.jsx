@@ -9,55 +9,12 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { useStripeContext  } from "../context/StripeProvider";
+import { useStripeContext } from "../context/StripeProvider";
 
 const DashboardPage = () => {
   const [paymentData, setPaymentData] = useState(null);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
-  const{state,dispatch}=useStripeContext()
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const paymentResponse = await fetch(`${apiUrl}/payment`);
-  //       const paymentData = await paymentResponse.json();
-  //       setPaymentData(paymentData);
-
-  //       const stripeResponse = await fetch(`${apiUrl}/stripe`);
-  //       const stripeData = await stripeResponse.json();
-  //       setStripeData(stripeData);
-  //     } catch (error) {
-  //       console.error('Veri çekme hatası:', error.message);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-
-  // useEffect(() => {
-  //   const fetchPaymentData = async () => {
-  //     try {
-  //       const response = await fetch(`${apiUrl}/payment`); 
-  //       const data = await response.json();
-  //       setPaymentData(data);
-  //     } catch (error) {
-  //       console.error('Error fetching payment:', error);
-  //     }
-  //   }; 
-  //   const fetchStripeData = async () => {
-  //     try {
-  //       const response = await fetch(`${apiUrl}/stripe/totalRevenue`); 
-  //       const data = await response.json();
-  //       setStripeStripeTotalAmount(data);
-  //       console.log("gelem stripe data",data)
-  //     } catch (error) {
-  //       console.error('Error fetching payment:', error);
-  //     }
-  //   }; 
-  //   fetchStripeData();
-  //   fetchPaymentData();
-  // }, []);
-
+  const { state, dispatch } = useStripeContext();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -65,21 +22,33 @@ const DashboardPage = () => {
         const paymentData = await paymentResponse.json();
         dispatch({ type: "SET_TOTAL_REVENUE", payload: paymentData });
 
-        const productsResponse = await fetch(`${apiUrl}/stripe/totalProductsSold`);
+        const productsResponse = await fetch(
+          `${apiUrl}/stripe/totalProductsSold`
+        );
+
         const productsData = await productsResponse.json();
         dispatch({ type: "SET_TOTAL_PRODUCTS", payload: productsData });
 
-        const customersResponse = await fetch(`${apiUrl}/stripe/totalCustomers`);
+        const customersResponse = await fetch(
+          `${apiUrl}/stripe/totalCustomers`
+        );
+
+        if (!customersResponse.ok) {
+          console.error(
+            "Customers API call failed:",
+            customersResponse.statusText
+          );
+          return;
+        }
         const customersData = await customersResponse.json();
         dispatch({ type: "SET_TOTAL_CUSTOMERS", payload: customersData });
       } catch (error) {
-        console.error('Veri çekme hatası:', error);
+        console.error("Veri çekme hatası:", error);
       }
     };
 
     fetchData();
   }, [apiUrl, dispatch]);
-  console.log(paymentData)
   const productSalesData = [
     { name: "Ocak", satilanUrunSayisi: 10 },
     { name: "Şubat", satilanUrunSayisi: 15 },
@@ -97,24 +66,30 @@ const DashboardPage = () => {
     { name: "Mayıs", musteriSayisi: 40 },
     { name: "Haziran", musteriSayisi: 45 },
   ];
-  console.log(state)
-
+  console.log(state.totalProducts?.totalProductsSold);
   return (
     <div>
       <Row gutter={16}>
         <Col span={8}>
           <Card>
-            <Statistic title="Toplam Ürün Satışı" value={120} />
+            <Statistic title="Toplam Ürün Satışı" value={state.totalProducts?.totalProductsSold} />
           </Card>
         </Col>
         <Col span={8}>
           <Card>
-            <Statistic title="Toplam Müşteri Sayısı" value={50} />
+            <Statistic
+              title="Toplam Müşteri Sayısı"
+              value={state.totalCustomers?.totalCustomers}
+            />
           </Card>
         </Col>
         <Col span={8}>
           <Card>
-            <Statistic title="Toplam Gelir" value={state.totalRevenue?.totalRevenue} prefix="$" />
+            <Statistic
+              title="Toplam Gelir"
+              value={state.totalRevenue?.totalRevenue}
+              prefix="$"
+            />
           </Card>
         </Col>
       </Row>
