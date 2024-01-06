@@ -9,11 +9,12 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { useStripeContext  } from "../context/StripeProvider";
 
 const DashboardPage = () => {
   const [paymentData, setPaymentData] = useState(null);
-  const [stripeTotalAmount, setStripeStripeTotalAmount] = useState(null);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const{state,dispatch}=useStripeContext()
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -31,30 +32,53 @@ const DashboardPage = () => {
 
   //   fetchData();
   // }, []);
+
+
+  // useEffect(() => {
+  //   const fetchPaymentData = async () => {
+  //     try {
+  //       const response = await fetch(`${apiUrl}/payment`); 
+  //       const data = await response.json();
+  //       setPaymentData(data);
+  //     } catch (error) {
+  //       console.error('Error fetching payment:', error);
+  //     }
+  //   }; 
+  //   const fetchStripeData = async () => {
+  //     try {
+  //       const response = await fetch(`${apiUrl}/stripe/totalRevenue`); 
+  //       const data = await response.json();
+  //       setStripeStripeTotalAmount(data);
+  //       console.log("gelem stripe data",data)
+  //     } catch (error) {
+  //       console.error('Error fetching payment:', error);
+  //     }
+  //   }; 
+  //   fetchStripeData();
+  //   fetchPaymentData();
+  // }, []);
+
   useEffect(() => {
-    const fetchPaymentData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(`${apiUrl}/payment`); 
-        const data = await response.json();
-        setPaymentData(data);
+        const paymentResponse = await fetch(`${apiUrl}/stripe/totalRevenue`);
+        const paymentData = await paymentResponse.json();
+        dispatch({ type: "SET_TOTAL_REVENUE", payload: paymentData });
+
+        const productsResponse = await fetch(`${apiUrl}/stripe/totalProductsSold`);
+        const productsData = await productsResponse.json();
+        dispatch({ type: "SET_TOTAL_PRODUCTS", payload: productsData });
+
+        const customersResponse = await fetch(`${apiUrl}/stripe/totalCustomers`);
+        const customersData = await customersResponse.json();
+        dispatch({ type: "SET_TOTAL_CUSTOMERS", payload: customersData });
       } catch (error) {
-        console.error('Error fetching payment:', error);
+        console.error('Veri çekme hatası:', error);
       }
-    }; 
-    const fetchStripeData = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/stripe/totalRevenue`); 
-        const data = await response.json();
-        setStripeStripeTotalAmount(data);
-        console.log("gelem stripe data",data)
-      } catch (error) {
-        console.error('Error fetching payment:', error);
-      }
-    }; 
-    fetchStripeData();
-    fetchPaymentData();
-  }, []);
-  console.log(stripeTotalAmount)
+    };
+
+    fetchData();
+  }, [apiUrl, dispatch]);
   console.log(paymentData)
   const productSalesData = [
     { name: "Ocak", satilanUrunSayisi: 10 },
@@ -73,6 +97,7 @@ const DashboardPage = () => {
     { name: "Mayıs", musteriSayisi: 40 },
     { name: "Haziran", musteriSayisi: 45 },
   ];
+  console.log(state)
 
   return (
     <div>
@@ -89,7 +114,7 @@ const DashboardPage = () => {
         </Col>
         <Col span={8}>
           <Card>
-            <Statistic title="Toplam Gelir" value={stripeTotalAmount.totalRevenue} prefix="$" />
+            <Statistic title="Toplam Gelir" value={state.totalRevenue?.totalRevenue} prefix="$" />
           </Card>
         </Col>
       </Row>

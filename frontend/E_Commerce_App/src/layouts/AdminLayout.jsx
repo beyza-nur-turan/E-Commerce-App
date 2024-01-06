@@ -294,8 +294,7 @@ function AdminLayout({children}) {
                 background: colorBgContainer,
               }}
             >
-              <h2>{getPageTitle()}</h2>
-              
+              <div style={{display:"grid", gridTemplateColumns:"auto 10fr"}}>
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -306,6 +305,8 @@ function AdminLayout({children}) {
                   height: 64,
                 }}
               />
+              <h2 >{getPageTitle()}</h2>
+              </div>
             </Header>
             <Content
               style={{
