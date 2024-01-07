@@ -98,24 +98,34 @@ router.get("/totalCustomers", async (req, res) => {
     res.status(500).json({ error: "Server error.", details: error.message });
   }
 });
+router.get("/totalCustomersByMonth", async (req, res) => {
+  try {
+    const currentMonth = new Date().getMonth() + 1; // 1-12 arası bir değer
+    const lastMonthCustomers = await stripe.customers.list({
+      limit: 100,
+      created: {
+        gte: Math.floor(new Date(new Date().setMonth(new Date().getMonth() - 1)).getTime() / 1000),
+        lte: Math.floor(new Date().getTime() / 1000),
+      },
+    });
+
+    const totalCustomersByMonth = [{ month: currentMonth, totalCustomers: lastMonthCustomers.data.length }];
+
+    res.status(200).json({ totalCustomersByMonth });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error.", details: error.message });
+  }
+});
+
+
 async function calculateTotalProductsSold() {
   try {
     // Stripe'dan tüm ödemeleri alır
     const payments = await stripe.paymentIntents.list({ limit: 100 });
     console.log(payments.succeded.length);
     // Ödemelerdeki ürün sayısını toplar
-    const totalProductsSold = payments.data.reduce((total, payment) => {
-      if (payment.products && Array.isArray(payment.products)) {
-        const productsSold = payment.products.reduce(
-          (totalProducts, product) => {
-            return totalProducts + (product.quantity || 0);
-          },
-          0
-        );
-        return total + productsSold;
-      }
-      return total;
-    }, 0);
+    const totalProductsSold = payments.data.length
 
     return totalProductsSold;
   } catch (error) {

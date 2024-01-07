@@ -22,18 +22,14 @@ router.get("/", async (req, res) => {
       res.status(500).json({ error: "server hatası" });
     }
   });
-  
-  router.delete("/:officeMail", async (req, res) => {
+  router.delete("/:officeInfoId", async (req, res) => {
     try {
-      const email = req.params.officeMail;
-  
-      const deletedOfficeInfo = await Contact.findOneAndDelete({ email });
-  
-      if (!deletedOfficeInfo) {
-        return res.status(404).json({ error: "contact information not found." });
+      const officeInfoId = req.params.officeInfoId;
+      const deletedOffice = await OfficeInfo.findByIdAndDelete(officeInfoId);
+      if (!deletedOffice) {
+        return res.status(404).json({ error: "Ofis bulunamadı!" });
       }
-  
-      res.status(200).json(deletedOfficeInfo);
+      res.status(200).json(deletedOffice);
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: "Server error." });
