@@ -92,7 +92,7 @@ export default function UpdateProductModal({ isOpen, handleClose, data }) {
                 name: data?.name,
                 img: data?.img,
                 sizes:data?.sizes,
-                price:data?.price.current
+                price:data?.price
             }}
             onSubmit={(values) => {
               updateProduct(data?.id, values);

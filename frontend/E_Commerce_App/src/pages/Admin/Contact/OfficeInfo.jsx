@@ -109,7 +109,7 @@ export default function OfficeInfoPage() {
                 confirmButtonText: "Evet",
               }).then((result) => {
                 if (result.isConfirmed) {
-                  deleteOfficeInfo(params.row.id);
+                  deleteOfficeInfo(params.row._id);
                   Swal.fire({
                     title: "Silindi!",
                     text: "İşem başarılı!",

@@ -2,7 +2,7 @@ const CardProgress = () => {
     return (
       <div className="free-progress-bar">
         <p className="progress-bar-title">
-          Add <strong>$161.00</strong> to cart and get free shipping!
+        Sepete <strong>$130.00</strong> ekleyin ve ücretsiz kargo kazanın!
         </p>
         <div className="progress-bar">
           <span className="progress"></span>

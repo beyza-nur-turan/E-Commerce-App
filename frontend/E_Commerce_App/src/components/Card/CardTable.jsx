@@ -8,10 +8,10 @@ const CardTable = () => {
         <tr>
           <th className="product-thumbnail">&nbsp;</th>
           <th className="product-thumbnail">&nbsp;</th>
-          <th className="product-name">Product</th>
-          <th className="product-price">Price</th>
-          <th className="product-quantity">Quantity</th>
-          <th className="product-subtotal">Subtotal</th>
+          <th className="product-name">ÜRÜN </th>
+          <th className="product-price">ÜCRET</th>
+          <th className="product-quantity">ADET</th>
+          <th className="product-subtotal">ARA TOPLAM</th>
         </tr>
       </thead>
       <tbody className="cart-wrapper">

@@ -9,14 +9,14 @@ const CardItem = ({ cardItem }) => {
     <tr className="cart-item">
     <td></td>
     <td className="cart-image">
-      <img src={cardItem.img} alt="" />
+      <img style={{width:"5em", height:"6em"}} src={cardItem.img[0]} alt="" />
       <i
         className="bi bi-x delete-cart"
         onClick={() => removeFromCard(cardItem._id)}
       ></i>
     </td>
     <td>{cardItem.name}</td>
-    {console.log("cardıtemm:",cardItem.price)}
+    {console.log("cardıtemm:",cardItem.img)}
     <td>${formattedPrice}</td>
     <td className="product-quantity">{cardItem.quantity}</td>
     <td className="product-subtotal">

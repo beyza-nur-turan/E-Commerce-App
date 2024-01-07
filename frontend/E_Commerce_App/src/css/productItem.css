@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    margin-bottom: 2em;
     /* flex: 1; */
   }
   .products .product-item .product-image {
@@ -12,8 +13,12 @@
   }
   
   .products .product-item img {
+   
     width: 100%;
     transition: 0.3s ease-in-out all;
+    height: 23em;
+    object-fit:fill; 
+    
   }
   
   .products .product-item .img1:hover {

@@ -86,6 +86,7 @@ export default function ProductPage() {
         />
       ),
     },
+    
     {
         field: "sizes",
         headerName: "Bedenler",

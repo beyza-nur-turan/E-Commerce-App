@@ -171,7 +171,7 @@ export default function CreateProductPage ()  {
         >
           <Input.TextArea
             placeholder="Her bir RGB kodunu yeni bir satıra yazın."
-            autoSize={{ minRows: 4 }}
+            autoSize={{ minRows: 3}}
           />
         </Form.Item>
         <Form.Item

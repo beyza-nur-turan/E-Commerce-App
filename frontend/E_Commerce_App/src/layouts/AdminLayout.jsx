@@ -15,6 +15,8 @@ import {
 import { Layout, Menu, Button, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
+
+  
 const getUserRole = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   return user ? user.role : null;
@@ -23,6 +25,14 @@ const getUserRole = () => {
 function AdminLayout({children}) {
   const navigate = useNavigate();
   const userRole = getUserRole();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+const closeSidebar = () => {
+  setIsSidebarOpen(false);}
+  const navigateToHomePage=()=>{
+    navigate("/")
+  }
+  const [collapsed, setCollapsed] = useState(false);
   const menuItems = [
     {
       key: "1",
@@ -222,7 +232,7 @@ function AdminLayout({children}) {
           label: "İletişim Mesaj Listesi",
           path: "/admin/contact",
           onClick: () => {
-            navigate(`/admin/contact`);
+            navigate(`/admin/contact`)
           },
         },
         
@@ -233,10 +243,13 @@ function AdminLayout({children}) {
       icon: <RollbackOutlined />,
       label: "Ana Sayfaya Git",
       onClick: () => {
-        navigate(`/`);
+        closeSidebar();
+        navigateToHomePage();
       },
     },
+    
   ];
+  console.log(isSidebarOpen)
   const getActiveKey = () => {
     for (const item of menuItems) {
       if (item.children) {
@@ -269,7 +282,7 @@ function AdminLayout({children}) {
   };
 
 
-  const [collapsed, setCollapsed] = useState(false);
+  
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -322,6 +335,7 @@ function AdminLayout({children}) {
         </Layout>
       </div>
     );
+    
   }  else {
     return (window.location.href = "/");
   }

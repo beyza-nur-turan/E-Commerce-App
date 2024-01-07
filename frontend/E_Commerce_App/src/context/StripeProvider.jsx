@@ -15,6 +15,8 @@ const reducer = (state, action) => {
       return { ...state, totalProducts: action.payload };
     case "SET_TOTAL_CUSTOMERS":
       return { ...state, totalCustomers: action.payload };
+      case "SET_TOTAL_CUSTOMERS_BY_MONTH":
+      return { ...state, totalCustomersByMonth: action.payload };
     default:
       return state;
   }
