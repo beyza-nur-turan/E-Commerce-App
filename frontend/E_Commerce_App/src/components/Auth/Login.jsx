@@ -1,9 +1,10 @@
 import { AlertService } from "../../services/AlertService";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from '@mui/material/Button';
-import "../../css/auth.css"
+import Button from "@mui/material/Button";
+import "../../css/auth.css";
 import Register from "./Register";
+import loginLogo from "../../../public/img/Logo/Model Cover Magazine (6).png";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -48,53 +49,79 @@ const Login = () => {
   };
 
   return (
-    <div className="account-column">
-      <div className="muiButton">
-        <Button variant="text">GİRİŞ YAP</Button> 
-        <div className="verticalLine"></div>
-        <Button onClick={()=>{
-          navigate("/register")
-        }} variant="text">Üye Ol</Button>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+      }}
+    >
+      <div
+        className="account-column-left"
+        style={{ flex: "1", height: "100%" }}
+      >
+        <img style={{ width: "100%", height: "29.35em" }} src={loginLogo} />
       </div>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>
-            <span>
-              E-Posta Adresi <span className="required">*</span>
-            </span>
-            <input
-              type="text"
-              name="email"
-              onChange={handleInputChange}
-              required
-            />
-          </label>
+      <div className="account-column">
+        <div className="muiButton">
+          <Button variant="text">GİRİŞ YAP</Button>
+          <div className="verticalLine"></div>
+          <Button
+            onClick={() => {
+              navigate("/register");
+            }}
+            variant="text"
+          >
+            Üye Ol
+          </Button>
         </div>
-        <div>
-          <label>
-            <span>
-              Şifre <span className="required">*</span>
-            </span>
-            <input
-              type="password"
-              name="password"
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-        </div>
-        <p style={{display:"flex", justifyContent:"center",alignItems:"center"}} className="remember">
-          <label>
-            <input type="checkbox" />
-            <span>Beni hatırla</span>
-          </label>
-          <a href="#" className="form-link">
-          Lost your password?
-        </a>
-          <button className="btn btn-sm">Giriş Yap</button>
-        </p>
-        
-      </form>
+        {/* <div className="muiButton">Giriş Ekranı</div> */}
+        <form onSubmit={handleLogin}>
+          <div>
+            <label>
+              <span>
+                E-Posta Adresi <span className="required">*</span>
+              </span>
+              <input
+                type="text"
+                name="email"
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              <span>
+                Şifre <span className="required">*</span>
+              </span>
+              <input
+                type="password"
+                name="password"
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+          </div>
+          <p
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            className="remember"
+          >
+            <label>
+              <input type="checkbox" />
+              <span>Beni hatırla</span>
+            </label>
+            <a href="#" className="form-link">
+              Lost your password?
+            </a>
+            <button className="btn btn-sm">Giriş Yap</button>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
