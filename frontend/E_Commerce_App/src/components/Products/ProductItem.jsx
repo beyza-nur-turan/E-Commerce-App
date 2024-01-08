@@ -50,7 +50,7 @@ console.log(productItem)
         </ul>
         <div className="product-prices">
           <strong className="new-price">${discountedPrice.toFixed(2)}</strong>
-          <span className="old-price">${originalPrice.toFixed(2)}</span>
+          <span className="old-price">${originalPrice}</span>
         </div>
         <span className="product-discount">-{productItem.price.discount}%</span>
         <div className="product-links">

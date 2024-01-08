@@ -46,12 +46,12 @@ export const ReviewForm = ({ singleProduct,setSingleProduct }) => {
   return (
     <form className="comment-form" onSubmit={handleSubmit}>
       <p className="comment-notes">
-        Your email address will not be published. Required fields are marked
+      E-posta hesabınız gizli tutulacaktır.
         <span className="required">*</span>
       </p>
       <div className="comment-form-rating">
         <label>
-          Your rating
+          Puanınızı işaretleyin
           <span className="required">*</span>
         </label>
         <div className="stars">
@@ -104,7 +104,7 @@ export const ReviewForm = ({ singleProduct,setSingleProduct }) => {
       </div>
       <div className="comment-form-comment form-comment">
         <label htmlFor="comment">
-          Your review
+          Yorumunuzu yazın
           <span className="required">*</span>
         </label>
         <textarea
@@ -119,8 +119,7 @@ export const ReviewForm = ({ singleProduct,setSingleProduct }) => {
       <div className="comment-form-cookies">
         <input id="cookies" type="checkbox" />
         <label htmlFor="cookies">
-          Save my name, email, and website in this browser for the next time I
-          comment.
+        Bir dahaki sefere yorum yaptığımda kullanılmak üzere adımı, e-posta adresimi ve web site adresimi bu tarayıcıya kaydet.
           <span className="required">*</span>
         </label>
       </div>

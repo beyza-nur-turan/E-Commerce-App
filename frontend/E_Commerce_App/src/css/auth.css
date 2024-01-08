@@ -10,6 +10,9 @@
   
   .account-column {
     flex: 1;
+    padding: 2em;
+    display: grid;
+    justify-content: center;
   }
   
   .account-column h2 {
@@ -22,7 +25,13 @@
     flex-direction: column;
     row-gap: 15px;
     margin-top: 10px;
+    width: 30em;
   }
+ .privacy-policy-text {
+display: flex;
+align-items: center;
+justify-content: center;
+ }
   
   .account-column form div label {
     display: flex;
@@ -60,6 +69,19 @@
     color: #e51414;
     font-size: 14px;
   }
+.muiButton{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.muiButton Button{
+  color: #000;
+}
+.verticalLine {
+  height: 30px; /* Çizginin yüksekliği isteğinize bağlı olarak ayarlanabilir */
+  border-left: 2px solid #000; /* Dik çizgi stilini tanımlayabilirsiniz */
+  margin: 0 10px; /* Çizginin etrafındaki boşlukları isteğinize bağlı olarak ayarlayabilirsiniz */
+}
   
 @media (max-width: 768px) {
   .account-wrapper {
@@ -67,6 +89,7 @@
   }
   
 }
+
 
 /* .antd-col-content {
   background-color: aliceblue;

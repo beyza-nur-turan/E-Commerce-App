@@ -56,7 +56,7 @@ function PrevBtn({ onClick }) {
       data-glide-dir="<"
       onClick={onClick}
       style={{
-        zIndex: "2",
+        zIndex: "3",
       }}
     >
       <i className="bi bi-chevron-left"></i>
@@ -71,7 +71,7 @@ function NextBtn({ onClick }) {
       data-glide-dir=">"
       onClick={onClick}
       style={{
-        zIndex: "2",
+        zIndex: "3",
       }}
     >
       <i className="bi bi-chevron-right"></i>
@@ -99,19 +99,20 @@ const Gallery = ({ singleProduct }) => {
 
   const sliderSettings = {
     dots: false,
-    infinite: true,
-    slidesToShow: 3,
+    infinite: false, 
+    slidesToShow: singleProduct.img.length,
     slidesToScroll: 1,
     nextArrow: <NextBtn />,
     prevArrow: <PrevBtn />,
   };
-
+  
+console.log(singleProduct.img.length)
   return (
     <div className="product-gallery">
       <div className="single-image-wrapper">
         <img src={`${activeImg.img}`} id="single-image" alt="" />
       </div>
-      <div className="product-thumb">
+      <div className="product-thumb" >
         <div className="glide__track" data-glide-el="track">
           <ol className="gallery-thumbs glide__slides">
             <Slider {...sliderSettings}>

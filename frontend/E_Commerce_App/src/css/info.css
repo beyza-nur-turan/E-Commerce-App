@@ -185,6 +185,9 @@
     font-size: 12px;
     color: gray;
   }
+  .site-main .product-extra-buttons a span{
+margin-left: 0.5em;
+  }
 
   .site-main .divider {
     padding-bottom: 20px;

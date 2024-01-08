@@ -42,7 +42,7 @@ const Reviews = ({ active, singleProduct, setSingleProduct }) => {
     <div className={`tab-panel-reviews ${active}`}>
       {singleProduct && singleProduct.reviews.length > 0 ? (
         <>
-          <h3>2 reviews for Basic Colored Sweatpants With Elastic Hems</h3>
+          <h3>{`Bu ürün için ${singleProduct.reviews.length} adet yorum bulunmaktadır.`} </h3>
           <div className="comments">
             <ol className="comment-list">
               {thisReview.map((item, index) => (
@@ -56,7 +56,7 @@ const Reviews = ({ active, singleProduct, setSingleProduct }) => {
       )}
 
       <div className="review-form-wrapper">
-        <h2>Add a review</h2>
+        <h2>Yorum Ekle</h2>
         <ReviewForm
           setSingleProduct={setSingleProduct}
           singleProduct={singleProduct}

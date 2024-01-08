@@ -8,7 +8,7 @@ const Auth = () => {
       <div className="container">
         <div className="account-wrapper">
           <Login />
-          <Register />
+          {/* <Register /> */}
         </div>
       </div>
     </section>

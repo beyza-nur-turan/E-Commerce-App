@@ -1,6 +1,7 @@
 .single-product .product-gallery {
     width: 50%;
     padding-right: 15px;
+    
   }
 
   .single-product .single-image-wrapper {
@@ -20,8 +21,8 @@
   }
 
   .single-product .gallery-thumbs {
-    /*   display: flex;
-    column-gap: 10px; */
+      /* display: flex;
+    column-gap: 10px;  */
   }
 
   .single-product .gallery-thumbs li {

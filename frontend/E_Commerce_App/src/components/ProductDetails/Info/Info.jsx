@@ -38,6 +38,7 @@ const Info = ({ singleProduct }) => {
         </ul>
         <span>2 reviews</span>
       </div>
+      
       <div className="product-price">
         <s className="old-price">${originalPrice.toFixed(2)}</s>
         <strong className="new-price">${discountedPrice.toFixed(2)}</strong>
@@ -50,7 +51,7 @@ const Info = ({ singleProduct }) => {
         <div className="variations">
           <div className="colors">
             <div className="colors-label">
-              <span>Color</span>
+              <span>Renk</span>
             </div>
             <div className="colors-wrapper">
               {singleProduct.colors.map((color, index) => (
@@ -68,7 +69,7 @@ const Info = ({ singleProduct }) => {
           </div>
           <div className="values">
             <div className="values-label">
-              <span>Size</span>
+              <span>Beden</span>
             </div>
             <div className="values-list">
               {singleProduct.sizes.map((size, index) => (
@@ -89,21 +90,21 @@ const Info = ({ singleProduct }) => {
                 quantity: parseInt(quantityRef.current.value),
               })}
             >
-              Add to cart
+              Sepete Ekle
             </button>
           </div>
           <div className="product-extra-buttons">
             <a href="#">
               <i className="bi bi-globe"></i>
-              <span>Size Guide</span>
+              <span>Beden Ölçüleri</span>
             </a>
             <a href="#">
               <i className="bi bi-heart"></i>
-              <span>Add to Wislist</span>
+              <span>Favorilere Ekle</span>
             </a>
             <a href="#">
               <i className="bi bi-share"></i>
-              <span>Share this Product</span>
+              <span>Ürünü Paylaş</span>
             </a>
           </div>
         </div>
@@ -111,16 +112,16 @@ const Info = ({ singleProduct }) => {
       <div className="divider"></div>
       <div className="product-meta">
         <div className="product-sku">
-          <span>SKU:</span>
+          <span>Stok Kodu:</span>
           <strong>BE45VGRT</strong>
         </div>
         <div className="product-categories">
-          <span>Categories:</span>
+          <span>Kategori:</span>
           <strong>Pants , Women</strong>
         </div>
         <div className="product-tags">
-          <span>Tags:</span>
-          <a href="#">black</a>,<a href="#">white</a>
+          <span>Tag:</span>
+          <a href="#">Lacivert</a>,<a href="#">white</a>
         </div>
       </div>
     </div>

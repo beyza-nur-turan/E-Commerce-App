@@ -26,12 +26,14 @@ import AdminBlogPage from "../pages/Admin/Blogs/BlogPage"
 import CreateBlogPage from "../pages/Admin/Blogs/CreateBlogPage";
 import OfficeInfoPage from "../pages/Admin/Contact/OfficeInfo";
 import ContactPage1 from "../pages/Admin/Contact/ContactPage"
+import Register from "../components/Auth/Register";
 
 function RouteFix() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/shop" element={<ShopPage />} />
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/contact" element={<ContactPage />} />
