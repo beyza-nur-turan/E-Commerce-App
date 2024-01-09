@@ -1,10 +1,12 @@
 import { AlertService } from "../../services/AlertService";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import "../../css/auth.css";
 import Register from "./Register";
-import loginLogo from "../../../public/img/Logo/Model Cover Magazine (6).png";
+import loginLogo from "../../../public/img/Logo/Minimalist k Letter Logo (6).gif";
+import LoginLottie from "../Lottie/LoginLottie";
+import { Card } from "antd";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -49,57 +51,42 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-      }}
-    >
-      <div
+    <div className="login-container">
+      <Card
         className="account-column-left"
         style={{ flex: "1", height: "100%" }}
       >
-        <img style={{ width: "100%", height: "29.35em" }} src={loginLogo} />
-      </div>
-      <div className="account-column">
-        <div className="muiButton">
-          <Button variant="text">GİRİŞ YAP</Button>
-          <div className="verticalLine"></div>
-          <Button
-            onClick={() => {
-              navigate("/register");
-            }}
-            variant="text"
-          >
-            Üye Ol
-          </Button>
-        </div>
-        {/* <div className="muiButton">Giriş Ekranı</div> */}
+        deneme
+        
+       
+      </Card>
+      <Card className="account-column">
+        
+        <div className="auth-title">HOŞGELDİNİZ</div>
         <form onSubmit={handleLogin}>
           <div>
             <label>
               <span>
-                E-Posta Adresi <span className="required">*</span>
+                E-Posta Adresi 
               </span>
               <input
                 type="text"
                 name="email"
                 onChange={handleInputChange}
-                required
+                
               />
             </label>
           </div>
           <div>
             <label>
               <span>
-                Şifre <span className="required">*</span>
+                Şifre 
               </span>
               <input
                 type="password"
                 name="password"
                 onChange={handleInputChange}
-                required
+                
               />
             </label>
           </div>
@@ -119,9 +106,12 @@ const Login = () => {
               Lost your password?
             </a>
             <button className="btn btn-sm">Giriş Yap</button>
+            <span> Daha önce kayıt yaptırmadınız mı?
+            <Link>Kaydol</Link>
+            </span>
           </p>
         </form>
-      </div>
+      </Card>
     </div>
   );
 };

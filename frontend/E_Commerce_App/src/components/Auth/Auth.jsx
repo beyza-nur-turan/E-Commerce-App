@@ -1,17 +1,18 @@
 import Login from "./Login";
 import Register from "./Register";
 import "../../css/auth.css";
+import NewLogin from "../../components/Auth/NewLogin"
 
 const Auth = () => {
   return (
-    <section className="account-page">
-      <div className="container">
-        <div className="account-wrapper">
-          <Login />
+    <div className="account-page">
+      
+       
+         <Login/>
           {/* <Register /> */}
-        </div>
-      </div>
-    </section>
+        
+      
+    </div>
   );
 };
 

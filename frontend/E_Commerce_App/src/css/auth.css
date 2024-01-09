@@ -1,21 +1,73 @@
-.account-page {
-    margin: 60px 0;
+
+  @keyframes moveText {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(50px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes colorChange {
+    
+    25% {
+      color:rgb(230, 218, 153)
+    }
+    50% {
+      color:rgb(112, 99, 14)
+      
+    }
+    75% {
+      color:rgb(100, 100, 12),
+    }
+    100% {
+      color:rgb(83, 75, 24)
+    }
+  }
+  .animated-text {
+    animation: moveText 2s infinite; /* 2 saniye süren, tekrar eden bir animasyon */
   }
   
-  .account-wrapper {
+  .account-page{
+    width: 80%;
+    height: 37.5vw;
     display: flex;
-    justify-content: space-between;
-    gap: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-container{
+    
+      display: flex;
+      flex-direction: row; 
+      justify-content: center;
+      align-items: center;
+      width:85%;
+      background-color: aquamarine;
+
+    
+  }
+  .account-column-left{
+    height: 100%;
   }
   
   .account-column {
     flex: 1;
-    padding: 2em;
-    display: grid;
+    /*padding: 2em;*/
+    display: flex;
     justify-content: center;
-    height: 29.35em;
-    flex:1;
-    border:7px double #AD9551
+    align-content: center;
+    align-items: center;
+    width: 35vw;
+    height: 33vw;
+    padding: 2em;
+    
+  }
+  .auth-img{
+    width: 100%;
+     height: 29.35em;
+    
   }
   
   .account-column h2 {
@@ -58,26 +110,28 @@
   }
   
   .account-column form .remember button {
-    background-color: #AD9551;
+    background-color: #9e7e43;
     color: #fff;
-    border: 1px solid #AD9551;
+    border: 1px solid #9e7e43;
     margin-top: 10px;
     width: 100%;
+    margin-bottom: 1em;
   }
   
   .account-column form .form-link {
     color: #b3a06d;
     font-size: 14px;
   }
-.muiButton{
+.auth-title{
   display: flex;
   flex-direction: row;
   justify-content: center;
   font-size: 30px;
+  font-family: 'Eczar', serif;
+  color: #000D25;
+  animation: colorChange 5s linear infinite;
 }
-.muiButton Button{
-  color: #000;
-}
+
 .verticalLine {
   height: 30px; /* Çizginin yüksekliği isteğinize bağlı olarak ayarlanabilir */
   border-left: 2px solid #000; /* Dik çizgi stilini tanımlayabilirsiniz */
@@ -85,98 +139,29 @@
 }
   
 @media (max-width: 768px) {
-  .account-wrapper {
+  .account-page {
     flex-direction: column;
   }
   
 }
 
+/*! newLogin start */
 
-/* .antd-col-content {
-  background-color: aliceblue;
-  margin-left: 2vh;
+.newlogin-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 37.5vw;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
-.content-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-left: 2vh;
-
+.card-left{
+    width: 35vw;
+    height: 33vw;
+    background-color: rgb(238, 241, 243);
 }
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.card-right{
+    width: 35vw;
+    height: 33vw;
+    background-color: rgb(215, 220, 225);
 }
-.form-btn {
-  background-color: #001233;
-  color: white;
-  width: 60%;
-  height: 5.5vh;
-  border-radius: 1.7vh;
-  margin-top: 2vh;
-}
-.form-btn:hover {
-  background:linear-gradient(#DEE0DA,#8B8984);
-  color: #001233;
-}
-
-.antd-col-logo {
-  background-image: url(../assets/img/Authh/auth.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.container {
-  
-  width: 100vh;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.inputt {
-  margin: 2vh;
-  width: 40vh;
-  height: 5.3vh;
-  border-radius: 6px;
-  border: none;
-  background-color: #ebede8;
-}
-.antd-row {
-  width: 125vh;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 2vh;
-  background: linear-gradient(#9f9fed, #b1740f);
-}
-h1{
-  margin-bottom: 5vh;
-}
-.divv{
-  display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-margin-top: 15vh;
-margin-left: 4vh;
-}
-.form-btn1 {
-  margin-left: 0.7vh;
-  margin-bottom:2.5vh ;
-  border-radius: 1.7vh;
-  margin-top: 2vh;
-  background: none;
-  border: none;
-  color: #001233;
-  cursor: pointer;
-  font-size: 15px;
-  text-decoration: underline;
-}
-*/

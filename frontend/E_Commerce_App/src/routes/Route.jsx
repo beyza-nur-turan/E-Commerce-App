@@ -7,7 +7,7 @@ import CardPage from "../pages/CardPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
 import BlogDetailsPage from "../pages/BlogDetailsPage";
 import AuthPage from "../pages/AuthPage";
-import Login from "../components/Auth/Login";
+import NewLogin from "../components/Auth/NewLogin";
 import CategoryPage from "../pages/Admin/Categories/CategoryPage";
 import UpdateCategoryModal from "../modals/UpdateCategoryModal";
 import CreateCategoryPage from "../pages/Admin/Categories/CreateCategoryPage";
@@ -27,6 +27,7 @@ import CreateBlogPage from "../pages/Admin/Blogs/CreateBlogPage";
 import OfficeInfoPage from "../pages/Admin/Contact/OfficeInfo";
 import ContactPage1 from "../pages/Admin/Contact/ContactPage"
 import Register from "../components/Auth/Register";
+import Login from "../components/Auth/Login";
 
 function RouteFix() {
   return (

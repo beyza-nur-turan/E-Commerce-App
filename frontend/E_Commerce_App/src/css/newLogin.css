@@ -1,0 +1,18 @@
+.newlogin-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 37.5vw;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.card-left{
+    width: 35vw;
+    height: 33vw;
+    background-color: rgb(238, 241, 243);
+}
+.card-right{
+    width: 35vw;
+    height: 33vw;
+    background-color: rgb(215, 220, 225);
+}
