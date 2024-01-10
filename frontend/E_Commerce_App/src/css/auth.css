@@ -31,11 +31,13 @@
   }
   
   .account-page{
-    width: 80%;
+    width: 100%;
     height: 37.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fcfbf9;
+    /*background: linear-gradient(to bottom right, #fafafa, #2f2c44);*/
   }
   .login-container{
     
@@ -43,14 +45,39 @@
       flex-direction: row; 
       justify-content: center;
       align-items: center;
-      width:85%;
-      background-color: aquamarine;
+      width:70%;
+      /*background-color: aquamarine;*/
+      height: 88.1%;
+
 
     
   }
+  
+  .ant-card-body{
+    display: flex;
+    flex-direction: column;
+    row-gap: 3em;
+  }
   .account-column-left{
     height: 100%;
+    background: linear-gradient(to bottom right, #000E26, #9e7e43);
+    color: white;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
   }
+  .account-column-left:first-child{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .account-column:last-child{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
   
   .account-column {
     flex: 1;
@@ -62,6 +89,9 @@
     width: 35vw;
     height: 33vw;
     padding: 2em;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background: linear-gradient(to bottom right, #fafafa, #f7f7f9);
     
   }
   .auth-img{
@@ -80,7 +110,7 @@
     flex-direction: column;
     row-gap: 15px;
     margin-top: 10px;
-    width: 30em;
+    width: 22em;
   }
  
   

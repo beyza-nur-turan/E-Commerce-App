@@ -56,37 +56,30 @@ const Login = () => {
         className="account-column-left"
         style={{ flex: "1", height: "100%" }}
       >
-        deneme
-        
-       
+        <h1> HOŞGELDİNİZ</h1>
+        <label>
+          Hayalinizdeki ürünleri keşfetmek ve satın almak için hemen kayıt olun.
+        </label>
+        <Button style={{ color: "white" }} variant="outlined">
+          Kaydol
+        </Button>
       </Card>
       <Card className="account-column">
-        
-        <div className="auth-title">HOŞGELDİNİZ</div>
         <form onSubmit={handleLogin}>
+          <div className="auth-title">GİRİŞ YAP</div>
           <div>
             <label>
-              <span>
-                E-Posta Adresi 
-              </span>
-              <input
-                type="text"
-                name="email"
-                onChange={handleInputChange}
-                
-              />
+              <span>E-Posta Adresi</span>
+              <input type="text" name="email" onChange={handleInputChange} />
             </label>
           </div>
           <div>
             <label>
-              <span>
-                Şifre 
-              </span>
+              <span>Şifre</span>
               <input
                 type="password"
                 name="password"
                 onChange={handleInputChange}
-                
               />
             </label>
           </div>
@@ -98,17 +91,16 @@ const Login = () => {
             }}
             className="remember"
           >
-            <label>
-              <input type="checkbox" />
-              <span>Beni hatırla</span>
-            </label>
-            <a href="#" className="form-link">
-              Lost your password?
-            </a>
-            <button className="btn btn-sm">Giriş Yap</button>
-            <span> Daha önce kayıt yaptırmadınız mı?
-            <Link>Kaydol</Link>
-            </span>
+            <div style={{display:"flex",alignItems:"center",flexDirection:"row"}}>
+              <label style={{display:"flex",flexDirection:"row",marginRight:"2em"}}>
+                <input type="checkbox" />
+                <span>Beni hatırla</span>
+              </label>
+              <a href="#" className="form-link">
+                Şifremi unuttum!
+              </a>
+            </div>
+            <Button style={{background: "linear-gradient(to top left, #3b4352, #b0996e)"}} variant="contained">GİRİŞ YAP</Button>
           </p>
         </form>
       </Card>
