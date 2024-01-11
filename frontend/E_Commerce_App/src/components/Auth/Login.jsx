@@ -60,7 +60,7 @@ const Login = () => {
         <label>
           Hayalinizdeki ürünleri keşfetmek ve satın almak için hemen kayıt olun.
         </label>
-        <Button style={{ color: "white" }} variant="outlined">
+        <Button onClick={()=>navigate("/register")} style={{ color: "white" }} variant="outlined">
           Kaydol
         </Button>
       </Card>
@@ -69,16 +69,20 @@ const Login = () => {
           <div className="auth-title">GİRİŞ YAP</div>
           <div>
             <label>
-              <span>E-Posta Adresi</span>
-              <input type="text" name="email" onChange={handleInputChange} />
+              <input
+                type="text"
+                placeholder="E-Mail"
+                name="email"
+                onChange={handleInputChange}
+              />
             </label>
           </div>
           <div>
             <label>
-              <span>Şifre</span>
               <input
                 type="password"
                 name="password"
+                placeholder="Şifre"
                 onChange={handleInputChange}
               />
             </label>
@@ -91,8 +95,20 @@ const Login = () => {
             }}
             className="remember"
           >
-            <div style={{display:"flex",alignItems:"center",flexDirection:"row"}}>
-              <label style={{display:"flex",flexDirection:"row",marginRight:"2em"}}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "row",
+              }}
+            >
+              <label
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginRight: "2em",
+                }}
+              >
                 <input type="checkbox" />
                 <span>Beni hatırla</span>
               </label>
@@ -100,7 +116,15 @@ const Login = () => {
                 Şifremi unuttum!
               </a>
             </div>
-            <Button style={{background: "linear-gradient(to top left, #3b4352, #b0996e)"}} variant="contained">GİRİŞ YAP</Button>
+            <Button
+              style={{
+                background: "linear-gradient(to top left, #3b4352, #b0996e)",
+                marginTop: "2em",
+              }}
+              variant="contained"
+            >
+              GİRİŞ YAP
+            </Button>
           </p>
         </form>
       </Card>

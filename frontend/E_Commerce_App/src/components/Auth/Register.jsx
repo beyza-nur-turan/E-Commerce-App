@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AlertService } from "../../services/AlertService";
 import { Button } from "@mui/material";
+import { Card } from "antd";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -46,75 +47,74 @@ const Register = () => {
   };
 
   return (
-    <div className="account-column">
-      <div className="muiButton">
-        <Button
-          onClick={() => {
-            navigate("/login");
-          }}
-          variant="text"
-        >
-          GİRİŞ YAP
+
+    <div className="register-container">
+       <Card
+        className="account-column-left"
+        style={{ flex: "1", height: "100%" }}
+      >
+        <h1> HOŞGELDİNİZ</h1>
+        <label>
+          Hayalinizdeki ürünleri keşfetmek ve satın almak için hemen kayıt olun.
+        </label>
+        <Button onClick={()=>navigate("/register")} style={{ color: "white" }} variant="outlined">
+          Kaydol
         </Button>
-        <div className="verticalLine"></div>
-        <Button variant="text">Üye Ol</Button>
-      </div>
-      <form onSubmit={handleRegister}>
-        <div>
-          <label>
-            <span>
-              Username <span className="required">*</span>
-            </span>
-            <input
-              type="text"
-              onChange={handleInputChange}
-              name="username"
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            <span>
-              Email address <span className="required">*</span>
-            </span>
-            <input
-              type="email"
-              onChange={handleInputChange}
-              name="email"
-              required
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            <span>
-              Password <span className="required">*</span>
-            </span>
-            <input
-              type="password"
-              onChange={handleInputChange}
-              name="password"
-              required
-            />
-          </label>
-        </div>
-        <div
-          className="privacy-policy-text remember"
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <p>
-          Kişisel verileriniz bu web sitesindeki deneyiminizi desteklemek,
-            hesabınıza erişimi yönetmek ve{" "}
-            <a href="#">
-              gizlilik politikamızda {" "} 
-            </a>
-             açıklanan diğer amaçlar için
-              kullanılacaktır.
-          </p>
-          <button className="btn btn-sm">Register</button>
-        </div>
-      </form>
+      </Card>
+      <Card className="account-column-register">
+      
+        <form onSubmit={handleRegister}>
+        <div className="auth-title">KAYIT OL</div>
+          <div>
+            <label>
+              
+              <input
+              placeholder="Kullanıcı Adı"
+                type="text"
+                onChange={handleInputChange}
+                name="username"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              
+              <input
+              placeholder="E-Mail"
+                type="email"
+                onChange={handleInputChange}
+                name="email"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+              placeholder="Şifre"
+                type="password"
+                onChange={handleInputChange}
+                name="password"
+                required
+              />
+            </label>
+          </div>
+          <div
+            className="privacy-policy-text remember"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            {/* <p>
+              Kişisel verileriniz bu web sitesindeki deneyiminizi desteklemek,
+              hesabınıza erişimi yönetmek ve{" "}
+              <a href="#">gizlilik politikamızda </a>
+              açıklanan diğer amaçlar için kullanılacaktır.
+            </p> */}
+            <Button variant="outlined" className="btn">KAYDOL</Button>
+          </div>
+        </form>
+     
+    </Card>
     </div>
   );
 };

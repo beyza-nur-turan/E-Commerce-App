@@ -8,8 +8,8 @@ const Auth = () => {
     <div className="account-page">
       
        
-         <Login/>
-          {/* <Register /> */}
+         {/* <Login/> */}
+          <Register />
         
       
     </div>
