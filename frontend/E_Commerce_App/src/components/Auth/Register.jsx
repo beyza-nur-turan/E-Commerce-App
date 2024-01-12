@@ -2,8 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AlertService } from "../../services/AlertService";
 import { Button } from "@mui/material";
-import { Card } from "antd";
-
+import { Card, Input, Tooltip } from "antd";
+import {
+  UserOutlined,
+  EyeInvisibleOutlined,
+  SafetyOutlined,
+  MailOutlined,
+  ArrowRightOutlined
+} from '@ant-design/icons';
 const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -47,57 +53,56 @@ const Register = () => {
   };
 
   return (
-
     <div className="register-container">
-       <Card
-        className="account-column-left"
-        style={{ flex: "1", height: "100%" }}
-      >
+      <Card className="account-column-register-left">
         <h1> HOŞGELDİNİZ</h1>
         <label>
           Hayalinizdeki ürünleri keşfetmek ve satın almak için hemen kayıt olun.
         </label>
-        <Button onClick={()=>navigate("/register")} style={{ color: "white" }} variant="outlined">
-          Kaydol
+        <Button
+          onClick={() => navigate("/register")}
+          
+          variant="outlined"
+        >
+          <ArrowRightOutlined style={{fontSize:"28px"}} />
         </Button>
       </Card>
-      <Card className="account-column-register">
-      
+      <Card className="account-column-register-right">
         <form onSubmit={handleRegister}>
-        <div className="auth-title">KAYIT OL</div>
+          <div className="auth-title">KAYIT OL</div>
           <div>
             <label>
-              
-              <input
-              placeholder="Kullanıcı Adı"
-                type="text"
-                onChange={handleInputChange}
-                name="username"
-                required
-              />
+            <Input
+      placeholder="Kullanıcı Adı"
+      prefix={<UserOutlined className="site-form-item-icon" />} 
+      
+    />
             </label>
           </div>
           <div>
             <label>
-              
-              <input
-              placeholder="E-Mail"
-                type="email"
-                onChange={handleInputChange}
-                name="email"
-                required
-              />
+            <Input
+      placeholder="E-Mail"
+      prefix={<MailOutlined  className="site-form-item-icon" />} 
+      
+    />
             </label>
           </div>
           <div>
             <label>
-              <input
-              placeholder="Şifre"
-                type="password"
-                onChange={handleInputChange}
-                name="password"
-                required
-              />
+            <Input
+      placeholder="Şifre"
+      prefix={<SafetyOutlined className="site-form-item-icon" />}
+      suffix={
+        <Tooltip title="Extra information">
+          <EyeInvisibleOutlined 
+            style={{
+              color: 'rgba(0,0,0,.45)',
+            }}
+          />
+        </Tooltip>
+      }
+    />
             </label>
           </div>
           <div
@@ -110,11 +115,15 @@ const Register = () => {
               <a href="#">gizlilik politikamızda </a>
               açıklanan diğer amaçlar için kullanılacaktır.
             </p> */}
-            <Button variant="outlined" className="btn">KAYDOL</Button>
+            <Button style={{
+                background: "linear-gradient(to top left, #000E26, #5fb49c)",
+                marginTop: "2em",
+              }} variant="outlined" className="btn">
+              Kayıt Ol
+            </Button>
           </div>
         </form>
-     
-    </Card>
+      </Card>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../css/contact.css";
 import { AlertService } from "../../services/AlertService";
+import { Card } from "antd";
 
 const Contact = () => {
   const [dataSource, setDataSource] = useState([0]);
@@ -79,18 +80,18 @@ const Contact = () => {
       </div>
       <div className="contact-bottom">
         <div className="container">
+          
+          <div className="contact-elements">
+          <div className="contact-left">
           <div className="contact-titles">
             <h2>İletişime Geç</h2>
             <p>Sorun, istek ve şikayetlerinizi bize bildirebilirsiniz.</p>
           </div>
-          <div className="contact-elements">
             <form className="contact-form">
               <div className="">
-                <label>
-                  İsminiz
-                  <span>*</span>
-                </label>
+                
                 <input
+                placeholder="Kullanıcı Adı"
                   name="userName"
                   value={formData.userName}
                   onChange={handleChange}
@@ -99,11 +100,8 @@ const Contact = () => {
                 />
               </div>
               <div className="">
-                <label>
-                  Mail Adresiniz
-                  <span>*</span>
-                </label>
-                <input
+                
+                <input placeholder="E-Mail"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -112,11 +110,8 @@ const Contact = () => {
                 />
               </div>
               <div className="">
-                <label>
-                  Açıklama
-                  <span>*</span>
-                </label>
-                <input
+                
+                <input placeholder="Açıklama"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
@@ -125,11 +120,8 @@ const Contact = () => {
                 />
               </div>
               <div className="">
-                <label>
-                  Mesajınız
-                  <span>*</span>
-                </label>
-                <textarea
+                
+                <textarea placeholder="Mesajınız"
                   id="author"
                   name="message"
                   type="text"
@@ -146,10 +138,12 @@ const Contact = () => {
                 Mesaj Gönder
               </button>
             </form>
+          </div>
+            <Card  className="card-info">
             <div className="contact-info">
               <div className="contact-info-item">
                 <div className="contact-info-texts">
-                  <strong> {dataSource[0].officeName}</strong>
+                  <h1> {dataSource[0].officeName}</h1>
                   <p className="contact-street">
                     {dataSource[0].officeAddress}
                   </p>
@@ -169,6 +163,7 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+            </Card>
           </div>
         </div>
       </div>

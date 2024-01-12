@@ -1,7 +1,7 @@
 /*! subscribe start  */
 
 .footer .subscribe-row {
-  background-color: #000;
+  background: linear-gradient(to bottom right, #000E26, #062523);
   color: white;
   padding: 80px 0;
 }
@@ -47,7 +47,7 @@
 .footer .footer-subscribe-bottom form > button {
   height: 48px !important;
   border-color: #fff;
-  background-color: #000;
+  background-color: #0b2a31;
   color: #fff;
 }
 

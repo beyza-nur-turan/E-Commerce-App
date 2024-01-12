@@ -12,8 +12,9 @@ const Header = ({ setIsSearchShow }) => {
 
   return (
     <header>
-      <div className="global-notification">
-        <div className="container">
+      <div className="global-notification" style={{background: "linear-gradient(to top left, #000E26, #0f3936 )"}}>
+        <div className="container" >
+        {/* #204e4a */}
           <p>
             Tüm atkılarda %50 indirim ve  ücretsiz teslimat fırsatını kaçırma
             <a style={{fontSize:"12px"}} href="shop.html"> ALIŞVERİŞE BAŞLA</a>
@@ -33,6 +34,7 @@ const Header = ({ setIsSearchShow }) => {
                   src={logoData && logoData.length > 0 && logoData[0].img}
                   alt="Logo"
                 />
+                {/* <img src="../../../public/img/Logo/bnt.png"/> */}
               </Link>
             </div>
             <div className="header-center" id="sidebar">

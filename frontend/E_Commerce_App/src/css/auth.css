@@ -13,30 +13,45 @@
   @keyframes colorChange {
     
     25% {
-      color:rgb(230, 218, 153)
+      color:#ffe3e0
     }
     50% {
-      color:rgb(112, 99, 14)
+      color:#880d1e
       
     }
     75% {
-      color:rgb(100, 100, 12),
+      color:#6a040f,
     }
     100% {
-      color:rgb(83, 75, 24)
+      color:#890620
+    }
+  }
+  @keyframes bgColorChange {
+    
+    25% {
+      background-color:rgb(210, 207, 186)
+    }
+    50% {
+      background-color:rgb(81, 120, 149)
+      
+    }
+    75% {
+      background-color:rgb(131, 134, 174),
+    }
+    100% {
+      background-color:rgb(51, 93, 73)
     }
   }
   .animated-text {
     animation: moveText 2s infinite; /* 2 saniye süren, tekrar eden bir animasyon */
   }
-  
   .account-page{
     width: 100%;
     height: 37.5vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fcfbf9;
+    background-color: #fefefe;
     /*background: linear-gradient(to bottom right, #fafafa, #2f2c44);*/
   }
   .login-container{
@@ -52,16 +67,20 @@
 
     
   }
- 
+ .card-left-button{
+  border: 3px solid black;
+ }
   
   .ant-card-body{
     display: flex;
     flex-direction: column;
     row-gap: 3em;
+    text-align: center;
+    align-items: center;
   }
   .account-column-left{
     height: 100%;
-    background: linear-gradient(to bottom right, #000E26, #9e7e43);
+    background: linear-gradient(to bottom right, #000E26, #5fb49c);
     color: white;
     display: flex;
     flex-direction:column;
@@ -82,7 +101,6 @@
   
   .account-column {
     flex: 1;
-    /*padding: 2em;*/
     display: flex;
     justify-content: center;
     align-content: center;
@@ -92,7 +110,7 @@
     padding: 2em;
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    background: linear-gradient(to bottom right, #fafafa, #f7f7f9);
+    background: linear-gradient(to bottom right, #fafafa, #edf2fb);
     
   }
 
@@ -108,45 +126,46 @@
     font-weight: 500;
   }
   
-  .account-column form {
+  .account-column form ,
+  .account-column-register-right form {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
     margin-top: 10px;
     width: 22em;
   }
- 
-  
-  .account-column form div   {
+  .account-column form div label,
+  .account-column-register-right form div label {
     display: flex;
     flex-direction: column;
     font-size: 14px;
     row-gap: 5px;
+    border: 1.5px solid #000E26;
+    border-radius: 5px;
   }
-  
   .account-column form .remember {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-size: 12px;
   }
-  
   .account-column form .required {
     color: #e51414;
     font-weight: bold;
   }
-  
   .account-column form .remember label {
     display: flex;
     align-items: center;
     column-gap: 5px;
   }
   
-  .account-column form .remember button {
-    background-color: #9e7e43;
+  
+ 
+  .account-column form .remember button ,
+  .account-column-register-right .privacy-policy-text button
+    {
     color: #fff;
-    border: 1px solid #9e7e43;
-    margin-top: 10px;
+    margin-top: 2em;
     width: 100%;
     margin-bottom: 1em;
   }
@@ -159,49 +178,19 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-size: 30px;
-  font-family: 'Eczar', serif;
+  font-size: 28px;
+  font-weight: 600;
   color: #000D25;
-  animation: colorChange 5s linear infinite;
 }
 
-.verticalLine {
-  height: 30px; /* Çizginin yüksekliği isteğinize bağlı olarak ayarlanabilir */
-  border-left: 2px solid #000; /* Dik çizgi stilini tanımlayabilirsiniz */
-  margin: 0 10px; /* Çizginin etrafındaki boşlukları isteğinize bağlı olarak ayarlayabilirsiniz */
+
+.account-column form .form-link {
+  color: #000D25;
 }
-/*!start register*/
-.register-container{
-  display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: center;
-    width:70%;
-    height: 88.1%;
+.ant-input-affix-wrapper {
+  border-style: none;
 }
- .account-column-register {
-  flex: 1;
-  /*padding: 2em;*/
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  width: 35vw;
-  height: 33vw;
-  padding: 2em;
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  background: linear-gradient(to bottom right, #fafafa, #f7f7f9);
-  
-}
-.account-column-register form div {
-  display: flex;
-  flex-direction: column;
-  
-  font-size: 26px;
-    justify-content: center;
-    text-align: center;
-}
+
   
 @media (max-width: 768px) {
   .account-page {
@@ -229,4 +218,66 @@
     width: 35vw;
     height: 33vw;
     background-color: rgb(215, 220, 225);
+}
+
+/*!start register*/
+.register-container{
+   display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    width:70%;
+    height: 88.1%;
+}
+  .account-column-register-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 35vw;
+  height: 33vw;
+  padding: 2em;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background: linear-gradient(to bottom right, #fafafa, #f7f7f9);
+  
+  
+}
+.account-column-register-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 35vw;
+  height: 33vw;
+  padding: 2em;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background: linear-gradient(to bottom right, #000E26, #5fb49c);
+  color: white;
+  text-align: center;
+}
+.account-column-register-left:first-child{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.account-column-register-right:last-child{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.account-column-register-right form div label{
+  border-radius: 5px;
+}
+.account-column-register-left button{
+  color: white;
+  width: 30%;
+  text-align: center;
+  border: 1px solid white;
+  font-weight: bolder;
+  
+}
+.ant-card-body{
+  text-align: center;
 }

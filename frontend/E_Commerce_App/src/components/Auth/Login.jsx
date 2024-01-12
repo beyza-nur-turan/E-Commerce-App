@@ -6,7 +6,12 @@ import "../../css/auth.css";
 import Register from "./Register";
 import loginLogo from "../../../public/img/Logo/Minimalist k Letter Logo (6).gif";
 import LoginLottie from "../Lottie/LoginLottie";
-import { Card } from "antd";
+import { Card, Input, Tooltip } from "antd";
+import {
+  UserOutlined,
+  EyeInvisibleOutlined,
+  SafetyOutlined
+} from '@ant-design/icons';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -60,7 +65,7 @@ const Login = () => {
         <label>
           Hayalinizdeki ürünleri keşfetmek ve satın almak için hemen kayıt olun.
         </label>
-        <Button onClick={()=>navigate("/register")} style={{ color: "white" }} variant="outlined">
+        <Button className="card-left-button" onClick={()=>navigate("/register")} style={{ color: "white" }} variant="outlined">
           Kaydol
         </Button>
       </Card>
@@ -69,22 +74,28 @@ const Login = () => {
           <div className="auth-title">GİRİŞ YAP</div>
           <div>
             <label>
-              <input
-                type="text"
-                placeholder="E-Mail"
-                name="email"
-                onChange={handleInputChange}
-              />
+            <Input
+      placeholder="Kullanıcı Adı"
+      prefix={<UserOutlined className="site-form-item-icon" />} 
+      
+    />
             </label>
           </div>
           <div>
             <label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Şifre"
-                onChange={handleInputChange}
-              />
+            <Input
+      placeholder="Şifre"
+      prefix={<SafetyOutlined className="site-form-item-icon" />}
+      suffix={
+        <Tooltip title="Extra information">
+          <EyeInvisibleOutlined 
+            style={{
+              color: 'rgba(0,0,0,.45)',
+            }}
+          />
+        </Tooltip>
+      }
+    />
             </label>
           </div>
           <p
@@ -107,10 +118,11 @@ const Login = () => {
                   display: "flex",
                   flexDirection: "row",
                   marginRight: "2em",
+                  border:"none"
                 }}
               >
-                <input type="checkbox" />
-                <span>Beni hatırla</span>
+                <input  type="checkbox" />
+                <span style={{color:"#000D25"}}>Beni hatırla</span>
               </label>
               <a href="#" className="form-link">
                 Şifremi unuttum!
@@ -118,7 +130,7 @@ const Login = () => {
             </div>
             <Button
               style={{
-                background: "linear-gradient(to top left, #3b4352, #b0996e)",
+                background: "linear-gradient(to top left, #000E26, #5fb49c)",
                 marginTop: "2em",
               }}
               variant="contained"

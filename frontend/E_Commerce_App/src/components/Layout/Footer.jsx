@@ -34,10 +34,12 @@ const Footer = () => {
                       <button className="btn">Katıl</button>
                     </form>
                     <p className="privacy-text">
-                      By subscribing you agree to our{" "}
+                      Abone olarak{" "}
                       <a href="#">
-                        Terms & Conditions and Privacy & Cookies Policy.
+                        şartlar ve koşullarımız ile gizlilik ve çerezler
+                        politikamızı{" "}
                       </a>
+                      kabul etmiş olursunuz
                     </p>
                   </div>
                 </div>
@@ -48,9 +50,7 @@ const Footer = () => {
                     Yardıma mı ihtiyacınız var? <br />
                     (+90) 456 78 90
                   </h3>
-                  <p className="contact-desc">
-                    We are available 8:00am – 7:00pm
-                  </p>
+                  <p className="contact-desc">08.00-18.00 arası açığız</p>
                 </div>
                 <div className="footer-contact-bottom">
                   <div className="download-app">
@@ -62,8 +62,9 @@ const Footer = () => {
                     </a>
                   </div>
                   <p className="privacy-text">
-                    <strong>Shopping App:</strong> Try our View in Your Room
-                    feature, manage registries and save payment info.
+                    <strong>Uygulama:</strong> View in Your Room
+                    özelliğimizi deneyin, kayıtları yönetin ve ödeme
+                    bilgilerinizi kaydedin.
                   </p>
                 </div>
               </div>
@@ -75,13 +76,17 @@ const Footer = () => {
             <div className="footer-widgets">
               <div className="brand-info">
                 <div className="footer-logo">
-                <Link to={"/"} className="logo">
-                <img
-                  style={{ width: "12vh", height: "12vh", marginLeft: "20vh" }}
-                  src={logoData && logoData.length > 0 && logoData[0].img}
-                  alt="Logo"
-                />
-              </Link>
+                  <Link to={"/"} className="logo">
+                    <img
+                      style={{
+                        width: "12vh",
+                        height: "12vh",
+                        marginLeft: "20vh",
+                      }}
+                      src={logoData && logoData.length > 0 && logoData[0].img}
+                      alt="Logo"
+                    />
+                  </Link>
                 </div>
                 <div className="footer-desc">
                   <p>
