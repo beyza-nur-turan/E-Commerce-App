@@ -1,17 +1,14 @@
 import { AlertService } from "../../services/AlertService";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import "../../css/auth.css";
-import Register from "./Register";
-import loginLogo from "../../../public/img/Logo/Minimalist k Letter Logo (6).gif";
-import LoginLottie from "../Lottie/LoginLottie";
 import { Card, Input, Tooltip } from "antd";
 import {
   UserOutlined,
   EyeInvisibleOutlined,
-  SafetyOutlined
-} from '@ant-design/icons';
+  SafetyOutlined,
+} from "@ant-design/icons";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +30,7 @@ const Login = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer YourAccessToken",
         },
         body: JSON.stringify(formData),
       });
@@ -65,40 +63,49 @@ const Login = () => {
         <label>
           Hayalinizdeki ürünleri keşfetmek ve satın almak için hemen kayıt olun.
         </label>
-        <Button className="card-left-button" onClick={()=>navigate("/register")} style={{ color: "white" }} variant="outlined">
+        <Button
+          className="card-left-button"
+          onClick={() => navigate("/register")}
+          style={{ color: "white" }}
+          variant="outlined"
+        >
           Kaydol
         </Button>
       </Card>
       <Card className="account-column">
-        <form onSubmit={handleLogin}>
+        <form >
           <div className="auth-title">GİRİŞ YAP</div>
           <div>
             <label>
-            <Input
-      placeholder="Kullanıcı Adı"
-      prefix={<UserOutlined className="site-form-item-icon" />} 
-      
-    />
+              <Input
+              name="email"
+              onChange={handleInputChange}
+                placeholder="Kullanıcı Adı"
+                prefix={<UserOutlined className="site-form-item-icon" />}
+              />
             </label>
           </div>
           <div>
             <label>
-            <Input
-      placeholder="Şifre"
-      prefix={<SafetyOutlined className="site-form-item-icon" />}
-      suffix={
-        <Tooltip title="Extra information">
-          <EyeInvisibleOutlined 
-            style={{
-              color: 'rgba(0,0,0,.45)',
-            }}
-          />
-        </Tooltip>
-      }
-    />
+              <Input
+              name="password"
+              type="password"
+              onChange={handleInputChange}
+                placeholder="Şifre"
+                prefix={<SafetyOutlined className="site-form-item-icon" />}
+                suffix={
+                  <Tooltip title="Extra information">
+                    <EyeInvisibleOutlined
+                      style={{
+                        color: "rgba(0,0,0,.45)",
+                      }}
+                    />
+                  </Tooltip>
+                }
+              />
             </label>
           </div>
-          <p
+          <div
             style={{
               display: "flex",
               justifyContent: "center",
@@ -118,26 +125,27 @@ const Login = () => {
                   display: "flex",
                   flexDirection: "row",
                   marginRight: "2em",
-                  border:"none"
+                  border: "none",
                 }}
               >
-                <input  type="checkbox" />
-                <span style={{color:"#000D25"}}>Beni hatırla</span>
+                <input type="checkbox" />
+                <span style={{ color: "#000D25" }}>Beni hatırla</span>
               </label>
               <a href="#" className="form-link">
                 Şifremi unuttum!
               </a>
             </div>
             <Button
+              onClick={handleLogin}
               style={{
-                background: "linear-gradient(to top left, #000E26, #5fb49c)",
+                background: "linear-gradient(to top left, #000E26, #1c3c3f)",
                 marginTop: "2em",
               }}
               variant="contained"
             >
               GİRİŞ YAP
             </Button>
-          </p>
+          </div>
         </form>
       </Card>
     </div>

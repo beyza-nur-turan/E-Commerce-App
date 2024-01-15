@@ -304,7 +304,7 @@ const closeSidebar = () => {
             <Header
               style={{
                 padding: 0,
-                background: colorBgContainer,
+                background: colorBgContainer
               }}
             >
               <div style={{display:"grid", gridTemplateColumns:"auto 10fr"}}>

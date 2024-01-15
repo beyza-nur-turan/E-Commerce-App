@@ -10,6 +10,7 @@ const CardTable = () => {
           <th className="product-thumbnail">&nbsp;</th>
           <th className="product-name">ÜRÜN </th>
           <th className="product-price">ÜCRET</th>
+          <th className="product-price">BEDEN</th>
           <th className="product-quantity">ADET</th>
           <th className="product-subtotal">ARA TOPLAM</th>
         </tr>

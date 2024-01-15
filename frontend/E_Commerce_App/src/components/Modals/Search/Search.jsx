@@ -38,16 +38,15 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
     }
   };
 
-
   return (
     <div className={`modal-search ${isSearchShow ? "show" : ""} `}>
       <div className="modal-wrapper">
-        <h3 className="modal-title">Search for products</h3>
+        <h3 className="modal-title">Ürünleri aramaya başla</h3>
         <p className="modal-text">
-          Start typing to see products you are looking for.
+          Aradığınız ürünleri görmek için yazın.
         </p>
         <form className="search-form" onSubmit={handleSearch}>
-          <input type="text" placeholder="Search a product" />
+          <input type="text" placeholder="Anahtar kelime girin" />
           <button>
             <i className="bi bi-search"></i>
           </button>

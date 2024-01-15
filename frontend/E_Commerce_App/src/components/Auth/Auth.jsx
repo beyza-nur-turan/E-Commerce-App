@@ -1,16 +1,25 @@
 import Login from "./Login";
-import Register from "./Register";
 import "../../css/auth.css";
-import NewLogin from "../../components/Auth/NewLogin";
+import { useEffect, useState } from "react";
+import Personal from "./personal/Personal";
 
 const Auth = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  const checkAuthenticated = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  };
+  useEffect(() => {
+    checkAuthenticated();
+  }, []);
   return (
-    <div
-      className="account-page"
-     
-    >
-      {/* <Login /> */}
-      <Register />
+    <div className="account-page">
+      {isAuthenticated ? <Personal /> : <Login />}
     </div>
   );
 };

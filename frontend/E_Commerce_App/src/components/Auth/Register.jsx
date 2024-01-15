@@ -34,6 +34,7 @@ const Register = () => {
         },
         body: JSON.stringify(formData),
       });
+      console.log(formData)
       console.log("dönen data:", response);
 
       if (response.ok) {
@@ -53,13 +54,14 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className="account-page">
+      <div className="register-container">
       <Card className="account-column-register-left">
         <h1> HOŞGELDİNİZ</h1>
         <label>
           Hayalinizdeki ürünleri keşfetmek ve satın almak için hemen kayıt olun.
         </label>
-        <Button
+        <Button style={{cursor:"initial"}}
           onClick={() => navigate("/register")}
           
           variant="outlined"
@@ -68,11 +70,13 @@ const Register = () => {
         </Button>
       </Card>
       <Card className="account-column-register-right">
-        <form onSubmit={handleRegister}>
+        <form >
           <div className="auth-title">KAYIT OL</div>
           <div>
             <label>
             <Input
+            name="username"
+            onChange={handleInputChange}
       placeholder="Kullanıcı Adı"
       prefix={<UserOutlined className="site-form-item-icon" />} 
       
@@ -82,6 +86,8 @@ const Register = () => {
           <div>
             <label>
             <Input
+            name="email"
+            onChange={handleInputChange}
       placeholder="E-Mail"
       prefix={<MailOutlined  className="site-form-item-icon" />} 
       
@@ -91,6 +97,9 @@ const Register = () => {
           <div>
             <label>
             <Input
+             name="password"
+             type="password"
+             onChange={handleInputChange}
       placeholder="Şifre"
       prefix={<SafetyOutlined className="site-form-item-icon" />}
       suffix={
@@ -115,8 +124,9 @@ const Register = () => {
               <a href="#">gizlilik politikamızda </a>
               açıklanan diğer amaçlar için kullanılacaktır.
             </p> */}
-            <Button style={{
-                background: "linear-gradient(to top left, #000E26, #5fb49c)",
+            <Button
+            onClick={handleRegister} style={{
+                background: "linear-gradient(to top left, #000E26, #3a7d83)",
                 marginTop: "2em",
               }} variant="outlined" className="btn">
               Kayıt Ol
@@ -124,6 +134,7 @@ const Register = () => {
           </div>
         </form>
       </Card>
+    </div>
     </div>
   );
 };

@@ -14,13 +14,18 @@ export const ReviewForm = ({ singleProduct,setSingleProduct }) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // User kontrolü
+    const userId = user ? (user.id || user._id) : null;
+  
     const formData = {
       reviews: [
         ...singleProduct.reviews,
-        { text: review, rating: parseInt(rating), user: user.id ||user._id},
+        { text: review, rating: parseInt(rating), user: userId },
       ],
     };
     console.log(formData);
+  
     try {
       const res = await fetch(`${apiUrl}/products/${singleProduct._id}`, {
         method: "PUT",
@@ -29,19 +34,20 @@ export const ReviewForm = ({ singleProduct,setSingleProduct }) => {
         },
         body: JSON.stringify(formData),
       });
+  
       if (res.ok) {
-        const data=await res.json();
-        setSingleProduct(data)
+        const data = await res.json();
+        setSingleProduct(data);
         setReview(" ");
         setRating(0);
-        AlertService.showOk()
+        AlertService.showOk();
       }
     } catch (error) {
       console.log(error);
-      AlertService.showError()
+      AlertService.showError();
     }
-    
   };
+  
 
   return (
     <form className="comment-form" onSubmit={handleSubmit}>
@@ -120,7 +126,7 @@ export const ReviewForm = ({ singleProduct,setSingleProduct }) => {
         <input id="cookies" type="checkbox" />
         <label htmlFor="cookies">
         Bir dahaki sefere yorum yaptığımda kullanılmak üzere adımı, e-posta adresimi ve web site adresimi bu tarayıcıya kaydet.
-          <span className="required">*</span>
+          
         </label>
       </div>
       <div className="form-submit">

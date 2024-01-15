@@ -52,6 +52,9 @@
     align-items: center;
     justify-content: center;
     background-color: #fefefe;
+    background-image: url('../../public/img/bg/pexels-lumn-167699.jpg'); /* Resminizin yolu */
+  background-size: cover; /* Resmi ekran boyutuna sığdır */
+  background-position: center;
     /*background: linear-gradient(to bottom right, #fafafa, #2f2c44);*/
   }
   .login-container{
@@ -80,7 +83,7 @@
   }
   .account-column-left{
     height: 100%;
-    background: linear-gradient(to bottom right, #000E26, #5fb49c);
+    background: linear-gradient(to bottom right, #000E26, #3a7d83);
     color: white;
     display: flex;
     flex-direction:column;
@@ -255,7 +258,7 @@
   padding: 2em;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  background: linear-gradient(to bottom right, #000E26, #5fb49c);
+  background: linear-gradient(to bottom right, #000E26, #3a7d83);
   color: white;
   text-align: center;
 }

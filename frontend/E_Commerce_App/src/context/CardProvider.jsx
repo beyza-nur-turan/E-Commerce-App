@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import ProductsData from "../data.json";
 const CardContext = createContext();
 function CardProvider({ children }) {
+  const [selectedSize, setSelectedSize] = useState(null);
   const [cardItems, setCardItems] = useState(
     localStorage.getItem("cardItems")
       ? JSON.parse(localStorage.getItem("cardItems"))
@@ -25,7 +26,7 @@ function CardProvider({ children }) {
     setCardItems(filteredCardItems);
   };
 
-  const data = { cardItems, setCardItems, products, addToCard, removeFromCard };
+  const data = { cardItems, setCardItems, products, addToCard, removeFromCard,selectedSize, setSelectedSize };
   return <CardContext.Provider value={data}>{children}</CardContext.Provider>;
 }
 export const useCardContext = () => useContext(CardContext);

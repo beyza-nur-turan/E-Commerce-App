@@ -1,10 +1,20 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useCardContext } from "../../../context/CardProvider";
 import "../../../css/info.css";
 import PropTypes from "prop-types";
 const Info = ({ singleProduct }) => {
+  const {selectedColor, setSelectedColor,addToCard, cardItems,selectedSize,setSelectedSize }=useCardContext()
+  
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+    // Diğer işlemleri yapabilirsiniz
+  };
+  const handleColorClick = (color) => {
+    setSelectedColor(color);
+    // Diğer işlemleri yapabilirsiniz
+  };
   const quantityRef = useRef();
-  const { addToCard, cardItems } = useCardContext();
+  
   const originalPrice = singleProduct.price.current;
   const discountPercentage = singleProduct.price.discount;
   // İndirimli fiyatı hesaplama
@@ -38,7 +48,7 @@ const Info = ({ singleProduct }) => {
         </ul>
         <span>2 reviews</span>
       </div>
-      
+
       <div className="product-price">
         <s className="old-price">${originalPrice.toFixed(2)}</s>
         <strong className="new-price">${discountedPrice.toFixed(2)}</strong>
@@ -54,18 +64,25 @@ const Info = ({ singleProduct }) => {
               <span>Renk</span>
             </div>
             <div className="colors-wrapper">
-              {singleProduct.colors.map((color, index) => (
-                <div className="color-wrapper" key={index}>
-                  <label
-                    style={{
-                      backgroundColor: `#${color}`,
-                    }}
-                  >
-                    <input type="radio" name="product-color" />
-                  </label>
-                </div>
-              ))}
-            </div>
+      {singleProduct.colors.map((color, index) => (
+        <div className="color-wrapper" key={index}>
+          <label
+            style={{
+              backgroundColor: `#${color}`,
+              border: selectedColor === color ? "3px solid black" : "none",
+            }}
+            onClick={() => handleColorClick(color)}
+          >
+            <input
+              type="radio"
+              name="product-color"
+              checked={selectedColor === color}
+              readOnly
+            />
+          </label>
+        </div>
+      ))}
+    </div>
           </div>
           <div className="values">
             <div className="values-label">
@@ -73,22 +90,37 @@ const Info = ({ singleProduct }) => {
             </div>
             <div className="values-list">
               {singleProduct.sizes.map((size, index) => (
-                <span key={index}>{size.toUpperCase()}</span>
+                <span
+                  key={index}
+                  onClick={() => handleSizeClick(size)}
+                  className={selectedSize === size ? "active-size" : ""}
+                >{console.log("sizee",selectedSize)}
+                  {size.toUpperCase()}
+                </span>
               ))}
             </div>
           </div>
           <div className="cart-button">
-            <input type="number" defaultValue="1" min="1" id="quantity" ref={quantityRef} />
+            <input
+              type="number"
+              defaultValue="1"
+              min="1"
+              id="quantity"
+              ref={quantityRef}
+            />
             <button
               className="btn btn-lg btn-primary"
               id="add-to-cart"
               type="button"
               disabled={filteredCard}
-              onClick={() => addToCard({
-                ...singleProduct,
-                price: discountedPrice,
-                quantity: parseInt(quantityRef.current.value),
-              })}
+              style={{backgroundColor:"#082148"}}
+              onClick={() =>
+                addToCard({
+                  ...singleProduct,
+                  price: discountedPrice,
+                  quantity: parseInt(quantityRef.current.value),
+                })
+              }
             >
               Sepete Ekle
             </button>

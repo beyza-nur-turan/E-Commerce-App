@@ -1,0 +1,86 @@
+.personal-container {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+.personal-img {
+  width: 100%; /* İstenilen genişliği ayarlayın */
+  height: 100%; /* İstenilen yüksekliği ayarlayın */
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 0.6;
+  background: linear-gradient(to bottom right, #000E26, #3a7d83);
+}
+
+.personal-content {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  flex: 3;
+  flex-direction: column;
+  
+}
+.ic{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 80%;
+}
+.ic input[type=text], .ic input[type=email]{
+    border: none;
+    background-color: transparent;
+    border-bottom: 4px solid #000E26;
+    box-sizing: border-box;
+    width: 100%;
+}
+.form-content{
+    display: flex;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+.form-content form{
+    display: flex;
+   flex-wrap: wrap;
+    flex-direction: column;
+    width: 50%;
+    padding: 2em 0;
+}
+.form-content label {
+    flex: 1; /* Her etiket ve giriş kutusu çifti eşit genişliğe sahip olacak */
+    margin-bottom: 16px; /* İsterseniz alt taraflarına bir boşluk ekleyebilirsiniz */
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+.personal-img .img-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10em;
+  height: 10em;
+  flex-direction: column;
+ 
+}
+.img-content .sidebar-list{
+    margin-top: 5em;
+}
+.personal-img .avatar {
+  width: 100%; /* Container içinde tam genişlikte göstermek için */
+  height: 100%; /* Container içinde tam yükseklikte göstermek için */
+  object-fit: cover; /* Resmi container içine sığdırmak için */
+  border-radius: 50%;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 15em;
+}
+.personal-content .title-content {
+}
+

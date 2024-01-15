@@ -12,7 +12,7 @@ const Header = ({ setIsSearchShow }) => {
 
   return (
     <header>
-      <div className="global-notification" style={{background: "linear-gradient(to top left, #000E26, #0f3936 )"}}>
+      <div className="global-notification" style={{background: "linear-gradient(to top left, #000E26, #3a7d83 )"}}>
         <div className="container" >
         {/* #204e4a */}
           <p>
@@ -50,32 +50,29 @@ const Header = ({ setIsSearchShow }) => {
                     </Link>
                     <div className="menu-dropdown-wrapper">
                       <ul className="menu-dropdown-content">
-                        <li>
-                          <a href="#">Home Clean</a>
+                      <li>
+                          <a href="#">Giyim</a>
                         </li>
                         <li>
-                          <a href="#">Home Collection</a>
+                          <a href="#">Temizlik</a>
                         </li>
                         <li>
-                          <a href="#">Home Minimal</a>
+                          <a href="#">Ev Koleksiyon</a>
+                        </li>
+                        
+                        <li>
+                          <a href="#">Ev Modern</a>
+                        </li>
+                        
+                       
+                        <li>
+                          <a href="#">Ev Stil</a>
                         </li>
                         <li>
-                          <a href="#">Home Modern</a>
+                          <a href="#">Tek Kalanlar</a>
                         </li>
                         <li>
-                          <a href="#">Home Parallax</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Strong</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Style</a>
-                        </li>
-                        <li>
-                          <a href="#">Home Unique</a>
-                        </li>
-                        <li>
-                          <a href="#">Home RTL</a>
+                          <a href="#">Ev RTL</a>
                         </li>
                       </ul>
                     </div>
@@ -92,101 +89,102 @@ const Header = ({ setIsSearchShow }) => {
                     </Link>
                     <div className="menu-dropdown-wrapper">
                       <div className="menu-dropdown-megamenu">
-                        <div className="megamenu-links">
-                          <div className="megamenu-products">
-                            <h3 className="megamenu-products-title">
-                              Shop Style
-                            </h3>
-                            <ul className="megamenu-menu-list">
-                              <li>
-                                <a href="#">Shop Standard</a>
-                              </li>
-                              <li>
-                                <a href="#">Shop Full</a>
-                              </li>
-                              <li>
-                                <a href="#">Shop Only Categories</a>
-                              </li>
-                              <li>
-                                <a href="#">Shop Image Categories</a>
-                              </li>
-                              <li>
-                                <a href="#">Shop Sub Categories</a>
-                              </li>
-                              <li>
-                                <a href="#">Shop List</a>
-                              </li>
-                              <li>
-                                <a href="#">Hover Style 1</a>
-                              </li>
-                              <li>
-                                <a href="#">Hover Style 2</a>
-                              </li>
-                              <li>
-                                <a href="#">Hover Style 3</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="megamenu-products">
-                            <h3 className="megamenu-products-title">
-                              Filter Layout
-                            </h3>
-                            <ul className="megamenu-menu-list">
-                              <li>
-                                <a href="#">Sidebar</a>
-                              </li>
-                              <li>
-                                <a href="#">Filter Side Out</a>
-                              </li>
-                              <li>
-                                <a href="#">Filter Dropdown</a>
-                              </li>
-                              <li>
-                                <a href="#">Filter Drawer</a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="megamenu-products">
-                            <h3 className="megamenu-products-title">
-                              Shop Loader
-                            </h3>
-                            <ul className="megamenu-menu-list">
-                              <li>
-                                <a href="#">Shop Pagination</a>
-                              </li>
-                              <li>
-                                <a href="#">Shop Infinity</a>
-                              </li>
-                              <li>
-                                <a href="#">Shop Load More</a>
-                              </li>
-                              <li>
-                                <a href="#">Cart Modal</a>
-                              </li>
-                              <li>
-                                <a href="#">Cart Drawer</a>
-                              </li>
-                              <li>
-                                <a href="#">Cart Page</a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                      <div className="megamenu-links">
+  <div className="megamenu-products">
+    <h3 className="megamenu-products-title">
+      Alışveriş Stili
+    </h3>
+    <ul className="megamenu-menu-list">
+      <li>
+        <a href="#">Standart Alışveriş</a>
+      </li>
+      <li>
+        <a href="#">Tam Ekran Alışveriş</a>
+      </li>
+      <li>
+        <a href="#">Sadece Kategorilere Göre Alışveriş</a>
+      </li>
+      <li>
+        <a href="#">Resim Kategorilerine Göre Alışveriş</a>
+      </li>
+      <li>
+        <a href="#">Alt Kategorilere Göre Alışveriş</a>
+      </li>
+      <li>
+        <a href="#">Liste Stili Alışveriş</a>
+      </li>
+      <li>
+        <a href="#">Üzerine Gelme Stili 1</a>
+      </li>
+      <li>
+        <a href="#">Üzerine Gelme Stili 2</a>
+      </li>
+      <li>
+        <a href="#">Üzerine Gelme Stili 3</a>
+      </li>
+    </ul>
+  </div>
+  <div className="megamenu-products">
+    <h3 className="megamenu-products-title">
+      Filtre Düzeni
+    </h3>
+    <ul className="megamenu-menu-list">
+      <li>
+        <a href="#">Yan Menü</a>
+      </li>
+      <li>
+        <a href="#">Filtre Yan Dışa</a>
+      </li>
+      <li>
+        <a href="#">Filtre Açılır Menü</a>
+      </li>
+      <li>
+        <a href="#">Filtre Çekmece</a>
+      </li>
+    </ul>
+  </div>
+  <div className="megamenu-products">
+    <h3 className="megamenu-products-title">
+      Alışveriş Yükleyici
+    </h3>
+    <ul className="megamenu-menu-list">
+      <li>
+        <a href="#">Alışveriş Sayfalandırma</a>
+      </li>
+      <li>
+        <a href="#">Alışveriş Sonsuz Kaydırma</a>
+      </li>
+      <li>
+        <a href="#">Alışveriş Daha Fazla Yükleme</a>
+      </li>
+      <li>
+        <a href="#">Sepet Modalı</a>
+      </li>
+      <li>
+        <a href="#">Sepet Çekmecesi</a>
+      </li>
+      <li>
+        <a href="#">Sepet Sayfası</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
                         <div className="megamenu-single">
                           <a href="#">
-                            <img src="/img/mega-menu.jpg" alt="" />
+                            <img style={{width:"10em",height:"8em"}} src="../../../public/img/mega_menu.jpg" alt="" />
                           </a>
                           <h3 className="megamenu-single-title">
-                            JOIN THE LAYERING GANG
+                            Sende Ailemize Katıl
                           </h3>
                           <h4 className="megamenu-single-subtitle">
-                            Suspendisse faucibus nunc et pellentesque
+                            Tüm indirimlerden haberdar ol!
                           </h4>
                           <a
                             href="#"
                             className="megamenu-single-button btn btn-sm"
                           >
-                            Shop Now
+                            Alışverişe Başla
                           </a>
                         </div>
                       </div>
