@@ -43,14 +43,18 @@ const CardTotals = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(res)
+      
 
       if (!res.ok) {
+        const errorDetails = await res.json();
+        console.error("Ödeme işlemi başarısız oldu. Hata:", errorDetails);
         return message.error("Ödeme işlemi başarısız oldu.");
       }
 
       const session = await res.json();
       console.log("Stripe Session:", session);
+      const totalAmount=session.totalProductsSold;
+      console.log(totalAmount)
 
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,

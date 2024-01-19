@@ -9,21 +9,74 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+<<<<<<< Updated upstream
 import "../css/dashboardPage.css"
 import { useStripeContext } from "../context/StripeProvider";
+=======
+import { useAppContext } from "../context/StripeProvider";
+>>>>>>> Stashed changes
 
 const DashboardPage = () => {
   const [paymentData, setPaymentData] = useState(null);
+  const [stripeTotalAmount, setStripeStripeTotalAmount] = useState(null);
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
+<<<<<<< Updated upstream
   const { state, dispatch } = useStripeContext();
   const [customerData, setCustomerData] = useState();
   const [salesData, setSalesData] = useState([]);
+=======
+  const{state,dispatch}=useAppContext()
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const paymentResponse = await fetch(`${apiUrl}/payment`);
+  //       const paymentData = await paymentResponse.json();
+  //       setPaymentData(paymentData);
+
+  //       const stripeResponse = await fetch(`${apiUrl}/stripe`);
+  //       const stripeData = await stripeResponse.json();
+  //       setStripeData(stripeData);
+  //     } catch (error) {
+  //       console.error('Veri çekme hatası:', error.message);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
+
+  // useEffect(() => {
+  //   const fetchPaymentData = async () => {
+  //     try {
+  //       const response = await fetch(`${apiUrl}/payment`); 
+  //       const data = await response.json();
+  //       setPaymentData(data);
+  //     } catch (error) {
+  //       console.error('Error fetching payment:', error);
+  //     }
+  //   }; 
+  //   const fetchStripeData = async () => {
+  //     try {
+  //       const response = await fetch(`${apiUrl}/stripe/totalRevenue`); 
+  //       const data = await response.json();
+  //       setStripeStripeTotalAmount(data);
+  //       console.log("gelem stripe data",data)
+  //     } catch (error) {
+  //       console.error('Error fetching payment:', error);
+  //     }
+  //   }; 
+  //   fetchStripeData();
+  //   fetchPaymentData();
+  // }, []);
+
+>>>>>>> Stashed changes
   useEffect(() => {
     const fetchData = async () => {
       try {
         const paymentResponse = await fetch(`${apiUrl}/stripe/totalRevenue`);
         const paymentData = await paymentResponse.json();
         dispatch({ type: "SET_TOTAL_REVENUE", payload: paymentData });
+<<<<<<< Updated upstream
         const customersResponse = await fetch(
           `${apiUrl}/stripe/totalCustomers`
         );
@@ -78,10 +131,27 @@ const DashboardPage = () => {
       }
 
       
+=======
+
+        const productsResponse = await fetch(`${apiUrl}/stripe/totalProductsSold`);
+        const productsData = await productsResponse.json();
+        dispatch({ type: "SET_TOTAL_PRODUCTS", payload: productsData });
+
+        const customersResponse = await fetch(`${apiUrl}/stripe/totalCustomers`);
+        const customersData = await customersResponse.json();
+        dispatch({ type: "SET_TOTAL_CUSTOMERS", payload: customersData });
+      } catch (error) {
+        console.error('Veri çekme hatası:', error);
+      }
+>>>>>>> Stashed changes
     };
 
     fetchData();
   }, [apiUrl, dispatch]);
+<<<<<<< Updated upstream
+=======
+  console.log(paymentData)
+>>>>>>> Stashed changes
   const productSalesData = [
     { name: "Ocak", satilanUrunSayisi: 10 },
     { name: "Şubat", satilanUrunSayisi: 15 },
@@ -129,12 +199,17 @@ const selectedMonth = allMonthsData.slice(-1).map(item => ({
           </Card>
         </Col>
         <Col span={8}>
+<<<<<<< Updated upstream
           <Card style={{border: '3px solid #2ecc71  '}}>
             <Statistic
               title="Toplam Gelir"
               value={state.totalRevenue?.totalRevenue}
               prefix="$"
             />
+=======
+          <Card>
+            <Statistic title="Toplam Gelir" value={state.totalRevenue?.totalRevenue} prefix="$" />
+>>>>>>> Stashed changes
           </Card>
         </Col>
       </Row>
