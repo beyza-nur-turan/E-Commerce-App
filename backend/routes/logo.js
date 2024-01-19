@@ -13,8 +13,8 @@ router.post('/logo', upload.single('logo'), async (req, res) => {
     // Logo yükleme işlemleri burada gerçekleşir
     const logoData = req.file.buffer.toString('base64');
 
-    // Logo verilerini MongoDB veya başka bir yerde saklayabilirsiniz
-    const newLogo = new Logo({ img: [logoData] });
+    
+    const newLogo = new Logo({ img:[logoData] });
     await newLogo.save();
 
     res.status(201).json(newLogo);

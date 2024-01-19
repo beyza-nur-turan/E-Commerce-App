@@ -22,6 +22,8 @@ const connect = async () => {
 app.use(logger("dev"))//development modunda morgan kullanımı
 app.use(express.json())//gelen tüm datalar json'a çevriliyor
 app.use(cors())
+app.use(express.urlencoded({ extended: true }));
+
 //!middlewares finish
 
 app.use("/api", mainRoute);

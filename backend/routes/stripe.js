@@ -48,7 +48,7 @@ router.get("/createStripe", async (req, res) => {
 async function calculateTotalRevenue() {
   try {
     // Stripe'dan tüm ödemeleri alır
-    const payments = await stripe.paymentIntents.list({ limit: 100 }); // Limiti ihtiyaca göre ayarlayabilirsiniz
+    const payments = await stripe.paymentIntents.list({ limit: 100 }); 
     console.log(`payment değeri: ${payments}`)
 
     // Ödemelerin toplam tutarını hesaplar
@@ -123,9 +123,12 @@ async function calculateTotalProductsSold() {
   try {
     // Stripe'dan tüm ödemeleri alır
     const payments = await stripe.paymentIntents.list({ limit: 100 });
-    console.log(payments.succeded.length);
-    // Ödemelerdeki ürün sayısını toplar
-    const totalProductsSold = payments.data.length
+    
+    // Sadece başarılı (succeeded) ödemeleri filtreler
+    const successfulPayments = payments.data.filter(payment => payment.status === 'succeeded');
+
+    // Başarılı ödemelerdeki ürün sayısını toplar
+    const totalProductsSold = successfulPayments.length;
 
     return totalProductsSold;
   } catch (error) {
@@ -138,6 +141,43 @@ router.get("/totalProductsSold", async (req, res) => {
   try {
     const totalProductsSold = await calculateTotalProductsSold();
     res.status(200).json({ totalProductsSold });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error.", details: error.message });
+  }
+});
+
+function groupPaymentsByMonth(payments) {
+  const groupedData = {};
+
+  payments.forEach((payment) => {
+    const month = new Date(payment.created * 1000).getMonth() + 1; // Unix timestamp'i aya çevir
+    if (!groupedData[month]) {
+      groupedData[month] = [];
+    }
+    groupedData[month].push(payment);
+  });
+
+  return groupedData;
+}
+
+router.get("/totalSalesByMonth", async (req, res) => {
+  try {
+    // Stripe'dan tüm ödemeleri alır
+    const payments = await stripe.paymentIntents.list({ limit: 100 });
+
+    // Ödeme verilerini aylara göre gruplar
+    const groupedPayments = groupPaymentsByMonth(payments.data);
+
+    // Aylık satış verilerini oluşturur
+    const monthlySalesData = Object.keys(groupedPayments).map((month) => {
+      return {
+        month: parseInt(month),
+        satilanUrunSayisi: groupedPayments[month].length,
+      };
+    });
+
+    res.status(200).json({ monthlySalesData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error.", details: error.message });
