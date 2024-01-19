@@ -77,17 +77,12 @@ async function calculateTotalCustomers() {
   try {
     // Stripe'dan tüm müşterileri alır
     const customers = await stripe.customers.list({ limit: 100 });
-<<<<<<< Updated upstream
+
     console.log("Customers from Stripe:", customers);
 
     const totalCustomers = customers.data.length;
     console.log("Total Customers:", totalCustomers);
-=======
-    console.log("Customers from Stripe:", customers); // Aldığınız müşteri verisini kontrol etmek için bu satırı ekleyin
 
-    const totalCustomers = customers.data.length;
-    console.log("Total Customers:", totalCustomers); // Toplam müşteri sayısını kontrol etmek için bu satırı ekleyin
->>>>>>> Stashed changes
 
     return totalCustomers;
   } catch (error) {
