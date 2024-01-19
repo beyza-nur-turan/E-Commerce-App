@@ -33,8 +33,6 @@ export default function CreateLogoPage  ()  {
   return (
     <Spin spinning={loading}>
       <Form name="basic" layout="vertical" onFinish={onFinish} form={form}>
-        
-
         <Form.Item
           label="Logo Görseli (Link)"
           name="img"

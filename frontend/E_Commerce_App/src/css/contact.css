@@ -3,6 +3,22 @@
     transform: rotate(1turn);
   }
 }
+@keyframes colorChange {
+    
+  25% {
+    color:#1ebe8b
+  }
+  50% {
+    color:#17af8c
+    
+  }
+  75% {
+    color:#16ab6b,
+  }
+  100% {
+    color:#248056
+  }
+}
 
 .contact .contact-bottom {
   margin: 2em 3em;
@@ -95,10 +111,15 @@
 }
 .contact-elements .card-info {
   margin: 0;
-  border: 3px dashed #000e26;
+  border: 4px dashed #000e26;
   
   
 }
+.contact-elements .card-info h1{
+  font-size: 30px;
+  animation: colorChange 2s infinite;
+}
+
 /*! border animation!
  .card-info {
   margin: 0;

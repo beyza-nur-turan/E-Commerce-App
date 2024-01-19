@@ -103,7 +103,8 @@ export default function UserPage() {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Evet"
+            confirmButtonText: "Evet",
+            cancelButtonText: "Hayır",
           }).then((result) => {
             if (result.isConfirmed) {
               deleteUser(params.row.email)

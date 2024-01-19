@@ -6,15 +6,15 @@ const Breadcrumb = () => {
       <nav className="breadcrumb">
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="#">Ana Sayfa</a>
           </li>
           <li>
-            <a href="#">Man</a>
+            <a href="#">Kadın</a>
           </li>
           <li>
-            <a href="#">Pants</a>
+            <a href="#">Kaban</a>
           </li>
-          <li>Basic Colored Sweatpants With Elastic Hems</li>
+          <li>Kadın Turuncu Kaban</li>
         </ul>
       </nav>
     </div>

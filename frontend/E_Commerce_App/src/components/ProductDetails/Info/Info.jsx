@@ -46,7 +46,7 @@ const Info = ({ singleProduct }) => {
             <i className="bi bi-star-half"></i>
           </li>
         </ul>
-        <span>2 reviews</span>
+        <span>{ `${singleProduct.reviews.length} yorum`}</span>
       </div>
 
       <div className="product-price">
@@ -149,12 +149,12 @@ const Info = ({ singleProduct }) => {
         </div>
         <div className="product-categories">
           <span>Kategori:</span>
-          <strong>Pants , Women</strong>
+          <strong>Kaban , Kadın</strong>
         </div>
-        <div className="product-tags">
-          <span>Tag:</span>
-          <a href="#">Lacivert</a>,<a href="#">white</a>
-        </div>
+        {/* <div className="product-tags">
+          <span>Etiket:</span>
+          <a href="#">Turuncu</a>,<a href="#">white</a>
+        </div> */}
       </div>
     </div>
   );

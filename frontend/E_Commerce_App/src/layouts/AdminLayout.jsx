@@ -30,7 +30,9 @@ function AdminLayout({children}) {
 const closeSidebar = () => {
   setIsSidebarOpen(false);}
   const navigateToHomePage=()=>{
+    closeSidebar()
     navigate("/")
+    window.location.reload();
   }
   const [collapsed, setCollapsed] = useState(false);
   const menuItems = [

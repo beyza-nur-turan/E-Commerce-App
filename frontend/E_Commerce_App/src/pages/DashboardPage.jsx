@@ -17,6 +17,7 @@ const DashboardPage = () => {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const { state, dispatch } = useStripeContext();
   const [customerData, setCustomerData] = useState();
+  const [salesData, setSalesData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,6 +48,7 @@ const DashboardPage = () => {
         const customersByMonthResponse = await fetch(
           `${apiUrl}/stripe/totalCustomersByMonth`
         );
+        
 
         const customersByMonthData = await customersByMonthResponse.json();
         dispatch({
@@ -54,9 +56,28 @@ const DashboardPage = () => {
           payload: customersByMonthData,
         });
         setCustomerData(customersByMonthData);
+
+        const salesByMonthResponse = await fetch(
+          `${apiUrl}/stripe/totalSalesByMonth`
+        );
+        const salesByMonthData = await salesByMonthResponse.json();
+
+        // salesByMonthData'yi salesData'ya çevir
+        const formattedSalesData = salesByMonthData.monthlySalesData.map(item => ({
+          month: item.month,
+          satilanUrunSayisi: item.satilanUrunSayisi,
+        }));
+        
+        dispatch({
+          type: "SET_TOTAL_SALES_BY_MONTH",
+          payload: formattedSalesData,
+        });
+        setSalesData(formattedSalesData);
       } catch (error) {
         console.error("Veri çekme hatası:", error);
       }
+
+      
     };
 
     fetchData();
@@ -69,15 +90,18 @@ const DashboardPage = () => {
     { name: "Mayıs", satilanUrunSayisi: 30 },
     { name: "Haziran", satilanUrunSayisi: 35 },
   ];
-console.log(customerData)
-const getMonthName = (ayNumarası) => {
-  const ayAdları = [
-    "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
-    "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
-  ];
-
-  return ayAdları[ayNumarası - 1];
-};
+  const getMonthName = (monthNumber) => {
+    const monthNames = [
+      "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+      "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"
+    ];
+  
+    return monthNames[monthNumber - 1];
+  };
+  const currentMonth = new Date().getMonth() + 1; // Şu anki ayın sayısal değeri
+  const sortedSalesData = salesData
+    .filter(item => item.month >= currentMonth) // Şu andan sonraki ayları al
+    .sort((a, b) => a.month - b.month); // Ayları sayısal değerlerine göre sırala
 const allMonthsData = customerData?.totalCustomersByMonth || [];
 
 const selectedMonth = allMonthsData.slice(-1).map(item => ({
@@ -99,7 +123,7 @@ const selectedMonth = allMonthsData.slice(-1).map(item => ({
         <Col span={8}>
           <Card style={{border: '3px solid #f39c12 '}}>
             <Statistic
-              title="Toplam Müşteri Sayısı"
+              title="Toplam Müşteri Sayısı(Ürün satın alan)"
               value={state.totalCustomers?.totalCustomers}
             />
           </Card>
@@ -115,15 +139,18 @@ const selectedMonth = allMonthsData.slice(-1).map(item => ({
         </Col>
       </Row>
       <div style={{display:"grid", justifyContent:"center"}}>
-      <Card style={{ marginTop: "20px", justifyContent:"center",border: '2px solid #f0f0f0',boxShadow: '0 2px 4px black' }}>
-        <h2 >Son Aydaki Ürün Satış Artışı</h2>
+      <Card style={{ marginTop: "20px", justifyContent: "center", border: '2px solid #f0f0f0', boxShadow: '0 2px 4px black' }}>
+        <h2>Son Aydaki Ürün Satış Artışı</h2>
         <LineChart
           width={750}
           height={400}
-          data={productSalesData}
+          data={salesData.map(item => ({
+            month: getMonthName(item.month),
+            satilanUrunSayisi: item.satilanUrunSayisi,
+          }))}
           margin={{ top: 5, right: 30, bottom: 5 }}
         >
-          <XAxis dataKey="name" />
+          <XAxis dataKey="month" reversed="true" />
           <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
@@ -136,6 +163,7 @@ const selectedMonth = allMonthsData.slice(-1).map(item => ({
           />
         </LineChart>
       </Card>
+
       <Card style={{ marginTop: "20px", display:"flex", justifyContent:"center",border: '2px solid #f0f0f0',boxShadow: '0 2px 4px black' }}>
         <h2>Son Aydaki Müşteri Artışı</h2>
         <LineChart 

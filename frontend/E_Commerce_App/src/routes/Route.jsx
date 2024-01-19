@@ -28,6 +28,7 @@ import ContactPage1 from "../pages/Admin/Contact/ContactPage"
 import Register from "../components/Auth/Register";
 import Login from "../components/Auth/Login";
 import Personal from "../components/Auth/personal/Personal";
+import UserPage from "../pages/Admin/UserPage";
 
 function RouteFix() {
   return (
@@ -47,6 +48,7 @@ function RouteFix() {
       <Route path="/success" element={<Success />} />
       <Route path="/admin/*">
         <Route index element={<DashboardPage />} />
+        <Route path="users" element={<UserPage/>}/>
         <Route path="contact" element={<ContactPage1/>}/>
         <Route path="officeInfo" element={<OfficeInfoPage/>}/>
         <Route path="blogs" element={<AdminBlogPage/>}/>
